@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+
+    <package name="mypackage" namespace="/" extends="tiles-default">
+
+       	<!-- Login Form Configuration -->
+        <action name="showLogin">
+			<result>/pages/login.jsp</result>
+        </action>
+        <action name="purchaseSlip">
+        	<result name="success" type="tiles">my.purchase.slip</result>
+        </action>
+		<action name="createNewAccount">
+			<result name="success" type="tiles">my.account.new</result>
+		</action>
+        <action name="doLogin" class="com.san.my.web.action.account.Login">
+            <result  name="input">/pages/login.jsp</result>
+			<result  name="error">/pages/login.jsp</result>
+			<result name="success" type="tiles">admin.layout</result>
+        </action>
+        <action name="saveAccount" class="com.san.my.web.action.account.AccountForm">
+            <result  name="input" type="tiles">my.account.new</result>
+			<result  name="error" type="tiles">my.account.new</result>
+			<result name="success" type="tiles">admin.layout</result>
+        </action>
+    </package>
+
+
+    <!-- Add packages here -->
+
+</struts>
