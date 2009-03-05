@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowViewLayout Version="1.2">
+  <StrutsActivity path="/error.do" location="50,50" dimension="67,62" />
+  <StrutsActivity path="/error/error.do" location="350,50" dimension="95,62" />
+  <StrutsActivity path="/purchaseSlip.do" location="950,50" dimension="103,62" />
+  <StrutsActivity path="/createNewAccount.do" location="650,250" dimension="134,62" />
+  <StrutsActivity path="/saveAccount.do" location="950,250" dimension="105,62" />
+  <StrutsActivity path="my.error.default" location="650,150" dimension="109,49" />
+  <StrutsActivity path="my.purchase.slip" location="50,250" dimension="110,49" />
+  <StrutsActivity path="my.account.new" location="350,250" dimension="109,49" />
+  <StrutsActivity path="my.account.viewAll" location="350,350" dimension="122,49" />
+  <StrutsActivity path="mgs.error.default" location="650,50" dimension="114,49" />
+  <StrutsActivity path="" location="50,350" dimension="29,49" />
+  <StrutsTransition id="/createNewAccount.do,null,my.account.new,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="650,281" />
+      <AbsolutePoint location="459,281" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/saveAccount.do,failure,my.account.new,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1032,312" />
+      <AbsolutePoint location="1032,477" />
+      <AbsolutePoint location="404,477" />
+      <AbsolutePoint location="404,299" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/error.do,null,my.error.default,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="83,112" />
+      <AbsolutePoint location="83,174" />
+      <AbsolutePoint location="650,174" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="my.account.new,null,/saveAccount.do,2" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="434,299" />
+      <AbsolutePoint location="434,387" />
+      <AbsolutePoint location="1002,387" />
+      <AbsolutePoint location="1002,312" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/saveAccount.do,success,my.account.viewAll,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1002,281" />
+      <AbsolutePoint location="0,0" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/purchaseSlip.do,null,my.purchase.slip,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="1001,112" />
+      <AbsolutePoint location="1001,214" />
+      <AbsolutePoint location="113,214" />
+      <AbsolutePoint location="113,250" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+  <StrutsTransition id="/error/error.do,null,my.error.default,1" routingType="0">
+    <AutomaticBendpoints>
+      <AbsolutePoint location="397,112" />
+      <AbsolutePoint location="397,127" />
+      <AbsolutePoint location="704,127" />
+      <AbsolutePoint location="704,150" />
+    </AutomaticBendpoints>
+  </StrutsTransition>
+</FlowViewLayout>
+
