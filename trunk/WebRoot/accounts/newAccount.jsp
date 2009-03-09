@@ -1,18 +1,15 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<s:form action="saveAccount" method="POST" validate="true">
+<s:form action="saveAccount" method="POST" >
 	<table>
 		<tr>
 			<td colspan="3">
-				<s:label key="label.account.createTitle" />
-				<s:actionerror />
+				<s:label key="label.account.createTitle" />				
 				<s:fielderror />
 			</td>
 		</tr>
 		<tr>
-
 			<td>
-
 				<s:textfield name="loginName" key="label.account.loginName" />
 			</td>
 		</tr>
@@ -25,7 +22,7 @@
 		<tr>
 
 			<td>
-				<s:textfield name="name" key="label.account.mobile" />
+				<s:textfield name="mobile" key="label.account.mobile" />
 			</td>
 		</tr>
 		<tr>
