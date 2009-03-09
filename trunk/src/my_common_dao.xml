@@ -10,4 +10,8 @@
 		class="com.san.my.dao.impl.AccountDAOImpl"
 		parent="objectDAO">		
 	</bean>
+	<bean id="seedsDAO"
+		class="com.san.my.dao.impl.SeedsDAOImpl"
+		parent="objectDAO">		
+	</bean>
 </beans>

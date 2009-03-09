@@ -25,4 +25,8 @@
 		class="com.san.my.service.impl.AccountServiceImpl">	
 		<property name="accountDAO" ref="accountDAO"></property>	
 	</bean>
+	<bean id="seedsService"
+		class="com.san.my.service.impl.SeedsServiceImpl">	
+		<property name="seedsDAO" ref="seedsDAO"></property>	
+	</bean>
 </beans>

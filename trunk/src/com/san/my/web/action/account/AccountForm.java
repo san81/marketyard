@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.san.my.common.util.springs.ServiceLocator;
 import com.san.my.service.AccountService;
 
+//@Validation
 public class AccountForm extends ActionSupport{
 
 	private String loginName;
@@ -22,15 +23,20 @@ public class AccountForm extends ActionSupport{
 	public String getLoginName() {
 		return loginName;
 	}
+	
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "Login name Required")
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
 	public String getMobile() {
 		return mobile;
 	}
+	
+	//@RequiredStringValidator(type = ValidatorType.FIELD, message = "Login name Required")
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -46,7 +52,11 @@ public class AccountForm extends ActionSupport{
 	
 	public String execute() throws Exception{
 		AccountService accountService = ServiceLocator.getAccountService();
+		if(accountService.isLoginNameExists(loginName)){
+			addFieldError("loginName", "login name already exists");
+			return INPUT;
+		}
       	accountService.saveAccount(this);
-      	return ActionSupport.SUCCESS;
+      	return SUCCESS;
 	}
 }
