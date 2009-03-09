@@ -13,4 +13,7 @@
 	 <definition name="my.account.new" extends="admin.layout">
 	 	<put-attribute name="body" value="/accounts/newAccount.jsp" />
 	 </definition>
+	 <definition name="my.seeds.new" extends="admin.layout">
+	 	<put-attribute name="body" value="/seeds/newSeed.jsp" />
+	 </definition>
 </tiles-definitions>
