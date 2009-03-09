@@ -16,10 +16,10 @@
 			<message>Name is required</message>
 		</field-validator>
 	</field>
-	<field name="name">
+	<field name="mobile">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
-			<message>Name is required</message>
+			<message>Mobile is required</message>
 		</field-validator>
 	</field>
 </validators>

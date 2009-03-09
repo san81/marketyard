@@ -27,8 +27,8 @@ public class AccountServiceImpl implements AccountService {
 	}	
 	
 	public boolean isLoginNameExists(String loginName){
-		accountDAO.isLoginNameExists(loginName);
-		return false;
+		return accountDAO.isLoginNameExists(loginName);
+		
 	}
 
 }
