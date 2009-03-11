@@ -38,6 +38,13 @@
 			<result  name="error" type="tiles">my.seeds.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
+	<action name="slipSubmit" class="com.san.my.web.action.PurchaseSlip">
+         	<result name="success">admin.layout</result>
+         	<result name="input">my.purchase.slip</result>
+       </action>       
+    	<action name="seedsList" class="com.san.my.web.action.SeedsList">
+    		<result name="success">/utils/seedsJson.jsp</result>
+    	</action>
     </package>
 
 

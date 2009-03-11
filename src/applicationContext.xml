@@ -10,6 +10,12 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/marketyard">
 		</property>
+        <property name="username">
+            <value>root</value>
+        </property>
+        <property name="password">
+            <value></value>
+        </property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
