@@ -9,12 +9,24 @@
     <constant name="struts.devMode" value="true" />
 
     <package name="mypackage" namespace="/" extends="tiles-default">
-
+		<!-- interceptors declaration -->
+		<interceptors>
+			<interceptor name="transactionInterceptor" class="com.san.my.web.interceptors.TransactionInterceptor"></interceptor>
+			<interceptor name="loginInterceptor" class="com.san.my.web.interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginAndTrans">				
+				<interceptor-ref name="transactionInterceptor"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- end of interceptors -->
+		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
        	<!-- Login Form Configuration -->
         <action name="showLogin">
 			<result>/pages/login.jsp</result>
         </action>
         <action name="purchaseSlip">
+        	
         	<result name="success" type="tiles">my.purchase.slip</result>
         </action>
 		<action name="createNewAccount">
@@ -38,7 +50,7 @@
 			<result  name="error" type="tiles">my.seeds.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-	<action name="slipSubmit" class="com.san.my.web.action.PurchaseSlip">
+	   <action name="slipSubmit" class="com.san.my.web.action.PurchaseSlip">
          	<result name="success">admin.layout</result>
          	<result name="input">my.purchase.slip</result>
        </action>       
@@ -46,8 +58,12 @@
     		<result name="success">/utils/seedsJson.jsp</result>
     	</action>
     </package>
-
-
-    <!-- Add packages here -->
+    
+    <package name="json" extends="json-default">
+	  <default-interceptor-ref name="completeStack" />	  
+	  <action name="seedsList" class="com.san.my.web.action.SeedsList">
+	  	<result type="json"/>
+	  </action>
+  </package>    
 
 </struts>

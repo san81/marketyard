@@ -1,4 +1,4 @@
-package com.san.my.web.filter;
+package com.san.my.web.interceptors;
 
 import org.apache.log4j.Logger;
 import org.springframework.transaction.TransactionStatus;
@@ -9,9 +9,9 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import com.san.my.common.util.springs.BeanLocatorFactory;
 
-public class TransactionFilter extends AbstractInterceptor 
+public class TransactionInterceptor extends AbstractInterceptor 
 {
-	static Logger logger = Logger.getLogger(TransactionFilter.class);
+	static Logger logger = Logger.getLogger(TransactionInterceptor.class);
 	
 	@Override
 	public String intercept(ActionInvocation invoker) throws Exception {

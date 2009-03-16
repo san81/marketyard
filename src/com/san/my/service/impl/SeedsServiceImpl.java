@@ -1,5 +1,10 @@
 package com.san.my.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.san.my.dao.SeedsDAO;
 import com.san.my.dataobj.SeedsDO;
 import com.san.my.service.SeedsService;
@@ -23,4 +28,14 @@ public class SeedsServiceImpl implements SeedsService{
 		return seedsDAO.isSeedNameExists(seedName);
 	}
 
+	public Map<Integer,String> listAllSeeds() {
+		List<SeedsDO> seedsDOs = seedsDAO.listAllSeeds();
+		Map<Integer,String> seedsMapList = new HashMap<Integer,String>();
+		for(SeedsDO seed:seedsDOs){
+			HashMap seedIdToName = new HashMap<Integer, String>();
+			seedIdToName.put(seed.getSeedId(), seed.getName());			
+		}
+		return seedsMapList;
+	}
+	
 }

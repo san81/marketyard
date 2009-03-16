@@ -1,5 +1,10 @@
 package com.san.my.dao.impl;
 
+import java.util.List;
+import java.util.Map;
+
+import org.hibernate.type.Type;
+
 import com.san.my.dao.SeedsDAO;
 import com.san.my.dataobj.SeedsDO;
 
@@ -16,4 +21,9 @@ public class SeedsDAOImpl extends ObjectDAOImpl implements SeedsDAO{
 		else
 			return true;
 	}
+
+	public List listAllSeeds() {
+		return findAll(SeedsDO.class);		
+	}
+	
 }

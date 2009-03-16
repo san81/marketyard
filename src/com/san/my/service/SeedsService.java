@@ -1,5 +1,8 @@
 package com.san.my.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.san.my.web.action.Seeds;
 
 public interface SeedsService {
@@ -13,4 +16,11 @@ public interface SeedsService {
 	 * @return
 	 */
 	public boolean isSeedNameExists(String seedName);
+	
+	/**
+	 * Return all the list of seeds exists
+	 * 
+	 * @return
+	 */
+	public Map<Integer,String> listAllSeeds();
 }

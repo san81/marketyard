@@ -26,54 +26,6 @@ public class StartUp
         }
         logger.debug("Starting MyGenSource Middle Tier..");        
         SpringConfigurationLoader.loadConfiguration();
-        loadRefTablesWithinTransaction();
-    }
-
-    // This code is duplicated from TransactionFilter.
-
-    private static void loadRefTablesWithinTransaction()
-    {
-
-        try {
-            TransactionTemplate txTemplate = (TransactionTemplate) BeanLocatorFactory.getBean("transactionTemplate");
-
-            txTemplate.execute(new TransactionCallbackWithoutResult() {
-                public void doInTransactionWithoutResult(TransactionStatus status)
-                {
-                    try {
-                        loadReftables();                        
-                    }
-                    catch (Exception ex) {
-                        status.setRollbackOnly();
-                        ex.printStackTrace();
-                        logger.error("Exception: " + ex.getMessage());
-                    }
-                }
-            });
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            logger.error("Exception: " + ex.getMessage());
-        }
-    }
-
-    private static void loadReftables() throws Exception
-    {
-        //load application reftables
-//    	Timezone.getInstance();
-//        Locales.getInstance();
-//        Language.getInstance();
-//        Country.getInstance();
-//        Currency.getInstance();        
-//
-//        Service.getInstance();
-//        TrainingProduct.getInstance();
-//        SecuredResource.getInstance();
-//        DateFormats.getInstance();
-//        NumberFormats.getInstance();
-//        Role.getInstance();
-//        Group.getInstance();
-//        Attributes.getInstance();
     }
    
 }
