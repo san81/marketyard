@@ -1,5 +1,7 @@
 package com.san.my.dao;
 
+import java.util.List;
+
 import com.san.my.dataobj.SeedsDO;
 
 public interface SeedsDAO {
@@ -13,4 +15,11 @@ public interface SeedsDAO {
 	 * @return
 	 */
 	public boolean isSeedNameExists(String seedName);
+	
+	/**
+	 * Return all the list of seeds exists
+	 * 
+	 * @return
+	 */
+	public List listAllSeeds();
 }

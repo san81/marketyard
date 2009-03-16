@@ -14,7 +14,7 @@ public class ServiceLocator {
 	}
 	
 	public static SeedsService getSeedsService() throws Exception{
-		SeedsService seedsService = (SeedsService)BeanLocatorFactory.getBean("SeedsService");
+		SeedsService seedsService = (SeedsService)BeanLocatorFactory.getBean("seedsService");
 		return seedsService;
 	}
 	
