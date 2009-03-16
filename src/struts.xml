@@ -59,9 +59,9 @@
     	</action>
     </package>
     
-    <package name="json" extends="json-default">
-	  <default-interceptor-ref name="completeStack" />	  
+    <package name="my-json-package" extends="json-default" namespace="/json">	    	
 	  <action name="seedsList" class="com.san.my.web.action.SeedsList">
+       	<interceptor-ref name="json"></interceptor-ref>
 	  	<result type="json"/>
 	  </action>
   </package>    

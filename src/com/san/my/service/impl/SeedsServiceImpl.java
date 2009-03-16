@@ -31,9 +31,8 @@ public class SeedsServiceImpl implements SeedsService{
 	public Map<Integer,String> listAllSeeds() {
 		List<SeedsDO> seedsDOs = seedsDAO.listAllSeeds();
 		Map<Integer,String> seedsMapList = new HashMap<Integer,String>();
-		for(SeedsDO seed:seedsDOs){
-			HashMap seedIdToName = new HashMap<Integer, String>();
-			seedIdToName.put(seed.getSeedId(), seed.getName());			
+		for(SeedsDO seed:seedsDOs){			
+			seedsMapList.put(seed.getSeedId(), seed.getName());			
 		}
 		return seedsMapList;
 	}
