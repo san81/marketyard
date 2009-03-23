@@ -8,7 +8,7 @@
 
 <s:form action="slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}">
 <s:head theme="ajax" />
-<s:url id="jsonList" value="/seedsList.action"/>
+<s:url id="jsonList" value="json/seedsList.action"/>
 <input type=hidden name="qtls">
 <input type=hidden name="grossTotal">
 <input type=hidden name="hamali">
