@@ -28,13 +28,16 @@ public class SeedsServiceImpl implements SeedsService{
 		return seedsDAO.isSeedNameExists(seedName);
 	}
 
-	public Map<Integer,String> listAllSeeds() {
+	public List<String[]> listAllSeeds() {
 		List<SeedsDO> seedsDOs = seedsDAO.listAllSeeds();
-		Map<Integer,String> seedsMapList = new HashMap<Integer,String>();
-		for(SeedsDO seed:seedsDOs){			
-			seedsMapList.put(seed.getSeedId(), seed.getName());			
+		List<String[]> seeds=new ArrayList<String[]>();
+		for(SeedsDO seed:seedsDOs){
+			String[] seedNameToId = new String[2];
+			seedNameToId[1]= seed.getSeedId()+"";
+			seedNameToId[0] = seed.getName();
+			seeds.add(seedNameToId);			
 		}
-		return seedsMapList;
+		return seeds;
 	}
 	
 }

@@ -22,5 +22,5 @@ public interface SeedsService {
 	 * 
 	 * @return
 	 */
-	public Map<Integer,String> listAllSeeds();
+	public List<String[]> listAllSeeds();
 }
