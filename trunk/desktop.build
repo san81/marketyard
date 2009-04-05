@@ -1,0 +1,13 @@
+#parameters
+appName=MarketYard
+rootDir=.
+rootBuildDir=${rootDir}/build
+
+version=0.01
+buildDir=${rootBuildDir}
+log=${buildDir}/log
+data=${rootDir}/data
+
+#appserver parameters
+#war copy folder
+jbossServer = D:\\jboss-4.2.1\\server\\default\\deploy

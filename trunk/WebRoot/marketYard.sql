@@ -1,4 +1,4 @@
-
+use marketyard;
 drop table IF EXISTS accounts;
 create table Accounts(
 account_id integer auto_increment primary key,
