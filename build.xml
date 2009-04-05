@@ -41,6 +41,7 @@
 	 		<delete dir="${classes}" />
 			<delete dir="${buildDir}/web/WEB-INF/classes" />
 			<delete dir="${dist}" />
+			<delete file="${jbossServer}/${appName}.war"/>
 		</target>
 		<target name="clean-target">
 			<delete dir="${buildDir}/bin" />
@@ -108,4 +109,12 @@
 			    <tag name="todo" scope="all" description="To do:"/>
 	  		</javadoc>
 		</target>
+	<target name="hotDeploy">
+		<mkdir dir="${jbossServer}/${appName}.war" />
+		<copy todir="${jbossServer}/${appName}.war/" verbose="yes">
+			<fileset dir="${src.web}/" excludes="${src.web}/WEB-INF" />
+			<fileset file="${src.web}/WEB-INF/web.xml" />
+			<fileset dir="${src.web}/WEB-INF/classes" />
+		</copy>		
+	</target>
 </project>
