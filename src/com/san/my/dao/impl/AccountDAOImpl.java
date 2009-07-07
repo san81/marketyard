@@ -2,6 +2,8 @@ package com.san.my.dao.impl;
 
 
 
+import java.util.List;
+
 import com.san.my.dao.AccountDAO;
 import com.san.my.dataobj.AccountsDO;
 
@@ -18,4 +20,9 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
 		else
 			return true;
 	}
+
+	public List<AccountsDO> listAllAccounts() {
+		return findAll(AccountsDO.class);		
+	}
+	
 }
