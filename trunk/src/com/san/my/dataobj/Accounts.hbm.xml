@@ -43,5 +43,7 @@
             </key>
             <one-to-many class="com.san.my.dataobj.SlipDO" />
         </set>
+        <one-to-one name="accountType" class="com.san.my.dataobj.AccountTypesDO" fetch="join">        	
+        </one-to-one>
     </class>
 </hibernate-mapping>
