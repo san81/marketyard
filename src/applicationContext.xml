@@ -14,7 +14,7 @@
             <value>root</value>
         </property>
         <property name="password">
-            <value></value>
+            <value>pramati</value>
         </property>
 	</bean>
 	<bean id="sessionFactory"
@@ -35,7 +35,8 @@
 				<value>com/san/my/dataobj/Transaction.hbm.xml</value>
 				<value>com/san/my/dataobj/Seeds.hbm.xml</value>
 				<value>com/san/my/dataobj/Slip.hbm.xml</value>
-				<value>com/san/my/dataobj/Accounts.hbm.xml</value></list>
+				<value>com/san/my/dataobj/Accounts.hbm.xml</value>
+				<value>com/san/my/dataobj/AccountTypes.hbm.xml</value></list>
 		</property>
 	</bean>
 </beans>

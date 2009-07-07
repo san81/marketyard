@@ -31,6 +31,8 @@ public class AccountsDO implements java.io.Serializable {
 	private Set transactions = new HashSet(0);
 
 	private Set slips = new HashSet(0);
+    
+    private AccountTypesDO accountType;
 
 	// Constructors
 
@@ -141,5 +143,15 @@ public class AccountsDO implements java.io.Serializable {
 	public void setSlips(Set slips) {
 		this.slips = slips;
 	}
+
+    public AccountTypesDO getAccountType()
+    {
+        return accountType;
+    }
+
+    public void setAccountType(AccountTypesDO accountType)
+    {
+        this.accountType = accountType;
+    }
 
 }
