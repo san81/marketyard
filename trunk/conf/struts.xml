@@ -22,7 +22,7 @@
 		<!-- end of interceptors -->
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
        	<!-- Login Form Configuration -->
-        <action name="showLogin">
+        <action name="j_acegi_security_check">
 			<result>/pages/login.jsp</result>
         </action>
         <action name="purchaseSlip">
