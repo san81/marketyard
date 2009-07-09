@@ -17,4 +17,6 @@ public interface AccountService {
 	public boolean isLoginNameExists(String loginName);
 	
 	public List<AccountsView> listAllAccounts();
+    
+    public List<String> listAllAccountTypes();
 }

@@ -26,7 +26,8 @@ public class LoginListener implements Filter {
 
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.filterConfig = filterConfig;
-		StartUp.init();
+         System.out.println("IN LOGIN FILTER...iNIT........");
+		//StartUp.init();
 	}
 
 	public void destroy() {
@@ -35,6 +36,8 @@ public class LoginListener implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
+        
+        System.out.println("IN LOGIN FILTER..........."+((HttpServletRequest)request).getRequestURI());
 		//logger.debug("begin doFilter()...");
 		HttpServletRequest hreq = (HttpServletRequest) request;
 		HttpSession session = hreq.getSession();

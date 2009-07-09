@@ -34,21 +34,21 @@ public class SpringConfigurationLoader {
      *         successful or not respectively.
      */
     public static boolean loadConfiguration(String[] configPaths) {
-        ApplicationContext appContext = null;
+       /* ApplicationContext appContext = null;
         try {
             appContext = new ClassPathXmlApplicationContext(configPaths);
 
             // passing a reference of this appContext to the ServiceLocator, so
             // that it
             // can be used later to lookup beans.
-            BeanLocatorFactory.setApplicationContext(appContext);
+            //BeanLocatorFactory.setApplicationContext(appContext);
             if (appContext == null) {
                 return false;
             }
         } catch (BeansException e) {
             logger.error("Excpetion while creating appContext from configfile ", e);
             return false;
-        }
+        }*/
         return true;
     }
     public static boolean loadConfiguration(){

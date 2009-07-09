@@ -19,7 +19,7 @@
         <property name="name" type="java.lang.String">
             <column name="name" length="200" />
         </property>
-        <property name="mobile" type="java.lang.Integer">
+        <property name="mobile" type="java.lang.String">
             <column name="mobile" />
         </property>
         <property name="address" type="java.lang.String">
@@ -43,7 +43,11 @@
             </key>
             <one-to-many class="com.san.my.dataobj.SlipDO" />
         </set>
-        <one-to-one name="accountType" class="com.san.my.dataobj.AccountTypesDO" fetch="join">        	
-        </one-to-one>
+        
+        	       	
+       
+        <many-to-one name="accountType" class="com.san.my.dataobj.AccountTypesDO">
+        	<column name="account_type_id"></column>
+        </many-to-one>
     </class>
 </hibernate-mapping>

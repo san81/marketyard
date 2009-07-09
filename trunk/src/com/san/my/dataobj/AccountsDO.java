@@ -20,7 +20,7 @@ public class AccountsDO implements java.io.Serializable {
 
 	private String name;
 
-	private Integer mobile;
+	private String mobile;
 
 	private String address;
 
@@ -48,7 +48,7 @@ public class AccountsDO implements java.io.Serializable {
 
 	/** full constructor */
 	public AccountsDO(Integer accountId, String loginName, String password,
-			String name, Integer mobile, String address, String village,
+			String name, String mobile, String address, String village,
 			Date regdate, Set transactions, Set slips) {
 		this.accountId = accountId;
 		this.loginName = loginName;
@@ -96,13 +96,6 @@ public class AccountsDO implements java.io.Serializable {
 		this.name = name;
 	}
 
-	public Integer getMobile() {
-		return this.mobile;
-	}
-
-	public void setMobile(Integer mobile) {
-		this.mobile = mobile;
-	}
 
 	public String getAddress() {
 		return this.address;
@@ -152,6 +145,16 @@ public class AccountsDO implements java.io.Serializable {
     public void setAccountType(AccountTypesDO accountType)
     {
         this.accountType = accountType;
+    }
+
+    public String getMobile()
+    {
+        return mobile;
+    }
+
+    public void setMobile(String mobile)
+    {
+        this.mobile = mobile;
     }
 
 }

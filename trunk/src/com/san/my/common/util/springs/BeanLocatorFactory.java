@@ -5,8 +5,12 @@
 package com.san.my.common.util.springs;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import com.san.my.common.exception.BeanLookupException;
 
@@ -14,7 +18,7 @@ import com.san.my.common.exception.BeanLookupException;
 /**
  * Locates a given bean or service from application context. 
  */
-public class BeanLocatorFactory {
+public class BeanLocatorFactory implements ApplicationContextAware{
     private static Logger logger = Logger.getLogger(BeanLocatorFactory.class);
     private static ApplicationContext applicationContext = null;
 
@@ -41,14 +45,14 @@ public class BeanLocatorFactory {
         }
     }
     
-    /**
+  /*  *//**
      * This should only be called by the <code>SpringConfigurationLoader</code>.
      *
      * @param context the application context to use as a service locator.
-     */
+     *//*
     public static synchronized void setApplicationContext(ApplicationContext context) {
         applicationContext = context;
-    }
+    }*/
     
     /**
      * Locates a service from applicationContext and returns it. Type cast the object to your interface type
@@ -71,5 +75,13 @@ public class BeanLocatorFactory {
        	}
        
     }
+
+    public void setApplicationContext(ApplicationContext context) throws BeansException
+    {
+        applicationContext = context;
+        System.out.println("app context "+applicationContext);
+    }
+
+   
 
 }

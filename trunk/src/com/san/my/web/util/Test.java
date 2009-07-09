@@ -44,7 +44,7 @@ public class Test {
         try {
         		appContext = new ClassPathXmlApplicationContext(defaultConfigPaths);
         		final ApplicationContext fappContext = appContext;
-        		BeanLocatorFactory.setApplicationContext(appContext);
+        		//BeanLocatorFactory.setApplicationContext(appContext);
         		 TransactionTemplate txTemplate = (TransactionTemplate) BeanLocatorFactory.getBean("transactionTemplate");
 
                  txTemplate.execute(new TransactionCallbackWithoutResult() {

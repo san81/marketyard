@@ -21,7 +21,13 @@ public class AccountServiceImpl implements AccountService {
 	public void saveAccount(AccountForm form) {
 		AccountsDO accountsDO = new AccountsDO();
 		accountsDO.setLoginName(form.getLoginName());
+        /*
+         * Have one default password.
+         */
+        accountsDO.setPassword("password");
 		accountsDO.setName(form.getName());
+        accountsDO.setAccountType(accountDAO.getAccountTypeDO(form.getAccountType()));
+        accountsDO.setMobile(form.getMobile());
 		accountsDO.setAddress(form.getAddress());
 		accountsDO.setVillage(form.getVillage());
 		accountsDO.setRegdate(Calendar.getInstance().getTime());
@@ -43,4 +49,9 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return accountsView;
 	}
+
+    public List<String> listAllAccountTypes(){
+        List<String> accountTypes = accountDAO.listAllAccountTypes();
+        return accountTypes;
+    }
 }
