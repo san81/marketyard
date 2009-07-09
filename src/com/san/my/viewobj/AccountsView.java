@@ -16,7 +16,7 @@ public class AccountsView {
 
 	private String name;
 
-	private Integer mobile;
+	private String mobile;
 
 	private String address;
 
@@ -60,11 +60,11 @@ public class AccountsView {
 		this.loginName = loginName;
 	}
 
-	public Integer getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(Integer mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 

@@ -12,9 +12,18 @@ public class AccountForm extends ActionSupport{
 	private String mobile;
 	private String address;
 	private String village;
+    private String accountType;
 	
 	
-	public String getAddress() {
+	public String getAccountType()
+    {
+        return accountType;
+    }
+    public void setAccountType(String accountType)
+    {
+        this.accountType = accountType;
+    }
+    public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
