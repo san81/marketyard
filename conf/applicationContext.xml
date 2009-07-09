@@ -40,4 +40,5 @@
 			</list>
 		</property>
 	</bean>
+	<bean id= "beanFactory" class="com.san.my.common.util.springs.BeanLocatorFactory"></bean>
 </beans>
