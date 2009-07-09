@@ -32,8 +32,8 @@
 				%>
 
 
-				<s:textfield name="username" label="Login name" />
-				<s:password name="password" label="Password" />
+				<s:textfield name="j_username" label="Login name" />
+				<s:password name="j_password" label="Password" />
 				<s:submit value="Login" align="center" />
 
 			</table>
