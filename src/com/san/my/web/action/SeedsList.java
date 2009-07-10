@@ -10,6 +10,7 @@ import com.san.my.service.SeedsService;
 
 public class SeedsList extends ActionSupport{
 	List seeds=new ArrayList<String[]>();
+	SeedsService seedsService;
 		
 	public List getSeeds() {
 		return seeds;
@@ -19,9 +20,12 @@ public class SeedsList extends ActionSupport{
 		this.seeds = seeds;
 	}
 
-	public String execute() throws Exception{
-		SeedsService service = ServiceLocator.getSeedsService();
-		seeds = service.listAllSeeds();
+	public String execute() throws Exception{	
+		seeds = seedsService.listAllSeeds();
 		return SUCCESS;
+	}
+
+	public void setSeedsService(SeedsService service) {
+		this.seedsService = service;
 	}
 }

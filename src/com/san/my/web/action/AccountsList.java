@@ -11,6 +11,7 @@ import com.san.my.viewobj.AccountsView;
 public class AccountsList extends ActionSupport{
 	long totalCount;
 	List accounts = new ArrayList<AccountsView>();
+	AccountService accountService;
 	
 	public List getAccounts() {
 		return accounts;
@@ -25,9 +26,11 @@ public class AccountsList extends ActionSupport{
 		this.totalCount = totalCount;
 	}
 	
-	public String execute() throws Exception{
-		AccountService service = ServiceLocator.getAccountService();
-		accounts = service.listAllAccounts();
+	public String execute() throws Exception{		
+		accounts = accountService.listAllAccounts();
 		return SUCCESS;
+	}
+	public void setAccountService(AccountService accountService) {
+		this.accountService = accountService;
 	}
 }

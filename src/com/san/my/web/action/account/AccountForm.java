@@ -13,6 +13,7 @@ public class AccountForm extends ActionSupport{
 	private String address;
 	private String village;
     private String accountType;
+    AccountService accountService;
 	
 	
 	public String getAccountType()
@@ -59,13 +60,15 @@ public class AccountForm extends ActionSupport{
 		this.village = village;
 	}
 	
-	public String execute() throws Exception{
-		AccountService accountService = ServiceLocator.getAccountService();
+	public String execute() throws Exception{		
 		if(accountService.isLoginNameExists(loginName)){
 			addFieldError("loginName", "login name already exists");
 			return INPUT;
 		}
       	accountService.saveAccount(this);
       	return SUCCESS;
+	}
+	public void setAccountService(AccountService accountService) {
+		this.accountService = accountService;
 	}
 }

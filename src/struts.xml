@@ -7,7 +7,8 @@
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
-
+	<constant name="struts.objectFactory" value="spring" />
+	
     <package name="mypackage" namespace="/" extends="tiles-default">
 		<!-- interceptors declaration -->
 		<interceptors>
@@ -25,8 +26,7 @@
         <action name="showLogin">
 			<result>/pages/login.jsp</result>
         </action>
-        <action name="purchaseSlip">
-        	
+        <action name="purchaseSlip">        	
         	<result name="success" type="tiles">my.purchase.slip</result>
         </action>
 		<action name="createNewAccount">
@@ -35,22 +35,22 @@
 		<action name="createNewSeed">
 			<result name="success" type="tiles">my.seeds.new</result>
 		</action>		
-        <action name="doLogin" class="com.san.my.web.action.account.Login">
+        <action name="doLogin" class="loginActionBean">
             <result  name="input">/pages/login.jsp</result>
 			<result  name="error">/pages/login.jsp</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-        <action name="saveAccount" class="com.san.my.web.action.account.AccountForm">
+        <action name="saveAccount" class="accountsActionBean">
             <result  name="input" type="tiles">my.account.new</result>
 			<result  name="error" type="tiles">my.account.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-        <action name="saveSeed" class="com.san.my.web.action.Seeds">
+        <action name="saveSeed" class="seedsActionBean">
             <result  name="input" type="tiles">my.seeds.new</result>
 			<result  name="error" type="tiles">my.seeds.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-	   <action name="slipSubmit" class="com.san.my.web.action.PurchaseSlip">
+	   <action name="slipSubmit" class="purchaseSlipActionBean">
          	<result name="success">admin.layout</result>
          	<result name="input">my.purchase.slip</result>
        </action>       
@@ -58,7 +58,7 @@
     </package>
     
     <package name="my-json-package" extends="json-default" namespace="/json">	    	
-	  <action name="seedsList" class="com.san.my.web.action.SeedsList">
+	  <action name="seedsList" class="seedsListJsonActionBean">
        	<interceptor-ref name="json"></interceptor-ref>
 	  	<result type="json">
 	  		<param name="root">
@@ -66,7 +66,7 @@
 			 </param>
 	  	</result>
 	  </action>
-	  <action name="accountTypesList" class="com.san.my.web.action.AccountTypesList">
+	  <action name="accountTypesList" class="accountTypesJsonActionBean">
        	<interceptor-ref name="json"></interceptor-ref>
 	  	<result type="json">
 	  		<param name="root">
@@ -74,7 +74,7 @@
 			 </param>
 	  	</result>
 	  </action>
-	  <action name="accountsList" class="com.san.my.web.action.AccountsList">
+	  <action name="accountsList" class="accountsListJsonActionBean">
        	<interceptor-ref name="json"></interceptor-ref>	  	
        	<result type="json"></result>
 	  </action>
