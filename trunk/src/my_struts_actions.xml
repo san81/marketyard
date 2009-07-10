@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="loginActionBean"
+		class="com.san.my.web.action.account.Login">
+	</bean>
+	<bean id="accountsActionBean"
+		class="com.san.my.web.action.account.AccountForm">
+		<property name="accountService"><ref bean="accountService"/></property>
+	</bean>
+	<bean id="seedsActionBean" class="com.san.my.web.action.Seeds">
+		<property name="seedsService"><ref bean="seedsService"/></property>
+	</bean>
+	<bean id="purchaseSlipActionBean"
+		class="com.san.my.web.action.PurchaseSlip">
+	</bean>
+	<!--  json action beans -->
+	<bean id="seedsListJsonActionBean"
+		class="com.san.my.web.action.SeedsList">
+		<property name="seedsService"><ref bean="seedsService"/></property>
+	</bean>
+	<bean id="accountTypesJsonActionBean"
+		class="com.san.my.web.action.AccountTypesList">
+		<property name="accountService"><ref bean="accountService"/></property>
+	</bean>
+	<bean id="accountsListJsonActionBean"
+		class="com.san.my.web.action.AccountsList">
+		<property name="accountService"><ref bean="accountService"/></property>
+	</bean>
+	<!--  json action beans -->
+</beans>

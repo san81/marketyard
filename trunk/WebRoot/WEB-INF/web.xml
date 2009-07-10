@@ -17,7 +17,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
       classpath:/applicationContext*.xml, classpath:/springSecurity.xml,
-      classpath:/my_common_dao.xml, classpath:/my_common_services.xml
+      classpath:/my_common_dao.xml, classpath:/my_common_services.xml,
+      classpath:/my_struts_actions.xml
     </param-value>
 	</context-param>
   

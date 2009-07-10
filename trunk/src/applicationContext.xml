@@ -14,7 +14,7 @@
             <value>root</value>
         </property>
         <property name="password">
-            <value>pramati</value>
+            <value>san</value>
         </property>
 	</bean>
 	<bean id="sessionFactory"

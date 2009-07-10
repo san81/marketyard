@@ -11,11 +11,11 @@ import com.san.my.service.AccountService;
 public class AccountTypesList extends ActionSupport
 {
     List accountTypes = new ArrayList<String[]>();
+    AccountService accountService;
 
-    public String execute() throws Exception
-    {
-        AccountService service = ServiceLocator.getAccountService();
-        accountTypes = service.listAllAccountTypes();
+    public String execute() throws Exception    {
+        
+        accountTypes = accountService.listAllAccountTypes();
         return SUCCESS;
     }
 
@@ -28,4 +28,8 @@ public class AccountTypesList extends ActionSupport
     {
         this.accountTypes = accountTypes;
     }
+
+	public void setAccountService(AccountService accountService) {
+		this.accountService = accountService;
+	}
 }

@@ -8,6 +8,7 @@ public class Seeds extends ActionSupport{
 
 	Long seedId;
 	String seedName;
+	SeedsService seedsService;
 	
 	public Long getSeedId() {
 		return seedId;
@@ -22,13 +23,15 @@ public class Seeds extends ActionSupport{
 		this.seedName = seedName;
 	}
 	
-	public String execute() throws Exception{
-		SeedsService service = ServiceLocator.getSeedsService();
-		if(service.isSeedNameExists(seedName)){
+	public String execute() throws Exception{		
+		if(seedsService.isSeedNameExists(seedName)){
 			addFieldError("seedName", "Seed name already exists");
 			return INPUT;
 		}
-		service.saveSeed(this);
+		seedsService.saveSeed(this);
 		return SUCCESS;
+	}
+	public void setSeedsService(SeedsService service) {
+		this.seedsService = service;
 	}
 }
