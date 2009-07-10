@@ -1,6 +1,6 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<s:form action="saveSeed" method="POST" validate="true">
+<s:form action="admin/saveSeed" method="POST" validate="true">
 	<table>
 		<tr>
 			<td colspan="3">

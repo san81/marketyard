@@ -6,9 +6,9 @@
 <s:actionmessage/>
 <s:fielderror />
 
-<s:form action="slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}">
+<s:form action="admin/slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}">
 <s:head theme="ajax" />
-<s:url id="jsonList" value="json/seedsList.action"/>
+<s:url id="jsonList" value="../json/seedsList.action"/>
 <input type=hidden name="qtls">
 <input type=hidden name="grossTotal">
 <input type=hidden name="hamali">

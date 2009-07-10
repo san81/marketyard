@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-<!--START ACEGI Security Configuration *******-->
+	<!--START ACEGI Security Configuration *******-->
 
 	<!-- FILTER CHAIN  -->
 	<bean id="filterChainProxy"
@@ -15,11 +15,11 @@
 			</value>
 		</property>
 	</bean>
-	
+
 	<bean id="loginfilter"
 		class="com.san.my.web.filter.LoginListener">
 	</bean>
-	
+
 	<!-- Start Security filter config -->
 	<bean id="exceptionTranslationFilter"
 		class="org.acegisecurity.ui.ExceptionTranslationFilter">
@@ -94,8 +94,8 @@
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 				PATTERN_TYPE_APACHE_ANT 
-				/*.action=ROLE_ADMIN
-				/*.action=ROLE_USER
+				/admin/*=ADMIN
+				/buyer/*=BUYER
 			</value>
 		</property>
 	</bean>
@@ -119,25 +119,40 @@
 	</bean>
 
 	<!-- Authentication using In-memory Dao -->
-	<bean id="userDetailsService"
+	<bean id="userDetailsService11"
 		class="org.acegisecurity.userdetails.memory.InMemoryDaoImpl">
 		<property name="userMap">
 			<value>
-				Admin=Admin,ROLE_ADMIN
-				bouerj=ineedsleep,ROLE_USER
+				sreenu=sreenu, BUYER
+				Admin=Admin,ADMIN bouerj=ineedsleep,USER
 			</value>
 		</property>
 	</bean>
-		
+
 	<!-- Authentication using JDBC Dao -->
-	<!-- <bean id="userDetailsService"
+	<bean id="userDetailsService"
 		class="org.acegisecurity.userdetails.jdbc.JdbcDaoImpl">
 		<property name="dataSource">
-		<ref bean="dataSource"/>
+			<ref bean="datasource" />
 		</property>
-		</bean>
-	 -->
-		<!-- End authentication config -->
+		<property name="usersByUsernameQuery">
+			<value>
+				SELECT login_name as username, password, '1' 
+				 FROM accounts 
+				  WHERE login_name = ?
+			</value>
+		</property>
+		<property name="authoritiesByUsernameQuery">
+			<value>
+				SELECT login_name as username, account_type as authority 
+				 FROM accounts a, account_types at 
+				  WHERE a.account_type_id = at.account_type_id 
+				   AND a.login_name = ?
+			</value>
+		</property>
+	</bean>
+
+	<!-- End authentication config -->
 
 	<!-- Start authorization config -->
 	<bean id="accessDecisionManager"
@@ -150,9 +165,7 @@
 	</bean>
 
 	<bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter">
-		<property name="rolePrefix">
-			<value>ROLE_</value>
-		</property>
+		<property name="rolePrefix" value="" />		
 	</bean>
 	<!-- End authorization config -->
 

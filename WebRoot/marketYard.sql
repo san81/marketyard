@@ -68,7 +68,7 @@ FOREIGN KEY(account_id) REFERENCES accounts(account_id) ON UPDATE CASCADE
 --- default data
 insert into account_types (account_type,description) values ('ADMIN','The only Administrator for the company');
 insert into account_types (account_type,description) values ('BUYER','people who participate in the buying');
-insert into account_types (account_type,description) values ('FARMAR','people who sell out the seeds');
+insert into account_types (account_type,description) values ('SUPPLIER','people who sell out the seeds');
 
 insert into seeds (name) values ('paddy');
 insert into seeds (name) values ('maize');
