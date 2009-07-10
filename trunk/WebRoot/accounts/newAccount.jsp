@@ -6,7 +6,7 @@
 
 <s:form action="saveAccount" method="POST" >
 <s:head theme="ajax" />
-<s:url id="jsonList" value="json/accountTypesList.action"/>
+<s:url id="jsonList" value="../json/accountTypesList.action"/>
 
 	<table>
 		<tr>
