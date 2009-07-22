@@ -68,7 +68,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#flush()
+     * @see ObjectDAO#flush()
      */
     public void flush()
     {
@@ -81,7 +81,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#save(java.lang.Object)
+     * @see ObjectDAO#save(java.lang.Object)
      */
     public Serializable save(Object dataObject) throws DataAccessException
     {  /*if(dataObject instanceof BaseDO){
@@ -92,7 +92,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#save(java.lang.String,
+     * @see ObjectDAO#save(java.lang.String,
      *      java.lang.Object)
      */
     public Serializable save(String persistentObjectName, Object o) throws DataAccessException
@@ -102,7 +102,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#delete(java.lang.Object)
+     * @see ObjectDAO#delete(java.lang.Object)
      */
     public void delete(Object o) throws DataAccessException
     {
@@ -110,7 +110,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#saveOrUpdate(java.lang.Object)
+     * @see ObjectDAO#saveOrUpdate(java.lang.Object)
      */
     public void saveOrUpdate(Object o) throws DataAccessException
     {
@@ -119,7 +119,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#saveOrUpdate(java.lang.String,
+     * @see ObjectDAO#saveOrUpdate(java.lang.String,
      *      java.lang.Object)
      */
     public void saveOrUpdate(String persistentObjectName, Object o) throws DataAccessException
@@ -129,7 +129,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#update(java.lang.Object)
+     * @see ObjectDAO#update(java.lang.Object)
      */
     public void update(Object dataObject) throws DataAccessException
     {
@@ -140,7 +140,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#merge(java.lang.Object)
+     * @see ObjectDAO#merge(java.lang.Object)
      */
     public Object merge(Object dataObject) throws DataAccessException
     {
@@ -148,7 +148,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#refresh(java.lang.Object)
+     * @see ObjectDAO#refresh(java.lang.Object)
      */
     public void refresh(Object dataObject) throws DataAccessException
     {
@@ -164,7 +164,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
     
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#refreshAndLock(java.lang.Object)
+     * @see ObjectDAO#refreshAndLock(java.lang.Object)
      */
     public void refreshAndLock(Object dataObject) throws DataAccessException
     {
@@ -172,7 +172,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOne(java.lang.String)
+     * @see ObjectDAO#findOne(java.lang.String)
      */
     public Object findOne(String sql) throws DataAccessException
     {
@@ -183,7 +183,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOne(String sql, Object[]
+     * @see ObjectDAO#findOne(String sql, Object[]
      *      binds)
      */
     public Object findOne(String sql, Object[] binds) throws DataAccessException
@@ -192,7 +192,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOne(java.lang.String,
+     * @see ObjectDAO#findOne(java.lang.String,
      *      java.lang.Object)
      */
     public Object findOne(String sql, Object binds) throws DataAccessException
@@ -201,7 +201,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOne(String sql, Object[]
+     * @see ObjectDAO#findOne(String sql, Object[]
      *      binds)
      */
     public Object findOne(String sql, Object[] binds, String multipleFoundErrorKey) throws DataAccessException
@@ -222,7 +222,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     // //////////////////////////////////////////
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOneByNamedQuery(java.lang.String,
+     * @see ObjectDAO#findOneByNamedQuery(java.lang.String,
      *      java.lang.Object[])
      */
     public Object findOneByNamedQuery(String queryName, Object[] values) throws DataAccessException
@@ -231,7 +231,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOneByNamedQuery(java.lang.String,
+     * @see ObjectDAO#findOneByNamedQuery(java.lang.String,
      *      java.lang.Object)
      */
     public Object findOneByNamedQuery(String queryName, Object value) throws DataAccessException
@@ -240,7 +240,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOneByNamedQueryAndNamedParam(java.lang.String,
+     * @see ObjectDAO#findOneByNamedQueryAndNamedParam(java.lang.String,
      *      String paramName, java.lang.Object)
      */
     public Object findOneByNamedQueryAndNamedParam(String queryName, String paramName, Object value)
@@ -250,7 +250,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findOneByNamedQueryAndNamedParam(java.lang.String,
+     * @see ObjectDAO#findOneByNamedQueryAndNamedParam(java.lang.String,
      *      String[] paramNames, java.lang.Object[] values)
      */
     public Object findOneByNamedQueryAndNamedParam(String queryName, String[] paramNames, Object[] values)
@@ -260,7 +260,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#countNamedQuery(java.lang.String,
+     * @see ObjectDAO#countNamedQuery(java.lang.String,
      *      java.lang.Object[])
      */
     public int countNamedQuery(String sql, Object[] binds)
@@ -273,7 +273,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#countNamedQuery(java.lang.String,
+     * @see ObjectDAO#countNamedQuery(java.lang.String,
      *      java.lang.Object)
      */
     public int countNamedQuery(String sql, Object bind)
@@ -282,7 +282,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedQuery(java.lang.String,
+     * @see ObjectDAO#findByNamedQuery(java.lang.String,
      *      java.lang.Object[])
      */
     public List findByNamedQuery(final String queryName, final Object[] values) throws DataAccessException
@@ -296,7 +296,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedQuery(java.lang.String,
+     * @see ObjectDAO#findByNamedQuery(java.lang.String,
      *      java.lang.Object)
      */
     public List findByNamedQuery(String queryName, Object value) throws DataAccessException
@@ -310,7 +310,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedQuery(java.lang.String)
+     * @see ObjectDAO#findByNamedQuery(java.lang.String)
      */
     public List findByNamedQuery(String queryName) throws DataAccessException
     {
@@ -318,7 +318,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedQueryAndNamedParam(java.lang.String,
+     * @see ObjectDAO#findByNamedQueryAndNamedParam(java.lang.String,
      *      java.lang.String, java.lang.Object)
      */
     public List findByNamedQueryAndNamedParam(String queryName, String paramName, Object value)
@@ -328,7 +328,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedQueryAndNamedParam(java.lang.String,
+     * @see ObjectDAO#findByNamedQueryAndNamedParam(java.lang.String,
      *      java.lang.String[], java.lang.Object[])
      */
     public List findByNamedQueryAndNamedParam(final String queryName, final String[] paramNames, final Object[] values)
@@ -338,7 +338,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedQueryAndValueBean(java.lang.String,
+     * @see ObjectDAO#findByNamedQueryAndValueBean(java.lang.String,
      *      java.lang.Object)
      */
     public List findByNamedQueryAndValueBean(final String queryName, final Object valueBean)
@@ -369,7 +369,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#lockAndLoad(java.lang.Class,
+     * @see ObjectDAO#lockAndLoad(java.lang.Class,
      *      java.io.Serializable)
      */
     public Object lockAndLoad(Class refClass, Serializable key)
@@ -378,7 +378,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#find(java.lang.String)
+     * @see ObjectDAO#find(java.lang.String)
      */
     public List find(String queryString) throws DataAccessException
     {
@@ -386,7 +386,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#find(java.lang.String,
+     * @see ObjectDAO#find(java.lang.String,
      *      java.lang.Object)
      */
     public List find(String queryString, Object bind) throws DataAccessException
@@ -408,7 +408,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findAndLock(java.lang.String,
+     * @see ObjectDAO#findAndLock(java.lang.String,
      *      java.lang.Object[])
      */
     public List findAndLock(String sql, Object[] binds)
@@ -424,7 +424,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findByNamedParam(java.lang.String,
+     * @see ObjectDAO#findByNamedParam(java.lang.String,
      *      java.lang.String[], java.lang.Object[])
      */
     public List findByNamedParam(String queryString, String[] paramNames, Object[] values) throws DataAccessException
@@ -439,7 +439,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#queryByExample(java.lang.Object)
+     * @see ObjectDAO#queryByExample(java.lang.Object)
      */
     public Object queryByExample(Object example)
     {
@@ -580,7 +580,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#countQuery(java.lang.String,
+     * @see ObjectDAO#countQuery(java.lang.String,
      *      java.lang.Object)
      */
     public int countQuery(String sql, Object bind)
@@ -589,7 +589,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#countQuery(java.lang.String,
+     * @see ObjectDAO#countQuery(java.lang.String,
      *      java.lang.Object[])
      */
     public int countQuery(String sql, Object[] binds)
@@ -602,7 +602,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#findAll(java.lang.Class)
+     * @see ObjectDAO#findAll(java.lang.Class)
      */
     public List findAll(Class clazz) throws DataAccessException
     {
@@ -611,7 +611,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     }
 
     /**
-     * @see com.agentrics.mgs.common.dao.ObjectDAO#clear()
+     * @see ObjectDAO#clear()
      */
     public void clear()
     {
