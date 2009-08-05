@@ -7,8 +7,32 @@
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory" value="spring" />
+    <package name="publicPackage" namespace="/" extends="tiles-default">
+    	<!-- interceptors declaration -->
+		<interceptors>
+			<interceptor name="transactionInterceptor" class="com.san.my.web.interceptors.TransactionInterceptor"></interceptor>
+			<interceptor name="loginInterceptor" class="com.san.my.web.interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginAndTrans">				
+				<interceptor-ref name="transactionInterceptor"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<!-- end of interceptors -->
+		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
+		
+		<action name="showLogin">
+			<result>/pages/login.jsp</result>
+        </action>
+        <action name="doLogin" class="com.san.my.web.action.account.Login">
+            <result  name="input">/pages/login.jsp</result>
+			<result  name="error">/pages/login.jsp</result>
+			<result name="success" type="tiles">admin.layout</result>
+        </action>
+    </package>
 
-    <package name="mypackage" namespace="/" extends="tiles-default">
+    <package name="mypackage" namespace="/admin" extends="tiles-default">
 		<!-- interceptors declaration -->
 		<interceptors>
 			<interceptor name="transactionInterceptor" class="com.san.my.web.interceptors.TransactionInterceptor"></interceptor>
@@ -22,9 +46,7 @@
 		<!-- end of interceptors -->
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
        	<!-- Login Form Configuration -->
-        <action name="j_acegi_security_check">
-			<result>/pages/login.jsp</result>
-        </action>
+        
         <action name="purchaseSlip">
         	
         	<result name="success" type="tiles">my.purchase.slip</result>
@@ -35,38 +57,44 @@
 		<action name="createNewSeed">
 			<result name="success" type="tiles">my.seeds.new</result>
 		</action>		
-        <action name="doLogin" class="com.san.my.web.action.account.Login">
-            <result  name="input">/pages/login.jsp</result>
-			<result  name="error">/pages/login.jsp</result>
-			<result name="success" type="tiles">admin.layout</result>
-        </action>
-        <action name="saveAccount" class="com.san.my.web.action.account.AccountForm">
+        
+        <action name="saveAccount" class="accountsActionBean">
             <result  name="input" type="tiles">my.account.new</result>
 			<result  name="error" type="tiles">my.account.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-        <action name="saveSeed" class="com.san.my.web.action.Seeds">
+        <action name="saveSeed" class="seedsActionBean">
             <result  name="input" type="tiles">my.seeds.new</result>
 			<result  name="error" type="tiles">my.seeds.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-	   <action name="slipSubmit" class="com.san.my.web.action.PurchaseSlip">
+	   <action name="slipSubmit" class="purchaseSlipActionBean">
          	<result name="success">admin.layout</result>
          	<result name="input">my.purchase.slip</result>
        </action>       
-    	<action name="seedsList" class="com.san.my.web.action.SeedsList">
-    		<result name="success">/utils/seedsJson.jsp</result>
-    	</action>
+    	
     </package>
     
     <package name="my-json-package" extends="json-default" namespace="/json">	    	
-	  <action name="seedsList" class="com.san.my.web.action.SeedsList">
+	  <action name="seedsList" class="seedsListJsonActionBean">
        	<interceptor-ref name="json"></interceptor-ref>
 	  	<result type="json">
 	  		<param name="root">
 			    seeds
 			 </param>
 	  	</result>
+	  </action>
+	  <action name="accountTypesList" class="accountTypesJsonActionBean">
+       	<interceptor-ref name="json"></interceptor-ref>
+	  	<result type="json">
+	  		<param name="root">
+			    accountTypes
+			 </param>
+	  	</result>
+	  </action>
+	  <action name="accountsList" class="accountsListJsonActionBean">
+       	<interceptor-ref name="json"></interceptor-ref>	  	
+       	<result type="json"></result>
 	  </action>
   </package>    
 
