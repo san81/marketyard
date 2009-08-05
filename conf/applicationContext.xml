@@ -36,8 +36,7 @@
 				<value>com/san/my/dataobj/Seeds.hbm.xml</value>
 				<value>com/san/my/dataobj/Slip.hbm.xml</value>
 				<value>com/san/my/dataobj/Accounts.hbm.xml</value>
-				<value>com/san/my/dataobj/AccountTypes.hbm.xml</value>
-			</list>
+				<value>com/san/my/dataobj/AccountTypes.hbm.xml</value></list>
 		</property>
 	</bean>
 	<bean id= "beanFactory" class="com.san.my.common.util.springs.BeanLocatorFactory"></bean>
