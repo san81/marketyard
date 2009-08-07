@@ -22,8 +22,11 @@
 		<!-- end of interceptors -->
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
 		
-		<action name="showLogin">
-			<result>/login.jsp</result>
+		<action name="welcome" class="loginActionBean">
+			<result name="welcome" type="tiles">home.layout</result>			
+			<result name="adminLoggedIn" type="tiles">admin.layout</result>
+			<result name="userLoggedIn" type="tiles">buyer.layout</result>
+			<result name="buyerLoggedIn" type="tiles">user.layout</result>			
         </action>
         <action name="doLogin" class="com.san.my.web.action.account.Login">
             <result  name="input">/pages/login.jsp</result>

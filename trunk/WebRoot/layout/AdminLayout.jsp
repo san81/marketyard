@@ -9,22 +9,23 @@
 <html>
 <head>	
 	<title><s:text name="label.marketYard" /></title>
-		<script language="JavaScript" type="text/javascript" src="scripts/marketYard.js"></script>
-		<script language="JavaScript" type="text/javascript" src="scripts/calendar3.js"></script> 
+		<script language="JavaScript" type="text/javascript" src="scripts/marketYard.js"></script>		
+		<link href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet" type="text/css"></link>
 </head>
 
 <body>
-	<table border=1 width="100%" height="100%">
-		<tr>
-			<td colspan="2">
-				<tiles:insertAttribute name="banner"></tiles:insertAttribute>
-			</td>
-		</tr>
-		<tr height="300">
-			<td width="20%"> <tiles:insertAttribute name="sideMenu"></tiles:insertAttribute> </td>
-			<td><tiles:insertAttribute name="body"></tiles:insertAttribute> </td>
-		</tr>
-	</table>
-	
+<tiles:insertAttribute name="banner"></tiles:insertAttribute>
+<div id="outer">  
+  <div class="outerwrap">
+    <div id="centrecontent">
+      <div class="cmiddle">
+      		<tiles:insertAttribute name="body"></tiles:insertAttribute>
+	  </div>
+	</div>
+	<tiles:insertAttribute name="sideMenu"></tiles:insertAttribute>
+  </div>
+   <!-- left side ads related tile here --> 
+</div>
+<tiles:insertAttribute name="banner"></tiles:insertAttribute>	
 </body>
 </html>
