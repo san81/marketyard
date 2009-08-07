@@ -23,7 +23,7 @@
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
 		
 		<action name="showLogin">
-			<result>/pages/login.jsp</result>
+			<result>/login.jsp</result>
         </action>
         <action name="doLogin" class="com.san.my.web.action.account.Login">
             <result  name="input">/pages/login.jsp</result>
