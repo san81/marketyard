@@ -8,5 +8,6 @@
 	<tr>	<td> View ledger</td>	</tr>
 	<tr> <td><a href="${pageContext.request.contextPath}/admin/createNewAccount.action"> Create Account </a></td> </tr>
 	<tr> <td><a href="${pageContext.request.contextPath}/admin/createNewSeed.action"> Seeds </a></td> </tr>
+	<tr> <td><a href="${pageContext.request.contextPath}/j_acegi_logout"> Logout </a></td> </tr>
 </table>
 	

@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-<!--START ACEGI Security Configuration *******-->
+	<!--START ACEGI Security Configuration *******-->
 
 	<!-- FILTER CHAIN  -->
 	<bean id="filterChainProxy"
@@ -11,21 +11,35 @@
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 				PATTERN_TYPE_APACHE_ANT
-				/**=loginfilter,httpSessionContextIntegrationFilter,formAuthenticationProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
+				/**=loginfilter,httpSessionContextIntegrationFilter,logoutFilter,formAuthenticationProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
 			</value>
 		</property>
 	</bean>
-	
+
 	<bean id="loginfilter"
 		class="com.san.my.web.filter.LoginListener">
 	</bean>
-	
+	<bean id="logoutFilter"
+		class="org.acegisecurity.ui.logout.LogoutFilter">
+		<constructor-arg value="/"/> <!-- URL redirected to after logout -->
+      <constructor-arg>
+         <list>
+              <bean class="org.acegisecurity.ui.logout.SecurityContextLogoutHandler"/>
+         </list>
+      </constructor-arg>
+	</bean>
+
 	<!-- Start Security filter config -->
 	<bean id="exceptionTranslationFilter"
 		class="org.acegisecurity.ui.ExceptionTranslationFilter">
 		<property name="authenticationEntryPoint">
 			<ref bean="formLoginAuthenticationEntryPoint" />
 		</property>
+		<property name="accessDeniedHandler">
+      		<bean class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
+       			<property name="errorPage" value="/errorPages/access_denied.jsp" />
+      		</bean>
+    	</property>
 	</bean>
 
 	<!-- Define filter to handle BASIC authentication -->
