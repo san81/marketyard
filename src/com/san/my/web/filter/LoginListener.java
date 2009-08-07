@@ -25,8 +25,7 @@ public class LoginListener implements Filter {
 	FilterConfig filterConfig = null;
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-		this.filterConfig = filterConfig;
-         System.out.println("IN LOGIN FILTER...iNIT........");
+		this.filterConfig = filterConfig;        
 		//StartUp.init();
 	}
 

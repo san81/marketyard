@@ -11,7 +11,7 @@
 			<value>
 				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
 				PATTERN_TYPE_APACHE_ANT
-				/**=loginfilter,httpSessionContextIntegrationFilter,logoutFilter,formAuthenticationProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
+				/**=httpSessionContextIntegrationFilter,logoutFilter,formAuthenticationProcessingFilter,exceptionTranslationFilter,filterSecurityInterceptor
 			</value>
 		</property>
 	</bean>
@@ -68,10 +68,10 @@
 			<value>/acegiAuthentication</value>
 		</property>
 		<property name="authenticationFailureUrl">
-			<value>/login.jsp</value>
+			<value>/welcome.action</value>
 		</property>
 		<property name="defaultTargetUrl">
-			<value>/</value>
+			<value>/welcome.action</value>
 		</property>
 		<property name="authenticationManager">
 			<ref bean="authenticationManager" />
