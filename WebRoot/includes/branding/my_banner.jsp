@@ -1,4 +1,5 @@
 
+<jsp:directive.page import="com.san.my.common.global.SessionVars"/>
 
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!-- Start banner content -->
@@ -14,7 +15,7 @@
 			<s:label key="label.support" />
 		</a>
 		<ul>
-				<li class="Welcome">GUEST</li>
+				<li class="Welcome">${session.user_role}</li>
 		</ul>
 	</div>
 </div>
