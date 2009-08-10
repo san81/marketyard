@@ -1,15 +1,7 @@
 package com.san.my.common.global;
 
 
-/**
- * <p>Title: Registration</p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: GNX</p>
- * @author Mike Sprague
- * Modified by Xiaozhu Zhu on 10/16/2002
- * @version 1.0
- */
+
 public interface IConstants  {
 
   public static final String KEY_USER_OBJECT  = "REGISTRY_USER_OBJECT";
