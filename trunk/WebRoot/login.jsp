@@ -1,7 +1,8 @@
 
 <jsp:directive.page import="org.springframework.context.MessageSource"/>
-<jsp:directive.page import="com.san.my.web.util.ServiceLocator"/>
-<jsp:directive.page import="java.util.Locale"/><%@ taglib prefix="s" uri="/struts-tags"%>
+<jsp:directive.page import="java.util.Locale"/>
+<jsp:directive.page import="com.san.my.common.util.springs.ServiceLocator"/>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <form action="acegiAuthentication" method="POST">
 	<table border=0>
 		<tr>

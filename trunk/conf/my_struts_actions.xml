@@ -2,32 +2,32 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-	<bean id="loginActionBean"
+	<bean id="loginActionBean" singleton="false"
 		class="com.san.my.web.action.account.Login">
 	</bean>
-	<bean id="accountsActionBean"
+	<bean id="accountsActionBean" singleton="false"
 		class="com.san.my.web.action.account.AccountForm">
 		<property name="accountService"><ref bean="accountService"/></property>
 	</bean>
-	<bean id="seedsActionBean" class="com.san.my.web.action.Seeds">
+	<bean id="seedsActionBean" class="com.san.my.web.action.Seeds" singleton="false">
 		<property name="seedsService"><ref bean="seedsService"/></property>
 	</bean>
-	<bean id="purchaseSlipActionBean"
+	<bean id="purchaseSlipActionBean" singleton="false"
 		class="com.san.my.web.action.PurchaseSlip">
 	</bean>
-	<bean id="slipConfigsActionBean"
+	<bean id="slipConfigsActionBean" singleton="false"
 		class="com.san.my.web.action.SlipConfigurations">
 	</bean>
 	<!--  json action beans -->
-	<bean id="seedsListJsonActionBean"
+	<bean id="seedsListJsonActionBean" singleton="false"
 		class="com.san.my.web.action.SeedsList">
 		<property name="seedsService"><ref bean="seedsService"/></property>
 	</bean>
-	<bean id="accountTypesJsonActionBean"
+	<bean id="accountTypesJsonActionBean" singleton="false"
 		class="com.san.my.web.action.AccountTypesList">
 		<property name="accountService"><ref bean="accountService"/></property>
 	</bean>
-	<bean id="accountsListJsonActionBean"
+	<bean id="accountsListJsonActionBean" singleton="false"
 		class="com.san.my.web.action.AccountsList">
 		<property name="accountService"><ref bean="accountService"/></property>
 	</bean>
