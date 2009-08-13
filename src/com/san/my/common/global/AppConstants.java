@@ -7,5 +7,7 @@ public class AppConstants {
 	public static final String APP_CONFIG = "applicationContext.xml";
 	public static final String APP_DAO_CONFIG = "my_common_dao.xml";
 	public static final String APP_BOTransaction_CONFIG = "my_common_services.xml";
+    
+    public static final String APP_SLIP_CONFIG_FILE = "slip_configs.properties";
 	
 }
