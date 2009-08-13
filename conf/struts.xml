@@ -74,7 +74,11 @@
 	   <action name="slipSubmit" class="purchaseSlipActionBean">
          	<result name="success">admin.layout</result>
          	<result name="input">my.purchase.slip</result>
-       </action>       
+       </action>     
+       <action name="slipConfigurations" class="slipConfigsActionBean">
+       		<result name="input" type="tiles">slip.configs</result>
+       		<result name="success" type="tiles">slip.configs</result>
+       </action>  
     	
     </package>
     

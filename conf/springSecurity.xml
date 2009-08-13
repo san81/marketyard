@@ -63,7 +63,10 @@
 
 	<!-- Define filter to handle FORM authentication -->
 	<bean id="formAuthenticationProcessingFilter"
-		class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+		class="com.san.my.web.util.MarketYardAuthenticationProcessingFilter">
+		<property name="userDetailsService">
+			<ref bean="userDetailsService" />
+		</property>
 		<property name="filterProcessesUrl">
 			<value>/acegiAuthentication</value>
 		</property>

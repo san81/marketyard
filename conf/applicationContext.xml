@@ -10,12 +10,12 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/marketyard">
 		</property>
-        <property name="username">
-            <value>root</value>
-        </property>
-        <property name="password">
-            <value>san</value>
-        </property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>pramati</value>
+		</property>
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -36,8 +36,19 @@
 				<value>com/san/my/dataobj/Seeds.hbm.xml</value>
 				<value>com/san/my/dataobj/Slip.hbm.xml</value>
 				<value>com/san/my/dataobj/Accounts.hbm.xml</value>
-				<value>com/san/my/dataobj/AccountTypes.hbm.xml</value></list>
+				<value>com/san/my/dataobj/AccountTypes.hbm.xml</value>
+			</list>
 		</property>
 	</bean>
-	<bean id= "beanFactory" class="com.san.my.common.util.springs.BeanLocatorFactory"></bean>
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:messages/MarketYard</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="beanFactory"
+		class="com.san.my.common.util.springs.BeanLocatorFactory">
+	</bean>
 </beans>

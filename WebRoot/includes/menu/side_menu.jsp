@@ -8,6 +8,7 @@
 	<li>View ledger</li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewAccount.action"> Create Account </a></li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewSeed.action"> Seeds </a></li>
+     <li><a href="${pageContext.request.contextPath}/admin/slipConfigurations.action?action=load"> Slip Configs </a></li>
  	<li><a href="${pageContext.request.contextPath}/j_acegi_logout"> Logout </a></li>   
     </strong>
   </ul>
