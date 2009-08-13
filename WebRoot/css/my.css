@@ -396,3 +396,18 @@ h6 {
 }
 
 /* END IE 6 Hacks for layout issues  */
+
+.derivedInfo{
+	color:blue;
+}
+
+.expensesColor{
+	color:green;
+}
+
+.grandTotal{
+	color:red;
+	font-size: 15px;
+	font-weight: bold;
+}
+

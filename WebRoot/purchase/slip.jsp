@@ -1,20 +1,21 @@
  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
  <%@ taglib prefix="s" uri="/struts-tags" %>
 
-
 <s:actionerror/>
 <s:actionmessage/>
 <s:fielderror />
 
-<s:form action="admin/slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}">
+<s:form action="admin/slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
-<input type=hidden name="qtls">
-<input type=hidden name="grossTotal">
-<input type=hidden name="hamali">
-<input type=hidden name="cc">
-<input type=hidden name="mf">
-<input type=hidden name="netTotal">
+
+<s:hidden name="qtls"></s:hidden>
+<s:hidden name="grossTotal"></s:hidden>
+<s:hidden name="hamali"></s:hidden>
+<s:hidden name="cc"></s:hidden>
+<s:hidden name="mf"></s:hidden>
+<s:hidden name="netTotal"></s:hidden>
+
 <table width=100%>
 	<tr><td>
 			<table border=0>
@@ -27,25 +28,22 @@
 						 </td>
 				</tr>
 				<tr>
-					<td> Seeds  :</td>
+					<td align="right"> <s:text name="seeds"></s:text>:</td>
 					<td>
-							<s:autocompleter name="state" theme="ajax" indicator="indicator" href="%{jsonList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring"/>
+							<s:autocompleter name="seed" theme="ajax" indicator="indicator" href="%{jsonList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring"/>
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
 							
 
 					</td>
 				</tr>
 				<tr>
-					<td> Bag weight  :</td>
-					<td> <input type=text name="bagwt" size=3 onBlur=makeSlip(document.purchaseSlip)> </td>
+					<td> <s:textfield name="bagwt" key="label.slip.bagWeight" onblur="makeSlip(document.slipSubmit)"> </s:textfield> </td>
 				</tr>
 				<tr>
-					<td> Bags :</td>
-					<td> <input type=text name="bags" size=3 onBlur=makeSlip(document.purchaseSlip)> &nbsp;&nbsp; Kgs : <input type=text name="smallBag" size=3 onBlur=makeSlip(document.purchaseSlip)> </td>
+					<td> <s:textfield name="bags" key="label.slip.bags" onblur="makeSlip(document.slipSubmit)"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onblur="makeSlip(document.slipSubmit)"> </s:textfield> </td>
 				</tr>
 				<tr>
-					<td> Cost/Qtl :</td>
-					<td> <input type=text name="cost" size=4 onBlur=makeSlip(document.purchaseSlip)> </td>
+					<td> <s:textfield name="cost" key="label.slip.costperQtl" onblur="makeSlip(document.slipSubmit)"></s:textfield> </td>
 				</tr>								
 			</table>
 		</td>
@@ -53,30 +51,30 @@
 			
 		</td>
 		<td>
-			<table>
-					<tr>
-					<td> Qtls </td> <td>:</td>
-					<td> <div id="qtlsDiv">00-00</div> </td>
+			<table>				
+				<tr>
+					<td> <s:text name="label.slip.qtls"></s:text> </td> <td>:</td>
+					<td> <div id="qtlsDiv" class="derivedInfo">00-00</div> </td>
 				</tr>	
 				<tr>
-					<td> Gross Total </td> <td>:</td>
-					<td> <div id="grossTotalDiv">00.00</div> </td>
+					<td> <s:text name="label.slip.grossTotal"></s:text> </td> <td>:</td>
+					<td> <div id="grossTotalDiv" class="grandTotal">00.00</div> </td>
 				</tr>
 				<tr>
-					<td> Hamali </td> <td>:</td>
-					<td> <span id="hamaliDiv">00.00</span> </td>
+					<td> <s:text name="label.slip.hamali"></s:text> </td> <td>:</td>
+					<td> <span id="hamaliDiv" class="expensesColor">00.00</span> &nbsp;at ${hamali} per bag</td>
 				</tr>
 				<tr>
-					<td> CC </td> <td>:</td>
-					<td> <span id="ccDiv">00.00</span> &nbsp;at 2%  </td>
+					<td> <s:text name="label.slip.cc"></s:text> </td> <td>:</td>
+					<td> <span id="ccDiv" class="expensesColor">00.00</span> &nbsp;at ${cc}%  </td>
 				</tr>
 				<tr>
-					<td> MF </td> <td>:</td>
-					<td> <div id="mfDiv">00.00</div> </td>
+					<td> <s:text name="label.slip.mf"></s:text> </td> <td>:</td>
+					<td> <span id="mfDiv" class="expensesColor">00.00</span> &nbsp;at ${mf}%</td>
 				</tr>
 				<tr>
-					<td> Net Total </td> <td>:</td>
-					<td> <div id="netTotalDiv">00.00</div> </td>
+					<td> <s:text name="label.slip.netTotal"></s:text> </td> <td>:</td>
+					<td> <div id="netTotalDiv" class="grandTotal">00.00</div> </td>
 				</tr>
 			</table>
 		</td>
@@ -88,15 +86,15 @@
 		<td>
 			<table>
 				<tr>
-					<td colspan=3>Purchased Party Details: </td>
+					<td colspan=3><s:text name="label.slip.purchaseParty"></s:text></td>
 				</tr>
 				<tr>
-					<td>Choose Account </td>
+					<td><s:text name="label.slip.chooseAccount"></s:text> </td>
 					<td>:</td>
 					<td><select><option>MS</option></select></td>
 				</tr>
 				<tr>
-					<td>PurchaseBy </td>
+					<td><s:text name="label.slip.purchasedBy"></s:text> </td>
 					<td>:</td>
 					<td><select><option>CASH</option><option>CREDIT</option></select></td>
 				</tr>
@@ -108,20 +106,20 @@
 		<td>
 			<table>
 				<tr>
-					<td colspan=3>Farmer Details : </td>
+					<td colspan=3><s:text name="label.slip.farmarDetails"></s:text> </td>
 				</tr>
 				<tr>
-					<td>Farmer Name </td>
+					<td><s:text name="label.slip.farmarName"></s:text> </td>
 					<td>:</td>
 					<td><input type=text name="fname"></td>
 				</tr>
 				<tr>
-					<td>City </td>
+					<td><s:text name="label.slip.city"></s:text> </td>
 					<td>:</td>
 					<td><input type=text name="fcity"></td>
 				</tr>
 				<tr>
-					<td>Description </td>
+					<td><s:text name="label.slip.description"></s:text> </td>
 					<td>:</td>
 					<td><textarea name=description></textarea></td>
 				</tr>
