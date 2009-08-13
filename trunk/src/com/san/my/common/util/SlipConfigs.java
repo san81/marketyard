@@ -7,15 +7,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.san.my.common.global.AppConstants;
+
 public class SlipConfigs
 {
-    private static Properties slipProperties;
+    private Properties slipProperties;
     
-    private static final String CLASSPATH = (Thread.currentThread().getContextClassLoader()).getResource("slip_configs.properties").getPath();
+    private static SlipConfigs instance;
     
-    private SlipConfigs(){};
+    private static final String CLASSPATH = (Thread.currentThread().getContextClassLoader()).getResource(AppConstants.APP_SLIP_CONFIG_FILE).getPath();
     
-    private static void loadSlipConfigs(){
+    private SlipConfigs(){
+        loadSlipConfigs();
+    }
+    
+    public static SlipConfigs getInstance() {
+        if(instance == null){
+            synchronized (SlipConfigs.class) {
+                if(instance == null)
+                    instance = new SlipConfigs();
+            }
+        }
+        return instance;
+    }
+    
+    private void loadSlipConfigs(){
         try {
             slipProperties = new Properties();
             slipProperties.load(new FileInputStream(new File(CLASSPATH)));
@@ -25,24 +41,17 @@ public class SlipConfigs
         }
     }
     
-    public static String getSlipConfig(String key){
-        if(slipProperties == null)
-            loadSlipConfigs();
+    public String getSlipConfig(String key){
         return slipProperties.getProperty(key);
     }
     
-    public static void setSlipConfig(String key, String value){
-        if(slipProperties == null)
-            loadSlipConfigs();
+    public void setSlipConfig(String key, String value){
         slipProperties.setProperty(key, value);
     }
     
-    public static void storeSlipConfigsToFile(){
-        if(slipProperties == null)
-            loadSlipConfigs();
-        
+    public void storeSlipConfigsToFile(){
         try {
-            slipProperties.store(new FileOutputStream(new File(CLASSPATH)), "Configuration Attributes");
+            slipProperties.store(new FileOutputStream(new File(CLASSPATH)), "Slip Attributes Configuration");
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();

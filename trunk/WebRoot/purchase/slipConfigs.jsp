@@ -6,7 +6,7 @@
 <s:actionmessage />
 <s:fielderror />
 
-<s:form action="slipConfigurations" method="post">
+<s:form action="storeSlipConfigurations" method="post">
 	<table width=100%>
 		<tr>
 			<td> Hamali Rate  :</td>
