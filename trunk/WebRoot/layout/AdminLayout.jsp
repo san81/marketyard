@@ -9,7 +9,7 @@
 <html>
 <head>	
 	<title><s:text name="label.marketYard" /></title>
-		<script language="JavaScript" type="text/javascript" src="scripts/marketYard.js"></script>		
+		<script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/scripts/marketYard.js"></script>		
 		<link href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet" type="text/css"></link>
 </head>
 

@@ -50,8 +50,7 @@
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
        	<!-- Login Form Configuration -->
         
-        <action name="purchaseSlip">
-        	
+        <action name="purchaseSlip" class="purchaseSlipActionBean">        	
         	<result name="success" type="tiles">my.purchase.slip</result>
         </action>
 		<action name="createNewAccount">

@@ -1,37 +1,14 @@
 <!--
 
-	function chkUser(){
-		
-		var email=document.mailForm.userName.value;
-		var pass=document.mailForm.passcode.value;
-		var msgDiv=document.getElementById('message');
-		if(email=="" || pass==""){
-			msgDiv.innerHTML="<input type=hidden name=userStatus value=0><li>username/passcode required to login ";
-		}else {
-				msgDiv.innerHTML="Checking u r validation ..";
-				var reqUrl='./phps/chkForUser.php?user='+email+'&pass='+pass;
-				sendGetRequest(reqUrl,'message','takeAction()');
-			}
-		return false;
-	}
-function takeAction(){
-	var status=document.mailForm.userStatus.value;
-	 if(status==0)
-		{
-			document.mailForm.action="index.php";
-			document.mailForm.submit();
-		}
-}
 
-function makeLogoutCall(){
-	document.mailForm.action="./phps/logout.php";
-	document.mailForm.submit();
-}
-function makeSlip(pform){
+function makeSlip(pform){ 
 	var vbags=pform.bags.value;
 	var vsmallBag=pform.smallBag.value;
 	var vbagWt=pform.bagwt.value;
 	var vcost=pform.cost.value;
+	var hamaliRate=pform.hamali.value;
+	var ccRate=pform.cc.value;
+	var mfRate=pform.mf.value;
 	var grandSum;
 	var netSum;
 	if(vbagWt!='' && vbags!=''){
@@ -45,7 +22,7 @@ function makeSlip(pform){
 				}
 		qt=qt/100;
 		setDiv(makeQtlString(qt),"qtlsDiv");
-		var hamaliVar=vbags*3;
+		var hamaliVar=vbags*hamaliPerBag;
 		setDiv(hamaliVar,"hamaliDiv");
 		
 		if(vcost!=''){
@@ -54,8 +31,8 @@ function makeSlip(pform){
 			setDiv(makeQtlString(grandSum),"grossTotalDiv");
 			var t=parseFloat(grandSum/100);
 			t=Math.ceil(t);
-			var cc=t*2;
-			var mf=t*1;
+			var cc=t*ccRate;
+			var mf=t*mfRate;
 			setDiv(cc,"ccDiv");
 			setDiv(mf,"mfDiv");
 			netSum=grandSum-(hamaliVar+cc+mf);
@@ -77,14 +54,6 @@ function setDiv(str,divName){
 	var divCtrl=document.getElementById(divName);	
 	divCtrl.innerHTML=str;
 }
-function createCal9(){	
-		var cal9 = new calendar3(document.forms['calform'].elements['input9']);
-				cal9.year_scroll = true;
-				cal9.time_comp = false;
-}
-function plProcess(){
-	
-	sendPostRequest('../phps/plProcess.php','purchaseSlip','document.calform','');
-}
+
 
 -->
