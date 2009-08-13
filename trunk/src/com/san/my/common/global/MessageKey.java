@@ -168,6 +168,10 @@ public static final String AWARD_SUMMARY_TOTALS_NO_EXCHANGE_RATE = "string.noExc
 //Category Search key
 public static final String LABEL_CATEGORY_SEARCH_TOO_MANY_MATCHES="info.category.search.tooMayMatches";
 
+public static final String SLIP_CONFIG_HAMALI_RATE = "slip.config.hamaliRate";
+public static final String SLIP_CONFIG_ADTHI_RATE = "slip.config.adthiRate";
+public static final String SLIP_CONFIG_CASHCOMMISSION_RATE = "slip.config.cashCommissionRate";
+
 }
 
 
