@@ -9,6 +9,11 @@ import java.util.Properties;
 
 import com.san.my.common.global.AppConstants;
 
+/**
+ * Singleton that holds the slip configurations.
+ * @author sreenivas
+ * @version $Id$ 
+ */
 public class SlipConfigs
 {
     private Properties slipProperties;
