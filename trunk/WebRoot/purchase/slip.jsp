@@ -9,11 +9,16 @@
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
 
-<s:hidden name="qtls"></s:hidden>
-<s:hidden name="grossTotal"></s:hidden>
+<%---- values from config --%>
 <s:hidden name="hamali"></s:hidden>
 <s:hidden name="cc"></s:hidden>
 <s:hidden name="mf"></s:hidden>
+<%--values from config--%>
+<%--derived values --%>
+<s:hidden name="qtls"></s:hidden>
+<s:hidden name="grossTotal"></s:hidden>
+<%--derived values --%>
+
 <s:hidden name="netTotal"></s:hidden>
 
 <table width=100%>

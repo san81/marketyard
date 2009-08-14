@@ -27,9 +27,7 @@ public class PurchaseSlip extends ActionSupport {
 	
 	public String execute(){
 		
-		SlipConfigs slipConfig = SlipConfigs.getInstance();
-		bagwt=100D;
-		qtls=9L;
+		SlipConfigs slipConfig = SlipConfigs.getInstance();		
 		cc=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_CASHCOMMISSION_RATE));
 		mf=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_ADTHI_RATE));
 		hamali=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_HAMALI_RATE));
