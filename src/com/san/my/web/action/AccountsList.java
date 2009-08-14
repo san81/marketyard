@@ -10,13 +10,13 @@ import com.san.my.viewobj.AccountsView;
 
 public class AccountsList extends ActionSupport{
 	long totalCount;
-	List accounts = new ArrayList<AccountsView>();
+	List<AccountsView> accounts;
 	AccountService accountService;
 	
 	public List getAccounts() {
 		return accounts;
 	}
-	public void setAccounts(List accounts) {
+	public void setAccounts(List<AccountsView> accounts) {
 		this.accounts = accounts;
 	}
 	public long getTotalCount() {

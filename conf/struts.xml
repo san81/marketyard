@@ -87,23 +87,20 @@
     
     <package name="my-json-package" extends="json-default" namespace="/json">	    	
 	  <action name="seedsList" class="seedsListJsonActionBean">
-       	<interceptor-ref name="json"></interceptor-ref>
-	  	<result type="json">
+       <result type="json">
 	  		<param name="root">
 			    seeds
 			 </param>
 	  	</result>
 	  </action>
 	  <action name="accountTypesList" class="accountTypesJsonActionBean">
-       	<interceptor-ref name="json"></interceptor-ref>
-	  	<result type="json">
+       <result type="json">
 	  		<param name="root">
 			    accountTypes
 			 </param>
 	  	</result>
 	  </action>
 	  <action name="accountsList" class="accountsListJsonActionBean">
-       	<interceptor-ref name="json"></interceptor-ref>	  	
        	<result type="json"></result>
 	  </action>
   </package>    
