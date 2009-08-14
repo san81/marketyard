@@ -19,7 +19,7 @@ mobile varchar(20),
 account_type_id integer not null,
 address text,
 village varchar(255),
-regdate datetime,
+regdate timestamp default now(), 
 FOREIGN KEY(account_type_id) REFERENCES Account_Types(account_type_id) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
@@ -73,3 +73,6 @@ insert into account_types (account_type,description) values ('SUPPLIER','people 
 insert into seeds (name) values ('paddy');
 insert into seeds (name) values ('maize');
 insert into seeds (name) values ('sugarcane');
+
+insert into accounts (login_name,password,name,account_type_id) values ('Admin','password','Admin'
+,1);
