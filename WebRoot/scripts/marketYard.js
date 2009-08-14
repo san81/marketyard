@@ -11,6 +11,7 @@ function makeSlip(pform){
 	var mfRate=pform.mf.value;
 	var grandSum;
 	var netSum;
+
 	if(vbagWt!='' && vbags!=''){
 		
 		var qt=parseInt(vbagWt)*parseInt(vbags);
@@ -22,7 +23,7 @@ function makeSlip(pform){
 				}
 		qt=qt/100;
 		setDiv(makeQtlString(qt),"qtlsDiv");
-		var hamaliVar=vbags*hamaliPerBag;
+		var hamaliVar=vbags*hamaliRate;
 		setDiv(hamaliVar,"hamaliDiv");
 		
 		if(vcost!=''){
