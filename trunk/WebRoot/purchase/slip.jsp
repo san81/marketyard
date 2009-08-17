@@ -2,13 +2,12 @@
 
  <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<s:actionerror/>
-<s:actionmessage/>
-<s:fielderror />
 
-<s:form action="slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
+
+<s:form action="slipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
+<s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
 
 <%---- values from config --%>
 <s:hidden name="cashCommissionRate"></s:hidden>
@@ -99,14 +98,23 @@
 					<td colspan=3><s:text name="label.slip.purchaseParty"></s:text></td>
 				</tr>
 				<tr>
-					<td><s:text name="label.slip.chooseAccount"></s:text> </td>
-					<td>:</td>
-					<td><select name="buyerAccountId"><option>MS</option></select></td>
-				</tr>
+					<td align="right"> <s:text name="label.slip.chooseAccount"></s:text>:</td>
+					<td colspan="2">
+							<s:autocompleter name="buyerAccountId" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring"/>
+							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
+							
+
+					</td>
+				</tr>				
 				<tr>
 					<td><s:text name="label.slip.purchasedBy"></s:text> </td>
 					<td>:</td>
-					<td><select name="pModes"><option>CASH</option><option>CREDIT</option></select></td>
+					<td><select name="pModes">
+							<option value="CASH">CASH</option>
+							<option value="CHECK">CHECK</option>
+							<option value="CREDIT">CREDIT</option>
+						</select>
+					</td>
 				</tr>
 			</table>
 		</td>
@@ -125,7 +133,7 @@
 					<td><s:textfield key="label.slip.city" name="fcity" required="true"></s:textfield></td>
 				</tr>
 				<tr>
-					<td><s:textarea key="label.slip.description" name="description" required="true"></s:textarea></td>
+					<td><s:textarea key="label.slip.description" name="description" required="true" cols="20" rows="5"></s:textarea></td>
 				</tr>
 			</table>
 		</td>
@@ -136,9 +144,12 @@
 	</tr>
 	<tr>
 		<td colspan=3 align=center> 
-			<s:submit key="label.slip.submit"></s:submit>			
+			<s:submit key="label.slip.submit" ></s:submit>			
 		</td>
 	</tr>
 	
 </table>
 </s:form>
+<script>
+	makeSlip(document.slipSubmit);
+</script>

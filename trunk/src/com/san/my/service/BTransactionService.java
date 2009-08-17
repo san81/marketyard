@@ -1,6 +1,6 @@
 package com.san.my.service;
 
-import com.san.my.web.action.SlipSubmit;
+import com.san.my.web.action.PurchaseSlip;
 
 public interface BTransactionService {
 
@@ -10,6 +10,6 @@ public interface BTransactionService {
 	 * 
 	 * @param purchaseSlip
 	 */
-	public void savePurchase(SlipSubmit purchaseSlip);
+	public void savePurchase(PurchaseSlip purchaseSlip);
 	
 }

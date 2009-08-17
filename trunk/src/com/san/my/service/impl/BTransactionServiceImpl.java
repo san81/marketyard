@@ -9,14 +9,14 @@ import com.san.my.dao.SlipDAO;
 import com.san.my.dataobj.SlipDO;
 import com.san.my.dataobj.TransactionDO;
 import com.san.my.service.BTransactionService;
-import com.san.my.web.action.SlipSubmit;
+import com.san.my.web.action.PurchaseSlip;
 
 public class BTransactionServiceImpl implements BTransactionService{
 
 	private BTransactionsDAO transactionsDAO;
 	private SlipDAO slipDAO;
 	
-	public void savePurchase(SlipSubmit purchaseSlip) {
+	public void savePurchase(PurchaseSlip purchaseSlip) {
 		SlipDO slipDO = new SlipDO();
 		slipDO.setAdthiRate(purchaseSlip.getAdthiRate());
 		slipDO.setHamaliRate(purchaseSlip.getHamaliRate());
