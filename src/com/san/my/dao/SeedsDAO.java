@@ -2,14 +2,14 @@ package com.san.my.dao;
 
 import java.util.List;
 
-import com.san.my.dataobj.SeedsDO;
+import com.san.my.dataobj.SeedDO;
 
 public interface SeedsDAO {
 	
 	/**
 	 * @param seed
 	 */
-	public void saveSeed(SeedsDO seed);
+	public void saveSeed(SeedDO seed);
 	/**
 	 * @param seedName
 	 * @return
@@ -22,4 +22,6 @@ public interface SeedsDAO {
 	 * @return
 	 */
 	public List listAllSeeds();
+    
+    public SeedDO loadSeed(Long seedId);
 }

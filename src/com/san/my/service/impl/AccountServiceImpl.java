@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.san.my.dao.AccountDAO;
-import com.san.my.dataobj.AccountsDO;
+import com.san.my.dataobj.AccountDO;
 import com.san.my.service.AccountService;
 import com.san.my.viewobj.AccountsView;
 import com.san.my.web.action.account.AccountForm;
@@ -19,7 +19,7 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	public void saveAccount(AccountForm form) {
-		AccountsDO accountsDO = new AccountsDO();
+		AccountDO accountsDO = new AccountDO();
 		accountsDO.setLoginName(form.getLoginName());
         /*
          * Have one default password.
@@ -41,9 +41,9 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public List<AccountsView> listAllAccounts() {
-		List<AccountsDO> accounts = accountDAO.listAllAccounts();
+		List<AccountDO> accounts = accountDAO.listAllAccounts();
 		List accountsView = new ArrayList<AccountsView>();
-		for(AccountsDO account : accounts){
+		for(AccountDO account : accounts){
 			AccountsView av = new AccountsView(account);
 			accountsView.add(av);
 		}
@@ -51,9 +51,9 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	public List<String[]> listAccountIdsAndNames() {
-		List<AccountsDO> accounts = accountDAO.listAllAccounts();
+		List<AccountDO> accounts = accountDAO.listAllAccounts();
 		List<String[]> accountIdsAndNames=new ArrayList<String[]>();		
-		for(AccountsDO account : accounts){
+		for(AccountDO account : accounts){
 			String[] accountNameToId = new String[2];
 			accountNameToId[1]=account.getAccountId()+"";
 			accountNameToId[0]=account.getLoginName();

@@ -32,11 +32,12 @@
 		</property>
 		<property name="mappingResources">
 			<list>
-				<value>com/san/my/dataobj/Transaction.hbm.xml</value>
+				<value>com/san/my/dataobj/BussinessTransaction.hbm.xml</value>
 				<value>com/san/my/dataobj/Seeds.hbm.xml</value>
 				<value>com/san/my/dataobj/Slip.hbm.xml</value>
 				<value>com/san/my/dataobj/Accounts.hbm.xml</value>
 				<value>com/san/my/dataobj/AccountTypes.hbm.xml</value>
+				<value>com/san/my/dataobj/PaymentDetails.hbm.xml</value>
 			</list>
 		</property>
 	</bean>

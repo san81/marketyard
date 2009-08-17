@@ -6,9 +6,9 @@
 -->
 <hibernate-mapping>
     <class name="com.san.my.dataobj.AccountTypesDO" table="account_types" catalog="marketyard">
-        <id name="accountTypeId" type="java.lang.Integer">
+        <id name="accountTypeId" type="java.lang.Long">
             <column name="account_type_id" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="accountType" type="java.lang.String">
             <column name="account_type" length="20" />
@@ -20,7 +20,7 @@
             <key>
                 <column name="account_type_id" />
             </key>
-            <one-to-many class="com.san.my.dataobj.AccountsDO" />
+            <one-to-many class="com.san.my.dataobj.AccountDO" />
         </set>
     </class>
 </hibernate-mapping>

@@ -12,11 +12,11 @@ public class SlipDO implements java.io.Serializable {
 
 	// Fields
 
-	private Integer slipId;
+	private Long slipId;
 
-	private AccountsDO accounts;
+	private AccountDO account;
 
-	private SeedsDO seeds;
+	private SeedDO seed;
 
 	private Date datetime;
 
@@ -51,19 +51,19 @@ public class SlipDO implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public SlipDO(Integer slipId) {
+	public SlipDO(Long slipId) {
 		this.slipId = slipId;
 	}
 
 	/** full constructor */
-	public SlipDO(Integer slipId, AccountsDO accounts, SeedsDO seeds, Date datetime,
+	public SlipDO(Long slipId, AccountDO account, SeedDO seed, Date datetime,
 			String farmarName, String farmarVillage, Long bags,
 			Long looseBag, Long barthi, Double rate, Double qtls,
 			Double hamaliRate, Double adthiRate, Double ccRate,
 			String description, Set transactions) {
 		this.slipId = slipId;
-		this.accounts = accounts;
-		this.seeds = seeds;
+		this.account = account;
+		this.seed = seed;
 		this.datetime = datetime;
 		this.farmarName = farmarName;
 		this.farmarVillage = farmarVillage;
@@ -81,28 +81,13 @@ public class SlipDO implements java.io.Serializable {
 
 	// Property accessors
 
-	public Integer getSlipId() {
-		return this.slipId;
+
+	public AccountDO getAccount() {
+		return this.account;
 	}
 
-	public void setSlipId(Integer slipId) {
-		this.slipId = slipId;
-	}
-
-	public AccountsDO getAccounts() {
-		return this.accounts;
-	}
-
-	public void setAccounts(AccountsDO accounts) {
-		this.accounts = accounts;
-	}
-
-	public SeedsDO getSeeds() {
-		return this.seeds;
-	}
-
-	public void setSeeds(SeedsDO seeds) {
-		this.seeds = seeds;
+	public void setAccount(AccountDO account) {
+		this.account = account;
 	}
 
 	public Date getDatetime() {
@@ -208,5 +193,25 @@ public class SlipDO implements java.io.Serializable {
 	public void setLooseBag(Long looseBag) {
 		this.looseBag = looseBag;
 	}
+
+    public SeedDO getSeed()
+    {
+        return seed;
+    }
+
+    public void setSeed(SeedDO seed)
+    {
+        this.seed = seed;
+    }
+
+    public Long getSlipId()
+    {
+        return slipId;
+    }
+
+    public void setSlipId(Long slipId)
+    {
+        this.slipId = slipId;
+    }
 
 }

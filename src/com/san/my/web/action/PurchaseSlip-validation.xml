@@ -36,8 +36,7 @@
 		</field-validator>
 	</field>
 	<field name="buyerAccountId">
-		<field-validator type="requiredstring">
-			<param name="trim">true</param>
+		<field-validator type="required">			
 			<message>Buyer name is required</message>
 		</field-validator>
 	</field>
