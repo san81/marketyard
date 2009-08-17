@@ -26,6 +26,6 @@
   </div>
    <!-- left side ads related tile here --> 
 </div>
-<tiles:insertAttribute name="banner"></tiles:insertAttribute>	
+<tiles:insertAttribute name="footer"></tiles:insertAttribute>	
 </body>
 </html>

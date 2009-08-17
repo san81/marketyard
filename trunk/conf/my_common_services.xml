@@ -29,4 +29,10 @@
 		class="com.san.my.service.impl.SeedsServiceImpl">	
 		<property name="seedsDAO" ref="seedsDAO"></property>	
 	</bean>
+	<bean id="bTransactionService"
+		class="com.san.my.service.impl.BTransactionServiceImpl">	
+		<property name="transactionsDAO" ref="bTransactionsDAO"></property>	
+		<property name="slipDAO" ref="slipDAO"></property>
+	</bean>
+	
 </beans>

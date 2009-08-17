@@ -24,11 +24,11 @@ public class SlipDO implements java.io.Serializable {
 
 	private String farmarVillage;
 
-	private Integer bags;
+	private Long bags;
 
-	private Integer looseBag;
+	private Long looseBag;
 
-	private Integer barthi;
+	private Long barthi;
 
 	private Double rate;
 
@@ -57,8 +57,8 @@ public class SlipDO implements java.io.Serializable {
 
 	/** full constructor */
 	public SlipDO(Integer slipId, AccountsDO accounts, SeedsDO seeds, Date datetime,
-			String farmarName, String farmarVillage, Integer bags,
-			Integer looseBag, Integer barthi, Double rate, Double qtls,
+			String farmarName, String farmarVillage, Long bags,
+			Long looseBag, Long barthi, Double rate, Double qtls,
 			Double hamaliRate, Double adthiRate, Double ccRate,
 			String description, Set transactions) {
 		this.slipId = slipId;
@@ -129,30 +129,6 @@ public class SlipDO implements java.io.Serializable {
 		this.farmarVillage = farmarVillage;
 	}
 
-	public Integer getBags() {
-		return this.bags;
-	}
-
-	public void setBags(Integer bags) {
-		this.bags = bags;
-	}
-
-	public Integer getLooseBag() {
-		return this.looseBag;
-	}
-
-	public void setLooseBag(Integer looseBag) {
-		this.looseBag = looseBag;
-	}
-
-	public Integer getBarthi() {
-		return this.barthi;
-	}
-
-	public void setBarthi(Integer barthi) {
-		this.barthi = barthi;
-	}
-
 	public Double getRate() {
 		return this.rate;
 	}
@@ -207,6 +183,30 @@ public class SlipDO implements java.io.Serializable {
 
 	public void setTransactions(Set transactions) {
 		this.transactions = transactions;
+	}
+
+	public Long getBags() {
+		return bags;
+	}
+
+	public void setBags(Long bags) {
+		this.bags = bags;
+	}
+
+	public Long getBarthi() {
+		return barthi;
+	}
+
+	public void setBarthi(Long barthi) {
+		this.barthi = barthi;
+	}
+
+	public Long getLooseBag() {
+		return looseBag;
+	}
+
+	public void setLooseBag(Long looseBag) {
+		this.looseBag = looseBag;
 	}
 
 }
