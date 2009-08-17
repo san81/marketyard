@@ -6,12 +6,12 @@ function makeSlip(pform){
 	var vsmallBag=pform.smallBag.value;
 	var vbagWt=pform.bagwt.value;
 	var vcost=pform.cost.value;
-	var hamaliRate=pform.hamali.value;
-	var ccRate=pform.cc.value;
-	var mfRate=pform.mf.value;
+	var hamaliRate=pform.hamaliRate.value;
+	var ccRate=pform.cashCommissionRate.value;
+	var mfRate=pform.adthiRate.value;
 	var grandSum;
 	var netSum;
-
+	
 	if(vbagWt!='' && vbags!=''){
 		
 		var qt=parseInt(vbagWt)*parseInt(vbags);
@@ -24,19 +24,25 @@ function makeSlip(pform){
 		qt=qt/100;
 		setDiv(makeQtlString(qt),"qtlsDiv");
 		var hamaliVar=vbags*hamaliRate;
+		pform.totalHamali.value = hamaliVar;
 		setDiv(hamaliVar,"hamaliDiv");
 		
 		if(vcost!=''){
-			grandSum=qt*vcost;	
+			grandSum=qt*vcost;
 			grandSum=Math.ceil(grandSum);
+			pform.grossTotal.value=grandSum;				
 			setDiv(makeQtlString(grandSum),"grossTotalDiv");
 			var t=parseFloat(grandSum/100);
 			t=Math.ceil(t);
 			var cc=t*ccRate;
 			var mf=t*mfRate;
+			pform.totalCc.value=cc;
+			pform.totalMf.value=mf;
 			setDiv(cc,"ccDiv");
 			setDiv(mf,"mfDiv");
 			netSum=grandSum-(hamaliVar+cc+mf);
+			netSum=Math.ceil(netSum);
+			pform.netTotal.value=netSum;
 			setDiv(netSum,"netTotalDiv");
 		}
 		

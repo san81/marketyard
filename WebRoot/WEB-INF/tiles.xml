@@ -7,12 +7,14 @@
 	  	<put-attribute name="banner"	value="/includes/branding/my_banner.jsp" />
 		<put-attribute name="body" value="/login.jsp" />
 		<put-attribute name="sideMenu" value="/includes/welcome.jsp" />
+		<put-attribute name="footer"	value="/includes/branding/my_footer.jsp" />
 	 </definition>
 	<!-- home page layout ends -->
 	 <definition name="admin.layout" template="/layout/AdminLayout.jsp">
 	  	<put-attribute name="banner"	value="/includes/branding/my_banner.jsp" />
 		<put-attribute name="sideMenu" value="/includes/menu/side_menu.jsp" />
 		<put-attribute name="body" value="/includes/body.jsp" />
+		<put-attribute name="footer"	value="/includes/branding/my_footer.jsp" />		
 	 </definition>
 	 <definition name="my.purchase.slip" extends="admin.layout">
 	 	<put-attribute name="body" value="/purchase/slip.jsp" />

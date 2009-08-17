@@ -1,25 +1,30 @@
  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
  <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <s:actionerror/>
 <s:actionmessage/>
 <s:fielderror />
 
-<s:form action="admin/slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
+<s:form action="slipSubmit" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
 
 <%---- values from config --%>
-<s:hidden name="hamali"></s:hidden>
-<s:hidden name="cc"></s:hidden>
-<s:hidden name="mf"></s:hidden>
+<s:hidden name="cashCommissionRate"></s:hidden>
+<s:hidden name="adthiRate"></s:hidden>
+<s:hidden name="hamaliRate"></s:hidden>
 <%--values from config--%>
 <%--derived values --%>
 <s:hidden name="qtls"></s:hidden>
 <s:hidden name="grossTotal"></s:hidden>
+<s:hidden name="totalHamali"></s:hidden>
+<s:hidden name="totalCc"></s:hidden>
+<s:hidden name="totalMf"></s:hidden>
+<s:hidden name="netTotal"></s:hidden>
 <%--derived values --%>
 
-<s:hidden name="netTotal"></s:hidden>
+
 
 <table width=100%>
 	<tr><td>
@@ -29,7 +34,7 @@
 								<s:datetimepicker
 						             tooltip="Select Date"
 						             label="purchase date"
-						             name="purchaseDate" />
+						             name="purchaseDate" required="true"/>
 						 </td>
 				</tr>
 				<tr>
@@ -42,13 +47,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td> <s:textfield name="bagwt" key="label.slip.bagWeight" onblur="makeSlip(document.slipSubmit)"> </s:textfield> </td>
+					<td> <s:textfield name="bagwt" key="label.slip.bagWeight" onblur="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
 				</tr>
 				<tr>
-					<td> <s:textfield name="bags" key="label.slip.bags" onblur="makeSlip(document.slipSubmit)"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onblur="makeSlip(document.slipSubmit)"> </s:textfield> </td>
+					<td> <s:textfield name="bags" key="label.slip.bags" onblur="makeSlip(document.slipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onblur="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
 				</tr>
 				<tr>
-					<td> <s:textfield name="cost" key="label.slip.costperQtl" onblur="makeSlip(document.slipSubmit)"></s:textfield> </td>
+					<td> <s:textfield name="cost" key="label.slip.costperQtl" onblur="makeSlip(document.slipSubmit)" required="true"></s:textfield> </td>
 				</tr>								
 			</table>
 		</td>
@@ -67,15 +72,15 @@
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.hamali"></s:text> </td> <td>:</td>
-					<td> <span id="hamaliDiv" class="expensesColor">00.00</span> &nbsp;at ${hamali} per bag</td>
+					<td> <span id="hamaliDiv" class="expensesColor">00.00</span> &nbsp;at ${hamaliRate} per bag</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.cc"></s:text> </td> <td>:</td>
-					<td> <span id="ccDiv" class="expensesColor">00.00</span> &nbsp;at ${cc}%  </td>
+					<td> <span id="ccDiv" class="expensesColor">00.00</span> &nbsp;at ${cashCommissionRate}%  </td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.mf"></s:text> </td> <td>:</td>
-					<td> <span id="mfDiv" class="expensesColor">00.00</span> &nbsp;at ${mf}%</td>
+					<td> <span id="mfDiv" class="expensesColor">00.00</span> &nbsp;at ${adthiRate}%</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.netTotal"></s:text> </td> <td>:</td>
@@ -96,12 +101,12 @@
 				<tr>
 					<td><s:text name="label.slip.chooseAccount"></s:text> </td>
 					<td>:</td>
-					<td><select><option>MS</option></select></td>
+					<td><select name="buyerAccountId"><option>MS</option></select></td>
 				</tr>
 				<tr>
 					<td><s:text name="label.slip.purchasedBy"></s:text> </td>
 					<td>:</td>
-					<td><select><option>CASH</option><option>CREDIT</option></select></td>
+					<td><select name="pModes"><option>CASH</option><option>CREDIT</option></select></td>
 				</tr>
 			</table>
 		</td>
@@ -114,19 +119,13 @@
 					<td colspan=3><s:text name="label.slip.farmarDetails"></s:text> </td>
 				</tr>
 				<tr>
-					<td><s:text name="label.slip.farmarName"></s:text> </td>
-					<td>:</td>
-					<td><input type=text name="fname"></td>
+					<td><s:textfield key="label.slip.farmarName" name="fname" required="true"></s:textfield></td>
 				</tr>
 				<tr>
-					<td><s:text name="label.slip.city"></s:text> </td>
-					<td>:</td>
-					<td><input type=text name="fcity"></td>
+					<td><s:textfield key="label.slip.city" name="fcity" required="true"></s:textfield></td>
 				</tr>
 				<tr>
-					<td><s:text name="label.slip.description"></s:text> </td>
-					<td>:</td>
-					<td><textarea name=description></textarea></td>
+					<td><s:textarea key="label.slip.description" name="description" required="true"></s:textarea></td>
 				</tr>
 			</table>
 		</td>
@@ -136,7 +135,8 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3 align=center> <input type=submit value="Make Purchase Entry" onClick="plProcess()">
+		<td colspan=3 align=center> 
+			<s:submit key="label.slip.submit"></s:submit>			
 		</td>
 	</tr>
 	

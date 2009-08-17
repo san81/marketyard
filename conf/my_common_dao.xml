@@ -14,4 +14,12 @@
 		class="com.san.my.dao.impl.SeedsDAOImpl"
 		parent="objectDAO">		
 	</bean>
+	<bean id="bTransactionsDAO"
+		class="com.san.my.dao.impl.BTransactionsDAOImpl"
+		parent="objectDAO">		
+	</bean>
+	<bean id="slipDAO"
+		class="com.san.my.dao.impl.SlipDAOImpl"
+		parent="objectDAO">		
+	</bean>
 </beans>
