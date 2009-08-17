@@ -49,7 +49,19 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return accountsView;
 	}
-
+	
+	public List<String[]> listAccountIdsAndNames() {
+		List<AccountsDO> accounts = accountDAO.listAllAccounts();
+		List<String[]> accountIdsAndNames=new ArrayList<String[]>();		
+		for(AccountsDO account : accounts){
+			String[] accountNameToId = new String[2];
+			accountNameToId[1]=account.getAccountId()+"";
+			accountNameToId[0]=account.getLoginName();
+			accountIdsAndNames.add(accountNameToId);
+		}
+		return accountIdsAndNames;
+	}
+	
     public List<String> listAllAccountTypes(){
         List<String> accountTypes = accountDAO.listAllAccountTypes();
         return accountTypes;

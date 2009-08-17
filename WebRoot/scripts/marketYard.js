@@ -22,6 +22,7 @@ function makeSlip(pform){
 					vbags=parseInt(vbags)+1;
 				}
 		qt=qt/100;
+		pform.qtls.value=qt;
 		setDiv(makeQtlString(qt),"qtlsDiv");
 		var hamaliVar=vbags*hamaliRate;
 		pform.totalHamali.value = hamaliVar;

@@ -5,12 +5,13 @@ import java.util.Date;
 import com.opensymphony.xwork2.ActionSupport;
 import com.san.my.common.global.MessageKey;
 import com.san.my.common.util.SlipConfigs;
+import com.san.my.service.BTransactionService;
 
 
 
 public class PurchaseSlip extends ActionSupport {
 	
-	private Long qtls;
+	private Double qtls;
 	
 	//values from config
 	private Double hamaliRate;
@@ -27,17 +28,32 @@ public class PurchaseSlip extends ActionSupport {
 	
 	private String seed;
 	private Date purchaseDate;
-	private Double bagwt;
+	private Long bagwt;
 	private Long bags;
+	private Long smallBag;
 	private Double cost;
 	
+	private String fname;
+	private String fcity;
+	private String description;
 	
-	public String execute(){	
+	private long buyerAccountId;
+	private String pModes;
+	
+	private BTransactionService transactionService;
+	
+	public String input(){	
 		
 		SlipConfigs slipConfig = SlipConfigs.getInstance();		
 		cashCommissionRate=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_CASHCOMMISSION_RATE));
 		adthiRate=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_ADTHI_RATE));
 		hamaliRate=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_HAMALI_RATE));
+		return SUCCESS;
+	}
+	
+	public String execute(){
+	
+		//transactionService.savePurchase(this);
 		return SUCCESS;
 	}
 	
@@ -47,10 +63,10 @@ public class PurchaseSlip extends ActionSupport {
 	public void setBags(Long bags) {
 		this.bags = bags;
 	}
-	public Double getBagwt() {
+	public Long getBagwt() {
 		return bagwt;
 	}
-	public void setBagwt(Double bagwt) {
+	public void setBagwt(Long bagwt) {
 		this.bagwt = bagwt;
 	}
 	public Double getCost() {
@@ -77,10 +93,10 @@ public class PurchaseSlip extends ActionSupport {
 	public void setNetTotal(Double netTotal) {
 		this.netTotal = netTotal;
 	}
-	public Long getQtls() {
+	public Double getQtls() {
 		return qtls;
 	}
-	public void setQtls(Long qtls) {
+	public void setQtls(Double qtls) {
 		this.qtls = qtls;
 	}
 
@@ -139,6 +155,58 @@ public class PurchaseSlip extends ActionSupport {
 	public void setHamaliRate(Double hamaliRate) {
 		this.hamaliRate = hamaliRate;
 	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getFcity() {
+		return fcity;
+	}
+
+	public void setFcity(String fcity) {
+		this.fcity = fcity;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public long getBuyerAccountId() {
+		return buyerAccountId;
+	}
+
+	public void setBuyerAccountId(long buyerAccountId) {
+		this.buyerAccountId = buyerAccountId;
+	}
+
+	public Long getSmallBag() {
+		return smallBag;
+	}
+
+	public void setSmallBag(Long smallBag) {
+		this.smallBag = smallBag;
+	}
+
+	public void setTransactionService(BTransactionService transactionService) {
+		this.transactionService = transactionService;
+	}
+
+	public String getPModes() {
+		return pModes;
+	}
+
+	public void setPModes(String modes) {
+		pModes = modes;
+	}
+
 	
 	
 }

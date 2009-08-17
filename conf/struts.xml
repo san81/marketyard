@@ -50,7 +50,8 @@
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
        	<!-- Login Form Configuration -->
         
-        <action name="purchaseSlip" class="purchaseSlipActionBean">        	        	
+        <action name="purchaseSlip" class="purchaseSlipActionBean" method="input">        	        	
+           	<result name="input" type="tiles">my.purchase.slip</result>
         	<result name="success" type="tiles">my.purchase.slip</result>
         </action>
 		<action name="createNewAccount">
@@ -70,7 +71,7 @@
 			<result  name="error" type="tiles">my.seeds.new</result>
 			<result name="success" type="tiles">admin.layout</result>
         </action>
-	   <action name="slipSubmit" class="slipSubmitActionBean">
+	   <action name="slipSubmit" class="purchaseSlipActionBean">
          	<result name="success" type="tiles">admin.layout</result>
          	<result name="input" type="tiles">my.purchase.slip</result>
        </action>     
@@ -102,6 +103,13 @@
 	  </action>
 	  <action name="accountsList" class="accountsListJsonActionBean">
        	<result type="json"></result>
+	  </action>
+	  <action name="accountIdsAndNamesList" class="accountsListJsonActionBean" method="listForSelection">
+       	<result type="json">
+       		<param name="root">
+       			accountIdAndNameList
+       		</param>
+       	</result>
 	  </action>
   </package>    
 

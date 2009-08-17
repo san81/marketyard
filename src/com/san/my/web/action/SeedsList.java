@@ -9,7 +9,7 @@ import com.san.my.common.util.springs.ServiceLocator;
 import com.san.my.service.SeedsService;
 
 public class SeedsList extends ActionSupport{
-	List seeds=new ArrayList<String[]>();
+	List seeds;
 	SeedsService seedsService;
 		
 	public List getSeeds() {
