@@ -6,14 +6,14 @@
 -->
 <hibernate-mapping>
     <class name="com.san.my.dataobj.SlipDO" table="slip" catalog="marketyard">
-        <id name="slipId" type="java.lang.Integer">
+        <id name="slipId" type="java.lang.Long">
             <column name="slip_id" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
-        <many-to-one name="accounts" class="com.san.my.dataobj.AccountsDO" fetch="select">
+        <many-to-one name="account" class="com.san.my.dataobj.AccountDO" fetch="select">
             <column name="buyer_account_id" />
         </many-to-one>
-        <many-to-one name="seeds" class="com.san.my.dataobj.SeedsDO" fetch="select">
+        <many-to-one name="seed" class="com.san.my.dataobj.SeedDO" fetch="select">
             <column name="seed_id" />
         </many-to-one>
         <property name="datetime" type="java.util.Date">
@@ -25,13 +25,13 @@
         <property name="farmarVillage" type="java.lang.String">
             <column name="farmar_village" length="200" />
         </property>
-        <property name="bags" type="java.lang.Integer">
+        <property name="bags" type="java.lang.Long">
             <column name="bags" />
         </property>
-        <property name="looseBag" type="java.lang.Integer">
+        <property name="looseBag" type="java.lang.Long">
             <column name="loose_bag" />
         </property>
-        <property name="barthi" type="java.lang.Integer">
+        <property name="barthi" type="java.lang.Long">
             <column name="barthi" />
         </property>
         <property name="rate" type="java.lang.Double">
@@ -56,7 +56,7 @@
             <key>
                 <column name="reference_id" />
             </key>
-            <one-to-many class="com.san.my.dataobj.TransactionDO" />
+            <one-to-many class="com.san.my.dataobj.BussinessTransactionDO" />
         </set>
     </class>
 </hibernate-mapping>

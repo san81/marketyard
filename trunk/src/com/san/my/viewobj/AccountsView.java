@@ -2,13 +2,13 @@ package com.san.my.viewobj;
 
 import java.util.Date;
 
-import com.san.my.dataobj.AccountsDO;
+import com.san.my.dataobj.AccountDO;
 
 public class AccountsView {
 	
 //	 Fields
 
-	private Integer accountId;
+	private Long accountId;
 
 	private String loginName;
 
@@ -24,7 +24,7 @@ public class AccountsView {
 
 	private Date regdate;
 
-	public AccountsView(AccountsDO account){
+	public AccountsView(AccountDO account){
 		
 		this.setAccountId(account.getAccountId());
 		this.setLoginName(account.getLoginName());
@@ -35,16 +35,18 @@ public class AccountsView {
 		this.setVillage(account.getVillage());
 		this.setRegdate(account.getRegdate());		
 	}
-	
-	public Integer getAccountId() {
-		return accountId;
-	}
 
-	public void setAccountId(Integer accountId) {
-		this.accountId = accountId;
-	}
+	public Long getAccountId()
+    {
+        return accountId;
+    }
 
-	public String getAddress() {
+    public void setAccountId(Long accountId)
+    {
+        this.accountId = accountId;
+    }
+
+    public String getAddress() {
 		return address;
 	}
 

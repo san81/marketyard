@@ -51,7 +51,8 @@ FOREIGN KEY(buyer_account_id) REFERENCES Accounts(account_id) ON UPDATE CASCADE
 )ENGINE=INNODB;
 
 drop table if exists transaction;
--- trans_type may be 1-purchase, 2-sale, 3 � payments, 4 - reciepts
+-- trans_type may be 1-purchase, 2-sale, 3 - payments, 4 - reciepts
+-- trans_flow may be 1-debit(DR) or 2-credit(CR).
 create table transaction(
 trans_id integer auto_increment primary key,
 datetime datetime not null,
@@ -59,13 +60,25 @@ account_id integer not null,
 amount numeric(14,2) not null,
 trans_flow varchar(2) not null,
 trans_type integer(2) not null,
+trans_mode varchar(10) not null,
+payment_details_id long,
 reference_id integer,
 description text,
 FOREIGN KEY(reference_id) REFERENCES slip(slip_id) ON UPDATE CASCADE,
 FOREIGN KEY(account_id) REFERENCES accounts(account_id) ON UPDATE CASCADE
 );
 
---- default data
+drop table if exists payment_details;
+create table payment_details(
+payment_details_id integer auto_increment primary key,
+datetime datetime not null,
+transaction_id integer not null,
+payment_mode varchar(10) not null,
+details varchar(100) not null,
+FOREIGN KEY(transaction_id) REFERENCES transaction(trans_id) ON UPDATE CASCADE
+);
+
+-- default data
 insert into account_types (account_type,description) values ('ADMIN','The only Administrator for the company');
 insert into account_types (account_type,description) values ('BUYER','people who participate in the buying');
 insert into account_types (account_type,description) values ('SUPPLIER','people who sell out the seeds');
@@ -74,5 +87,6 @@ insert into seeds (name) values ('paddy');
 insert into seeds (name) values ('maize');
 insert into seeds (name) values ('sugarcane');
 
-insert into accounts (login_name,password,name,account_type_id) values ('Admin','password','Admin'
-,1);
+insert into accounts (login_name,password,name,account_type_id) values ('Santosh','password','Santosh',1);
+insert into accounts (login_name,password,name,account_type_id) values ('srinu','password','Sreenivas',1);
+insert into accounts (login_name,password,name,account_type_id) values ('murali','password','murali',2);

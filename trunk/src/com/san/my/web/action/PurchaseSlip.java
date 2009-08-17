@@ -37,7 +37,7 @@ public class PurchaseSlip extends ActionSupport {
 	private String fcity;
 	private String description;
 	
-	private long buyerAccountId;
+	private String buyerAccountId;
 	private String pModes;
 	
 	private BTransactionService transactionService;
@@ -53,7 +53,7 @@ public class PurchaseSlip extends ActionSupport {
 	
 	public String execute(){
 	
-		//transactionService.savePurchase(this);
+		transactionService.savePurchase(this);
 		return SUCCESS;
 	}
 	
@@ -179,15 +179,17 @@ public class PurchaseSlip extends ActionSupport {
 		this.fname = fname;
 	}
 
-	public long getBuyerAccountId() {
-		return buyerAccountId;
-	}
+	public String getBuyerAccountId()
+    {
+        return buyerAccountId;
+    }
 
-	public void setBuyerAccountId(long buyerAccountId) {
-		this.buyerAccountId = buyerAccountId;
-	}
+    public void setBuyerAccountId(String buyerAccountId)
+    {
+        this.buyerAccountId = buyerAccountId;
+    }
 
-	public Long getSmallBag() {
+    public Long getSmallBag() {
 		return smallBag;
 	}
 

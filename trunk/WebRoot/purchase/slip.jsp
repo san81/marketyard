@@ -2,7 +2,7 @@
 
  <%@ taglib prefix="s" uri="/struts-tags" %>
 
-
+<s:fielderror></s:fielderror>
 
 <s:form action="slipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
 <s:head theme="ajax" />
@@ -100,7 +100,7 @@
 				<tr>
 					<td align="right"> <s:text name="label.slip.chooseAccount"></s:text>:</td>
 					<td colspan="2">
-							<s:autocompleter name="buyerAccountId" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring"/>
+							<s:autocompleter name="buyerAccountId" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
 							
 

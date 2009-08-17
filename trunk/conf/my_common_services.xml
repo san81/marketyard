@@ -33,6 +33,8 @@
 		class="com.san.my.service.impl.BTransactionServiceImpl">	
 		<property name="transactionsDAO" ref="bTransactionsDAO"></property>	
 		<property name="slipDAO" ref="slipDAO"></property>
+		<property name="accountDAO" ref="accountDAO"></property>
+		<property name="seedDAO" ref="seedsDAO"></property>
 	</bean>
 	
 </beans>

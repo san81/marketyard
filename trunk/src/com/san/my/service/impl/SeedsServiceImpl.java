@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.san.my.dao.SeedsDAO;
-import com.san.my.dataobj.SeedsDO;
+import com.san.my.dataobj.SeedDO;
 import com.san.my.service.SeedsService;
 import com.san.my.web.action.Seeds;
 
@@ -17,7 +17,7 @@ public class SeedsServiceImpl implements SeedsService{
 	}
 	
 	public void saveSeed(Seeds seed) {
-		SeedsDO seedDO = new SeedsDO();
+		SeedDO seedDO = new SeedDO();
 		seedDO.setName(seed.getSeedName());
 		seedsDAO.saveSeed(seedDO);
 	}
@@ -27,9 +27,9 @@ public class SeedsServiceImpl implements SeedsService{
 	}
 
 	public List<String[]> listAllSeeds() {
-		List<SeedsDO> seedsDOs = seedsDAO.listAllSeeds();
+		List<SeedDO> seedsDOs = seedsDAO.listAllSeeds();
 		List<String[]> seeds=new ArrayList<String[]>();
-		for(SeedsDO seed:seedsDOs){
+		for(SeedDO seed:seedsDOs){
 			String[] seedNameToId = new String[2];
 			seedNameToId[1]= seed.getSeedId()+"";
 			seedNameToId[0] = seed.getName();

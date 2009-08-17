@@ -13,7 +13,7 @@ public class AccountTypesDO implements java.io.Serializable
 
     // Fields
 
-    private Integer accountTypeId;
+    private Long accountTypeId;
     private String accountType;
     private String description;
     private Set accountses = new HashSet(0);
@@ -26,13 +26,13 @@ public class AccountTypesDO implements java.io.Serializable
     }
 
     /** minimal constructor */
-    public AccountTypesDO(Integer accountTypeId)
+    public AccountTypesDO(Long accountTypeId)
     {
         this.accountTypeId = accountTypeId;
     }
 
     /** full constructor */
-    public AccountTypesDO(Integer accountTypeId, String accountType, String description, Set accountses)
+    public AccountTypesDO(Long accountTypeId, String accountType, String description, Set accountses)
     {
         this.accountTypeId = accountTypeId;
         this.accountType = accountType;
@@ -41,16 +41,6 @@ public class AccountTypesDO implements java.io.Serializable
     }
 
     // Property accessors
-
-    public Integer getAccountTypeId()
-    {
-        return this.accountTypeId;
-    }
-
-    public void setAccountTypeId(Integer accountTypeId)
-    {
-        this.accountTypeId = accountTypeId;
-    }
 
     public String getAccountType()
     {
@@ -80,6 +70,16 @@ public class AccountTypesDO implements java.io.Serializable
     public void setAccountses(Set accountses)
     {
         this.accountses = accountses;
+    }
+
+    public Long getAccountTypeId()
+    {
+        return accountTypeId;
+    }
+
+    public void setAccountTypeId(Long accountTypeId)
+    {
+        this.accountTypeId = accountTypeId;
     }
 
 }

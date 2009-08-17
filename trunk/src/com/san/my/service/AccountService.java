@@ -2,7 +2,7 @@ package com.san.my.service;
 
 import java.util.List;
 
-import com.san.my.dataobj.AccountsDO;
+import com.san.my.dataobj.AccountDO;
 import com.san.my.viewobj.AccountsView;
 import com.san.my.web.action.account.AccountForm;
 
