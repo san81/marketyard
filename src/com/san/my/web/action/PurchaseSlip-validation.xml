@@ -40,19 +40,19 @@
 			<message>Buyer name is required</message>
 		</field-validator>
 	</field>
-	<field name="pModes">
+	<field name="paymentMode">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
 			<message>Payment mode is required</message>
 		</field-validator>
 	</field>
-	<field name="fname">
+	<field name="supplier">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
 			<message>supplier name is required</message>
 		</field-validator>
 	</field>
-	<field name="fcity">
+	<field name="supplierCity">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
 			<message>supplier city is required</message>

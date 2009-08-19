@@ -54,6 +54,17 @@
            	<result name="input" type="tiles">my.purchase.slip</result>
         	<result name="success" type="tiles">my.purchase.slip</result>
         </action>
+        <action name="conformSlipSubmit" class="purchaseSlipActionBean" >
+         	<result name="success" type="tiles">my.purchase.slip.conform</result>
+         	<result name="input" type="tiles">my.purchase.slip</result>
+       </action> 
+       <action name="backSlipSubmit" class="purchaseSlipActionBean" method="back">
+         	<result name="success" type="tiles">my.purchase.slip</result>
+       </action> 
+        <action name="slipSubmit" class="purchaseSlipActionBean" method="submitPurchaseSlip">
+         	<result name="success" type="tiles">admin.layout</result>
+         	<result name="input" type="tiles">my.purchase.slip</result>
+       </action> 
 		<action name="createNewAccount">
 			<result name="success" type="tiles">my.account.new</result>
 		</action>
@@ -70,11 +81,7 @@
             <result  name="input" type="tiles">my.seeds.new</result>
 			<result  name="error" type="tiles">my.seeds.new</result>
 			<result name="success" type="tiles">admin.layout</result>
-        </action>
-	   <action name="slipSubmit" class="purchaseSlipActionBean">
-         	<result name="success" type="tiles">admin.layout</result>
-         	<result name="input" type="tiles">my.purchase.slip</result>
-       </action>     
+        </action>	       
        <action name="loadSlipConfigurations" class="slipConfigsActionBean" method="load">
        		<result name="input" type="tiles">slip.configs</result>
        		<result name="success" type="tiles">slip.configs</result>
