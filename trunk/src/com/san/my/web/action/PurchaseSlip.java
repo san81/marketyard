@@ -27,18 +27,28 @@ public class PurchaseSlip extends ActionSupport {
 	
 	
 	private String seed;
+	private Long seedKey;
 	private Date purchaseDate;
 	private Long bagwt;
 	private Long bags;
 	private Long smallBag;
 	private Double cost;
 	
-	private String fname;
-	private String fcity;
+	private String supplier;
+	private Long supplierKey;
+	private String supplierCity;
 	private String description;
 	
 	private String buyerAccountId;
-	private String pModes;
+	private Long buyerAccountIdKey;
+	private String status;
+	
+	private String paymentMode;
+	private String bankName;
+	private String branchName;
+	private Long checkNumber;
+	private Double paymentAmount;
+	
 	
 	private BTransactionService transactionService;
 	
@@ -52,6 +62,18 @@ public class PurchaseSlip extends ActionSupport {
 	}
 	
 	public String execute(){
+		
+		//transactionService.savePurchase(this);
+		return SUCCESS;
+	}
+	
+	public String back(){
+		
+		//transactionService.savePurchase(this);
+		return SUCCESS;
+	}
+	
+	public String submitPurchaseSlip(){
 	
 		transactionService.savePurchase(this);
 		return SUCCESS;
@@ -163,22 +185,6 @@ public class PurchaseSlip extends ActionSupport {
 		this.description = description;
 	}
 
-	public String getFcity() {
-		return fcity;
-	}
-
-	public void setFcity(String fcity) {
-		this.fcity = fcity;
-	}
-
-	public String getFname() {
-		return fname;
-	}
-
-	public void setFname(String fname) {
-		this.fname = fname;
-	}
-
 	public String getBuyerAccountId()
     {
         return buyerAccountId;
@@ -201,14 +207,93 @@ public class PurchaseSlip extends ActionSupport {
 		this.transactionService = transactionService;
 	}
 
-	public String getPModes() {
-		return pModes;
+	public Long getSeedKey() {
+		return seedKey;
 	}
 
-	public void setPModes(String modes) {
-		pModes = modes;
+	public void setSeedKey(Long seedKey) {
+		this.seedKey = seedKey;
 	}
 
-	
+	public Long getBuyerAccountIdKey() {
+		return buyerAccountIdKey;
+	}
+
+	public void setBuyerAccountIdKey(Long buyerAccountIdKey) {
+		this.buyerAccountIdKey = buyerAccountIdKey;
+	}
+
+	public String getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+
+	public String getSupplierCity() {
+		return supplierCity;
+	}
+
+	public void setSupplierCity(String supplierCity) {
+		this.supplierCity = supplierCity;
+	}
+
+	public Long getSupplierKey() {
+		return supplierKey;
+	}
+
+	public void setSupplierKey(Long supplierKey) {
+		this.supplierKey = supplierKey;
+	}
+
+	public String getBankName() {
+		return bankName;
+	}
+
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+	public Long getCheckNumber() {
+		return checkNumber;
+	}
+
+	public void setCheckNumber(Long checkNumber) {
+		this.checkNumber = checkNumber;
+	}
+
+	public Double getPaymentAmount() {
+		return paymentAmount;
+	}
+
+	public void setPaymentAmount(Double paymentAmount) {
+		this.paymentAmount = paymentAmount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getPaymentMode() {
+		return paymentMode;
+	}
+
+	public void setPaymentMode(String paymentMode) {
+		this.paymentMode = paymentMode;
+	}
+
 	
 }

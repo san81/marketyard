@@ -4,7 +4,7 @@
 
 <s:fielderror></s:fielderror>
 
-<s:form action="slipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
+<s:form action="conformSlipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
 <s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
@@ -25,7 +25,7 @@
 
 
 
-<table width=100%>
+<table width=100% border=0>
 	<tr><td>
 			<table border=0>
 				<tr>
@@ -46,13 +46,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td> <s:textfield name="bagwt" key="label.slip.bagWeight" onblur="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
+					<td> <s:textfield name="bagwt" key="label.slip.bagWeight" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
 				</tr>
 				<tr>
-					<td> <s:textfield name="bags" key="label.slip.bags" onblur="makeSlip(document.slipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onblur="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
+					<td> <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
 				</tr>
 				<tr>
-					<td> <s:textfield name="cost" key="label.slip.costperQtl" onblur="makeSlip(document.slipSubmit)" required="true"></s:textfield> </td>
+					<td> <s:textfield name="cost" key="label.slip.costperQtl" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield> </td>
 				</tr>								
 			</table>
 		</td>
@@ -98,21 +98,19 @@
 					<td colspan=3><s:text name="label.slip.purchaseParty"></s:text></td>
 				</tr>
 				<tr>
-					<td align="right"> <s:text name="label.slip.chooseAccount"></s:text>:</td>
+					<td align="right"> <s:text name="label.slip.buyer"></s:text>:</td>
 					<td colspan="2">
 							<s:autocompleter name="buyerAccountId" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
-							
-
 					</td>
-				</tr>				
+				</tr>
 				<tr>
-					<td><s:text name="label.slip.purchasedBy"></s:text> </td>
+					<td><s:text name="label.slip.status"></s:text> </td>
 					<td>:</td>
-					<td><select name="pModes">
-							<option value="CASH">CASH</option>
-							<option value="CHECK">CHECK</option>
-							<option value="CREDIT">CREDIT</option>
+					<td><select name="status">
+							<option value="PENDING">PENDING</option>
+							<option value="PARTIAL">PARTIAL</option>							
+							<option value="PAID">PAID</option>							
 						</select>
 					</td>
 				</tr>
@@ -125,22 +123,57 @@
 			<table>
 				<tr>
 					<td colspan=3><s:text name="label.slip.farmarDetails"></s:text> </td>
+				</tr>				
+				<tr>
+					<td><s:textfield key="label.slip.city" name="supplierCity" required="true"></s:textfield></td>
 				</tr>
 				<tr>
-					<td><s:textfield key="label.slip.farmarName" name="fname" required="true"></s:textfield></td>
+					<td align="right"> <s:text name="label.slip.supplier"></s:text>:</td>
+					<td colspan="2">
+							<s:autocompleter name="supplier" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
+							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
+					</td>
 				</tr>
 				<tr>
-					<td><s:textfield key="label.slip.city" name="fcity" required="true"></s:textfield></td>
-				</tr>
-				<tr>
-					<td><s:textarea key="label.slip.description" name="description" required="true" cols="20" rows="5"></s:textarea></td>
+					<td><s:textarea key="label.slip.description" name="description" required="true" cols="15" ></s:textarea></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3 align=center> <br>
+		<td colspan=3 align=center> <hr>
 		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border=0>
+				<tr>
+					<td colspan=3><s:text name="label.slip.paymentDetails"></s:text> </td>
+				</tr>
+				<tr>
+						<td><s:text name="label.slip.paymentMode"></s:text> 
+						:</td>
+						<td><select name="paymentMode">
+								<option value="CASH">CASH</option>
+								<option value="CHECK">CHECK</option>							
+							</select>
+						</td>
+				</tr>
+				<s:textfield name="paymentAmount" key="label.amount"></s:textfield>
+				<s:textfield name="checkNumber" key="label.checkNumber"></s:textfield>				
+			</table>
+		</td>
+	    <td>
+	    </td>
+	    <td>
+	       <table>
+	       		<tr>
+	       			<td><br><br></td>
+	       		</tr>
+		    	<s:textfield name="bankName" key="label.bankName"></s:textfield>
+				<s:textfield name="branchName" key="label.branchName"></s:textfield>				
+			</table>
+	    </td>
 	</tr>
 	<tr>
 		<td colspan=3 align=center> 
