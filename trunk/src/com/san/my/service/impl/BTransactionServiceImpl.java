@@ -28,6 +28,14 @@ public class BTransactionServiceImpl implements BTransactionService{
     private SeedsDAO seedDAO;
 	
 	public void savePurchase(PurchaseSlip purchaseSlip) {
+        
+        AccountDO buyerAccountDO = accountDAO.loadAccountDO(purchaseSlip.getBuyerAccountIdKey());
+        AccountDO supplierAccountDO = accountDAO.loadAccountDO(purchaseSlip.getSupplierKey());
+        AccountDO hamaliAccountDO = accountDAO.loadAccountDO(2L);
+        AccountDO ccAccountDO = accountDAO.loadAccountDO(3L);
+        AccountDO mfAccountDO = accountDAO.loadAccountDO(4L);
+        SeedDO seedDO = seedDAO.loadSeed(purchaseSlip.getSeedKey());
+        
 		SlipDO slipDO = new SlipDO();
 		slipDO.setAdthiRate(purchaseSlip.getAdthiRate());
 		slipDO.setHamaliRate(purchaseSlip.getHamaliRate());
@@ -36,15 +44,16 @@ public class BTransactionServiceImpl implements BTransactionService{
 		slipDO.setBags(purchaseSlip.getBags());		
 		slipDO.setBarthi(purchaseSlip.getBagwt());
 		slipDO.setDatetime(purchaseSlip.getPurchaseDate());
+        
+        slipDO.setBuyer(buyerAccountDO);
+        slipDO.setSupplier(supplierAccountDO);
 		
 		slipDO.setQtls(purchaseSlip.getQtls());
 		slipDO.setLooseBag(purchaseSlip.getSmallBag());	
         slipDO.setRate(purchaseSlip.getCost());
         
-		
 		slipDO.setDescription(purchaseSlip.getDescription());
         
-        SeedDO seedDO = seedDAO.loadSeed(purchaseSlip.getSeedKey());
         slipDO.setSeed(seedDO);
 		
         List<BussinessTransactionDO> transactionObjects = new LinkedList<BussinessTransactionDO>();
@@ -53,14 +62,9 @@ public class BTransactionServiceImpl implements BTransactionService{
 		BussinessTransactionDO buyerTransactionDO = new BussinessTransactionDO();
         buyerTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
         buyerTransactionDO.setAmount(purchaseSlip.getGrossTotal());
-        
-        AccountDO buyerAccountDO = accountDAO.loadAccountDO(purchaseSlip.getBuyerAccountIdKey());
         buyerTransactionDO.setAccount(buyerAccountDO);
-        
         buyerTransactionDO.setSlip(slipDO);
-        
-        //flow is debit
-        buyerTransactionDO.setTransFlow(Constants.DEBIT);
+        buyerTransactionDO.setTransFlow(Constants.DEBIT); // flow is debit
         buyerTransactionDO.setPaymentMode(Constants.PAYMENT_MODE_CASH);
         buyerTransactionDO.setDescription("Debited from firm to indicate that buyer has to pay to firm");
         
@@ -70,12 +74,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         BussinessTransactionDO supplierTransactionDO = new BussinessTransactionDO();
         supplierTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
         supplierTransactionDO.setAmount(purchaseSlip.getNetTotal());
-        
-        AccountDO supplierAccountDO = accountDAO.loadAccountDO(purchaseSlip.getSupplierKey());
         supplierTransactionDO.setAccount(supplierAccountDO);
-        
         supplierTransactionDO.setSlip(slipDO);
-        
         supplierTransactionDO.setTransFlow(Constants.CREDIT);
         supplierTransactionDO.setPaymentMode(Constants.PAYMENT_MODE_CASH);
         supplierTransactionDO.setDescription("Credited to firm to indicate that firm has to pay to supplier");
@@ -86,12 +86,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         BussinessTransactionDO hamaliTransactionDO = new BussinessTransactionDO();
         hamaliTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
         hamaliTransactionDO.setAmount(purchaseSlip.getTotalHamali());
-        
-        AccountDO hamaliAccountDO = accountDAO.loadAccountDO(2L);
         hamaliTransactionDO.setAccount(hamaliAccountDO);
-        
         hamaliTransactionDO.setSlip(slipDO);
-        
         hamaliTransactionDO.setTransFlow(Constants.CREDIT);
         hamaliTransactionDO.setPaymentMode(Constants.PAYMENT_MODE_CASH);
         hamaliTransactionDO.setDescription("Credited to firm to indicate that firm has to pay to Hamali");
@@ -103,12 +99,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         BussinessTransactionDO ccTransactionDO = new BussinessTransactionDO();
         ccTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
         ccTransactionDO.setAmount(purchaseSlip.getTotalCc());
-        
-        AccountDO ccAccountDO = accountDAO.loadAccountDO(3L);
         ccTransactionDO.setAccount(ccAccountDO);
-        
         ccTransactionDO.setSlip(slipDO);
-        
         ccTransactionDO.setTransFlow(Constants.CREDIT);
         ccTransactionDO.setPaymentMode(Constants.PAYMENT_MODE_CASH);
         ccTransactionDO.setDescription("Credited to firm to indicate that firm has to pay to CC account");
@@ -119,12 +111,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         BussinessTransactionDO mfTransactionDO = new BussinessTransactionDO();
         mfTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
         mfTransactionDO.setAmount(purchaseSlip.getTotalMf());
-        
-        AccountDO mfAccountDO = accountDAO.loadAccountDO(4L);
         mfTransactionDO.setAccount(mfAccountDO);
-        
         mfTransactionDO.setSlip(slipDO);
-        
         mfTransactionDO.setTransFlow(Constants.CREDIT);
         mfTransactionDO.setPaymentMode(Constants.PAYMENT_MODE_CASH);
         mfTransactionDO.setDescription("Credited to firm to indicate that firm has to pay to MF account");
@@ -137,11 +125,8 @@ public class BTransactionServiceImpl implements BTransactionService{
             BussinessTransactionDO payment = new BussinessTransactionDO();
             payment.setDatetime(purchaseSlip.getPurchaseDate());
             payment.setAmount(purchaseSlip.getPaymentAmount());
-            
             payment.setAccount(supplierAccountDO);
-            
             payment.setSlip(slipDO);
-            
             payment.setTransFlow(Constants.DEBIT);
             
             if(purchaseSlip.getPaymentMode().equals("CASH")){
@@ -164,7 +149,6 @@ public class BTransactionServiceImpl implements BTransactionService{
             
             transactionObjects.add(payment);
         }
-        
         
 		transactionsDAO.saveBusinessTransactions(transactionObjects);
 	}
@@ -193,7 +177,25 @@ public class BTransactionServiceImpl implements BTransactionService{
 
     public void loadSlip(PurchaseSlip purchaseSlip)
     {
+        SlipDO slip = slipDAO.loadSlip(purchaseSlip.getSlipId());
         
+        purchaseSlip.setAdthiRate(slip.getAdthiRate());
+        purchaseSlip.setHamaliRate(slip.getHamaliRate());
+        purchaseSlip.setCashCommissionRate(slip.getCcRate());
+        
+        purchaseSlip.setPurchaseDate(slip.getDatetime());
+        purchaseSlip.setSeed(slip.getSeed().getName());
+        purchaseSlip.setBagwt(slip.getBarthi());
+        purchaseSlip.setBags(slip.getBags());
+        purchaseSlip.setSmallBag(slip.getLooseBag());
+        purchaseSlip.setCost(slip.getRate());
+        
+        purchaseSlip.setBuyerAccountId(slip.getBuyer().getLoginName());
+        purchaseSlip.setSupplier(slip.getSupplier().getLoginName());
+        purchaseSlip.setSupplierCity(slip.getSupplier().getVillage());
+        
+        purchaseSlip.setStatus(slip.getStatus());
+        purchaseSlip.setDescription(slip.getDescription());
     }
 
 }
