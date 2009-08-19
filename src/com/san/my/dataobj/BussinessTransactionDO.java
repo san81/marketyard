@@ -7,10 +7,10 @@ import java.util.Date;
  */
 
 public class BussinessTransactionDO implements java.io.Serializable {
+    
+    private static final long serialVersionUID = -5289331304644399786L;
 
-	// Fields
-
-	private Long transId;
+    private Long transId;
 
 	private AccountDO account;
 
@@ -20,11 +20,9 @@ public class BussinessTransactionDO implements java.io.Serializable {
 
 	private Double amount;
 
-	private String transFlow;
-
-	private Integer transType;
+	private String transFlow;	
     
-    private String transMode;
+    private String paymentMode;
     
     private PaymentDetailsDO paymentDetails;
 
@@ -38,18 +36,17 @@ public class BussinessTransactionDO implements java.io.Serializable {
 
 	/** minimal constructor */
 	public BussinessTransactionDO(Long transId, AccountDO account, Date datetime,
-			Double amount, String transFlow, Integer transType) {
+			Double amount, String transFlow) {
 		this.transId = transId;
 		this.account = account;
 		this.datetime = datetime;
 		this.amount = amount;
-		this.transFlow = transFlow;
-		this.transType = transType;
+		this.transFlow = transFlow;		
 	}
 
 	/** full constructor */
 	public BussinessTransactionDO(Long transId, AccountDO account, SlipDO slip,
-			Date datetime, Double amount, String transFlow, Integer transType,
+			Date datetime, Double amount, String transFlow, 
 			String description) {
 		this.transId = transId;
 		this.account = account;
@@ -57,7 +54,6 @@ public class BussinessTransactionDO implements java.io.Serializable {
 		this.datetime = datetime;
 		this.amount = amount;
 		this.transFlow = transFlow;
-		this.transType = transType;
 		this.description = description;
 	}
 
@@ -95,14 +91,6 @@ public class BussinessTransactionDO implements java.io.Serializable {
 		this.transFlow = transFlow;
 	}
 
-	public Integer getTransType() {
-		return this.transType;
-	}
-
-	public void setTransType(Integer transType) {
-		this.transType = transType;
-	}
-
 	public String getDescription() {
 		return this.description;
 	}
@@ -111,14 +99,14 @@ public class BussinessTransactionDO implements java.io.Serializable {
 		this.description = description;
 	}
 
-    public String getTransMode()
+    public String getPaymentMode()
     {
-        return transMode;
+        return paymentMode;
     }
 
-    public void setTransMode(String transMode)
+    public void setPaymentMode(String paymentMode)
     {
-        this.transMode = transMode;
+        this.paymentMode = paymentMode;
     }
 
     public PaymentDetailsDO getPaymentDetails()

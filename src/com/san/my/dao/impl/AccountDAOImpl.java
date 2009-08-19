@@ -51,5 +51,10 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
     {
         return (AccountDO)load(AccountDO.class, accountId);
     }
+
+    public AccountDO getAccountDO(Long accountId)
+    {
+        return (AccountDO)get(AccountDO.class, accountId);
+    }
 	
 }

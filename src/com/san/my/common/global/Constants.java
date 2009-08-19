@@ -14,6 +14,12 @@ public class Constants {
 	public final static String WORD_NO 	= "NO";	
 	public final static String FALSE = "false";
 	public final static String TRUE = "true";
+    
+    public static final String CREDIT = "CR";
+    public static final String DEBIT = "DR";
+    
+    public static final String PAYMENT_MODE_CASH = "CASH";
+    public static final String PAYMENT_MODE_CHECK = "CHECK";
 	
 	public static final String TURKISH_I_LOWER = "\u0131";
 	public static final String TURKISH_I_UPPER = "\u0130";  

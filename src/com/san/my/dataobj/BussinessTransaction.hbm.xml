@@ -26,11 +26,8 @@
         <property name="transFlow" type="java.lang.String">
             <column name="trans_flow" length="2" not-null="true" />
         </property>
-        <property name="transType" type="java.lang.Integer">
-            <column name="trans_type" not-null="true" />
-        </property>
-        <property name="transMode" type="java.lang.String">
-            <column name="trans_mode" not-null="true" />
+        <property name="paymentMode" type="java.lang.String">
+            <column name="payment_mode" not-null="true" />
         </property>
         <property name="description" type="java.lang.String">
             <column name="description" length="65535" />

@@ -10,15 +10,26 @@
             <column name="payment_details_id" />
             <generator class="native" />
         </id>
-        <one-to-one name="bussinessTransactionDO" class="com.san.my.dataobj.BussinessTransactionDO" property-ref="paymentDetails" />
+        <many-to-one name="businessTransaction" class="com.san.my.dataobj.BussinessTransactionDO" fetch="select">
+            <column name="transaction_id" />
+        </many-to-one>
         <property name="datetime" type="java.util.Date">
             <column name="datetime" length="19" not-null="true" />
         </property>
-        <property name="paymentMode" type="java.lang.String">
-            <column name="payment_mode" length="10" not-null="true" />
+        <property name="bankName" type="java.lang.String">
+            <column name="bank_name" length="100" not-null="true" />
         </property>
-        <property name="details" type="java.lang.String">
-            <column name="details" length="100" not-null="true" />
+        <property name="branchName" type="java.lang.String">
+            <column name="branch_name" length="100" />
+        </property>
+        <property name="checkNumber" type="java.lang.String">
+            <column name="check_number" not-null="true" />
+        </property>
+        <property name="amount" type="java.lang.Double">
+            <column name="amount" not-null="true" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" />
         </property>
     </class>
 </hibernate-mapping>
