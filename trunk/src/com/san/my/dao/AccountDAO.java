@@ -18,4 +18,6 @@ public interface AccountDAO{
     public AccountTypesDO getAccountTypeDO(String accountType);
     
     public AccountDO loadAccountDO(Long accountId);
+    
+    public AccountDO getAccountDO(Long accountId);
 }

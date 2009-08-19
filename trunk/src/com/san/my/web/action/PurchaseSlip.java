@@ -46,7 +46,7 @@ public class PurchaseSlip extends ActionSupport {
 	private String paymentMode;
 	private String bankName;
 	private String branchName;
-	private Long checkNumber;
+	private String checkNumber;
 	private Double paymentAmount;
 	
 	
@@ -63,7 +63,7 @@ public class PurchaseSlip extends ActionSupport {
 	
 	public String execute(){
 		
-		//transactionService.savePurchase(this);
+//		transactionService.savePurchase(this);
 		return SUCCESS;
 	}
 	
@@ -263,11 +263,11 @@ public class PurchaseSlip extends ActionSupport {
 		this.branchName = branchName;
 	}
 
-	public Long getCheckNumber() {
+	public String getCheckNumber() {
 		return checkNumber;
 	}
 
-	public void setCheckNumber(Long checkNumber) {
+	public void setCheckNumber(String checkNumber) {
 		this.checkNumber = checkNumber;
 	}
 

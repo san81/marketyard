@@ -9,20 +9,20 @@ import java.util.Set;
  */
 
 public class SlipDO implements java.io.Serializable {
+    
+    private static final long serialVersionUID = 1L;
 
-	// Fields
+    // Fields
 
 	private Long slipId;
 
-	private AccountDO account;
+	private AccountDO buyer;
+    
+    private AccountDO supplier;
 
 	private SeedDO seed;
 
 	private Date datetime;
-
-	private String farmarName;
-
-	private String farmarVillage;
 
 	private Long bags;
 
@@ -39,6 +39,8 @@ public class SlipDO implements java.io.Serializable {
 	private Double adthiRate;
 
 	private Double ccRate;
+    
+    private String status;
 
 	private String description;
 
@@ -56,17 +58,16 @@ public class SlipDO implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public SlipDO(Long slipId, AccountDO account, SeedDO seed, Date datetime,
+	public SlipDO(Long slipId, AccountDO buyer, AccountDO supplier, SeedDO seed, Date datetime,
 			String farmarName, String farmarVillage, Long bags,
 			Long looseBag, Long barthi, Double rate, Double qtls,
-			Double hamaliRate, Double adthiRate, Double ccRate,
+			Double hamaliRate, Double adthiRate, Double ccRate, String status,
 			String description, Set transactions) {
 		this.slipId = slipId;
-		this.account = account;
+		this.buyer = buyer;
+        this.supplier = supplier;
 		this.seed = seed;
 		this.datetime = datetime;
-		this.farmarName = farmarName;
-		this.farmarVillage = farmarVillage;
 		this.bags = bags;
 		this.looseBag = looseBag;
 		this.barthi = barthi;
@@ -75,6 +76,7 @@ public class SlipDO implements java.io.Serializable {
 		this.hamaliRate = hamaliRate;
 		this.adthiRate = adthiRate;
 		this.ccRate = ccRate;
+        this.status = status;
 		this.description = description;
 		this.transactions = transactions;
 	}
@@ -82,13 +84,6 @@ public class SlipDO implements java.io.Serializable {
 	// Property accessors
 
 
-	public AccountDO getAccount() {
-		return this.account;
-	}
-
-	public void setAccount(AccountDO account) {
-		this.account = account;
-	}
 
 	public Date getDatetime() {
 		return this.datetime;
@@ -96,22 +91,6 @@ public class SlipDO implements java.io.Serializable {
 
 	public void setDatetime(Date datetime) {
 		this.datetime = datetime;
-	}
-
-	public String getFarmarName() {
-		return this.farmarName;
-	}
-
-	public void setFarmarName(String farmarName) {
-		this.farmarName = farmarName;
-	}
-
-	public String getFarmarVillage() {
-		return this.farmarVillage;
-	}
-
-	public void setFarmarVillage(String farmarVillage) {
-		this.farmarVillage = farmarVillage;
 	}
 
 	public Double getRate() {
@@ -212,6 +191,36 @@ public class SlipDO implements java.io.Serializable {
     public void setSlipId(Long slipId)
     {
         this.slipId = slipId;
+    }
+
+    public AccountDO getBuyer()
+    {
+        return buyer;
+    }
+
+    public void setBuyer(AccountDO buyer)
+    {
+        this.buyer = buyer;
+    }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status = status;
+    }
+
+    public AccountDO getSupplier()
+    {
+        return supplier;
+    }
+
+    public void setSupplier(AccountDO supplier)
+    {
+        this.supplier = supplier;
     }
 
 }

@@ -10,20 +10,17 @@
             <column name="slip_id" />
             <generator class="native" />
         </id>
-        <many-to-one name="account" class="com.san.my.dataobj.AccountDO" fetch="select">
+        <many-to-one name="buyer" class="com.san.my.dataobj.AccountDO" fetch="select">
             <column name="buyer_account_id" />
+        </many-to-one>
+        <many-to-one name="supplier" class="com.san.my.dataobj.AccountDO" fetch="select">
+            <column name="supplier_account_id" />
         </many-to-one>
         <many-to-one name="seed" class="com.san.my.dataobj.SeedDO" fetch="select">
             <column name="seed_id" />
         </many-to-one>
         <property name="datetime" type="java.util.Date">
             <column name="datetime" length="19" />
-        </property>
-        <property name="farmarName" type="java.lang.String">
-            <column name="farmar_name" length="200" />
-        </property>
-        <property name="farmarVillage" type="java.lang.String">
-            <column name="farmar_village" length="200" />
         </property>
         <property name="bags" type="java.lang.Long">
             <column name="bags" />
@@ -51,6 +48,9 @@
         </property>
         <property name="description" type="java.lang.String">
             <column name="description" length="65535" />
+        </property>
+         <property name="status" type="java.lang.String">
+            <column name="status" length="10" />
         </property>
         <set name="transactions" inverse="true">
             <key>

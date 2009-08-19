@@ -24,6 +24,7 @@
 <%--derived values --%>
 <s:hidden name="purchaseDate"></s:hidden>
 <s:hidden name="seed"></s:hidden>
+<s:hidden name="seedKey"></s:hidden>
 <s:hidden name="bagwt"></s:hidden>
 <s:hidden name="bags"></s:hidden>
 <s:hidden name="smallBag"></s:hidden>
