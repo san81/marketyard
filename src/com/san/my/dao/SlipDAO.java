@@ -16,4 +16,6 @@ public interface SlipDAO {
 	 * @param slipDO
 	 */
 	public void createNewSlip(SlipDO slipDO);
+    
+    public SlipDO loadSlip(Long slipId);
 }

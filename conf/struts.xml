@@ -69,10 +69,11 @@
          	<result name="success" type="tiles">my.purchase.slip.view</result>
        </action>
        <action name="loadSlip" class="purchaseSlipActionBean" method="loadSlip">
-       		 <interceptor-ref name="validation">
+       		<interceptor-ref name="transactionInterceptor"/>
+       		<interceptor-ref name="params"/>   
+       		<interceptor-ref name="validation">
          		<param name="excludeMethods">loadSlip</param>
-     		</interceptor-ref>
-       		
+     		</interceptor-ref>  	      		
          	<result name="success" type="tiles">my.purchase.slip.load</result>
          	<result name="input" type="tiles">my.purchase.slip.view</result>
        </action>

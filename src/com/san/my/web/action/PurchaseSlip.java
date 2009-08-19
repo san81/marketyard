@@ -82,7 +82,7 @@ public class PurchaseSlip extends ActionSupport {
     
     public String loadSlip(){
         action = "load";
-//        transactionService.loadSlip(this);
+        transactionService.loadSlip(this);
         return SUCCESS;
     }
 	
