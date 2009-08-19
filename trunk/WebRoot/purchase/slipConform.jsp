@@ -50,6 +50,11 @@
 	<tr><td>
 			<table border=0>
 				<tr>
+					<td>
+						SLIP ID...
+					</td>
+				</tr>
+				<tr>
 						<td colspan=2> 
 								<s:label key="purchaseDate"></s:label>
 						 </td>
@@ -170,12 +175,31 @@
 	</tr>
 	<tr>
 		<td colspan=3 align="center"> 
-		<input type="button" value="Submit" onClick="document.slipSubmit.action='slipSubmit.action';document.slipSubmit.submit();"/>
+		<br/><br/>
+		</td>
 	</tr>
 	<tr>
-		<td colspan=3 align="center"> 		
- 			<s:submit key="label.slip.submit.back" ></s:submit>	        
+	<s:if test="action=='confirm'" >
+		<td colspan=3 align="center">
+			<input type="submit" value="Edit Slip" />
+				&nbsp; &nbsp;
+			<input type="button" value="Save" onClick="document.slipSubmit.action='saveSlip.action';document.slipSubmit.submit();"/>
 		</td>
+	</s:if>
+	<s:elseif test="action=='save'">
+		<td colspan=3 align="center">
+			<input type="button" value="Print" />
+				&nbsp; &nbsp;
+			<input type="button" value="Make Another Purchase"/>
+		</td>
+	</s:elseif>
+	<s:elseif test="action=='load'">
+		<td colspan=3 align="center">
+			<input type="submit" value="Edit Slip" />
+				&nbsp; &nbsp;
+			<input type="button" value="Print"/>
+		</td>
+	</s:elseif>		
 	</tr>
 	
 </table>

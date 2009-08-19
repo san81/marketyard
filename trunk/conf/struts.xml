@@ -54,17 +54,28 @@
            	<result name="input" type="tiles">my.purchase.slip</result>
         	<result name="success" type="tiles">my.purchase.slip</result>
         </action>
-        <action name="conformSlipSubmit" class="purchaseSlipActionBean" >
+        <action name="conformSlipSubmit" class="purchaseSlipActionBean" method="conformSlip">
          	<result name="success" type="tiles">my.purchase.slip.conform</result>
          	<result name="input" type="tiles">my.purchase.slip</result>
        </action> 
        <action name="backSlipSubmit" class="purchaseSlipActionBean" method="back">
          	<result name="success" type="tiles">my.purchase.slip</result>
        </action> 
-        <action name="slipSubmit" class="purchaseSlipActionBean" method="submitPurchaseSlip">
-         	<result name="success" type="tiles">admin.layout</result>
+       <action name="saveSlip" class="purchaseSlipActionBean" method="savePurchaseSlip">
+         	<result name="success" type="tiles">my.purchase.slip.conform</result>
          	<result name="input" type="tiles">my.purchase.slip</result>
-       </action> 
+       </action>
+       <action name="viewSlip">
+         	<result name="success" type="tiles">my.purchase.slip.view</result>
+       </action>
+       <action name="loadSlip" class="purchaseSlipActionBean" method="loadSlip">
+       		 <interceptor-ref name="validation">
+         		<param name="excludeMethods">loadSlip</param>
+     		</interceptor-ref>
+       		
+         	<result name="success" type="tiles">my.purchase.slip.load</result>
+         	<result name="input" type="tiles">my.purchase.slip.view</result>
+       </action>
 		<action name="createNewAccount">
 			<result name="success" type="tiles">my.account.new</result>
 		</action>

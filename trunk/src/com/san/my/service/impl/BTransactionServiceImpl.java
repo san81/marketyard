@@ -191,4 +191,9 @@ public class BTransactionServiceImpl implements BTransactionService{
     {
     }
 
+    public void loadSlip(PurchaseSlip purchaseSlip)
+    {
+        
+    }
+
 }

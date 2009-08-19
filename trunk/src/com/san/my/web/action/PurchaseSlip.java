@@ -48,12 +48,16 @@ public class PurchaseSlip extends ActionSupport {
 	private String branchName;
 	private String checkNumber;
 	private Double paymentAmount;
+    
+    private Long slipId;
+    
+    //Flag to represent the action
+    private String action = "";
 	
 	
 	private BTransactionService transactionService;
 	
-	public String input(){	
-		
+	public String input(){		
 		SlipConfigs slipConfig = SlipConfigs.getInstance();		
 		cashCommissionRate=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_CASHCOMMISSION_RATE));
 		adthiRate=Double.parseDouble(slipConfig.getSlipConfig(MessageKey.SLIP_CONFIG_ADTHI_RATE));
@@ -61,23 +65,26 @@ public class PurchaseSlip extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	public String execute(){
-		
-//		transactionService.savePurchase(this);
+	public String conformSlip(){
+        action = "confirm";
 		return SUCCESS;
 	}
 	
-	public String back(){
-		
-		//transactionService.savePurchase(this);
+	public String back(){		
 		return SUCCESS;
 	}
 	
-	public String submitPurchaseSlip(){
-	
+	public String savePurchaseSlip(){
+        action = "save";
 		transactionService.savePurchase(this);
 		return SUCCESS;
 	}
+    
+    public String loadSlip(){
+        action = "load";
+//        transactionService.loadSlip(this);
+        return SUCCESS;
+    }
 	
 	public Long getBags() {
 		return bags;
@@ -294,6 +301,26 @@ public class PurchaseSlip extends ActionSupport {
 	public void setPaymentMode(String paymentMode) {
 		this.paymentMode = paymentMode;
 	}
+
+    public String getAction()
+    {
+        return action;
+    }
+
+    public void setAction(String action)
+    {
+        this.action = action;
+    }
+
+    public Long getSlipId()
+    {
+        return slipId;
+    }
+
+    public void setSlipId(Long slipId)
+    {
+        this.slipId = slipId;
+    }
 
 	
 }

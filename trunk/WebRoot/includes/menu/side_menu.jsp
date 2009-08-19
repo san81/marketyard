@@ -4,6 +4,7 @@
   <ul>
     <strong>    
     <li><a href="${pageContext.request.contextPath}/admin/purchaseSlip.action"> Purchase Slip </a></li>
+    <li><a href="${pageContext.request.contextPath}/admin/viewSlip.action"> View Slip </a></li>
     <li>Cash Pay/Receipt</li>
 	<li>View ledger</li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewAccount.action"> Create Account </a></li>
