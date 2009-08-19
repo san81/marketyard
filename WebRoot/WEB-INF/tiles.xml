@@ -31,4 +31,11 @@
 	 <definition name="my.seeds.new" extends="admin.layout">
 	 	<put-attribute name="body" value="/seeds/newSeed.jsp" />
 	 </definition>
+	 
+	 <definition name="my.purchase.slip.view" extends="admin.layout">
+	 	<put-attribute name="body" value="/purchase/viewSlip.jsp" />
+	 </definition>
+	 <definition name="my.purchase.slip.load" extends="admin.layout">
+	 	<put-attribute name="body" value="/purchase/slipConform.jsp" />
+	 </definition>
 </tiles-definitions>

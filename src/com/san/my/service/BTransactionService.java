@@ -29,5 +29,7 @@ public interface BTransactionService {
      * @param purchaseSlip
      */
     public void editPurchase(PurchaseSlip purchaseSlip);
+    
+    public void loadSlip(PurchaseSlip purchaseSlip);
 	
 }

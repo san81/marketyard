@@ -2,7 +2,7 @@
 
  <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<s:fielderror></s:fielderror>
+<%--<s:fielderror></s:fielderror>--%>
 
 <s:form action="conformSlipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
 <s:head theme="ajax" />
@@ -176,8 +176,13 @@
 	    </td>
 	</tr>
 	<tr>
+		<td colspan=3 align="center"> 
+		<br/><br/>
+		</td>
+	</tr>
+	<tr>
 		<td colspan=3 align=center> 
-			<s:submit key="label.slip.submit" ></s:submit>			
+			<s:submit key="label.submit" ></s:submit>			
 		</td>
 	</tr>
 	
