@@ -49,11 +49,13 @@
 <table width=100% border="0">
 	<tr><td>
 			<table border=0>
-				<tr>
+				<s:if test="action!='confirm'" >
+					<tr>
 					<td>
-						SLIP ID...
+						<b>SLIP ID: </b>${slipId}	<br/><br/>				 
 					</td>
 				</tr>
+				</s:if>				
 				<tr>
 						<td colspan=2> 
 								<s:label key="purchaseDate"></s:label>
@@ -143,11 +145,13 @@
 			</table>
 		</td>
 	</tr>
-	<tr>
-		<td colspan=3 align=center> <hr>
-		</td>
-	</tr>
-	<tr>
+	
+	<s:if test="action!='load'">
+		<tr>
+			<td colspan=3 align=center> <hr>
+			</td>
+		</tr>
+		<tr>
 		<td>
 			<table border=0>
 				<tr>
@@ -173,6 +177,7 @@
 			</table>
 	    </td>
 	</tr>
+	</s:if>	
 	<tr>
 		<td colspan=3 align="center"> 
 		<br/><br/>

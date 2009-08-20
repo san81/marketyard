@@ -6,6 +6,7 @@ package com.san.my.service.impl;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import com.san.my.common.global.Constants;
 import com.san.my.dao.AccountDAO;
@@ -51,6 +52,8 @@ public class BTransactionServiceImpl implements BTransactionService{
 		slipDO.setQtls(purchaseSlip.getQtls());
 		slipDO.setLooseBag(purchaseSlip.getSmallBag());	
         slipDO.setRate(purchaseSlip.getCost());
+        
+        slipDO.setStatus(purchaseSlip.getStatus());
         
 		slipDO.setDescription(purchaseSlip.getDescription());
         
@@ -151,6 +154,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         }
         
 		transactionsDAO.saveBusinessTransactions(transactionObjects);
+        
+		purchaseSlip.setSlipId(slipDO.getSlipId());
 	}
 
 	public void setTransactionsDAO(BTransactionsDAO transactionsDAO) {
@@ -179,6 +184,7 @@ public class BTransactionServiceImpl implements BTransactionService{
     {
         SlipDO slip = slipDAO.loadSlip(purchaseSlip.getSlipId());
         
+        purchaseSlip.setSlipId(slip.getSlipId());
         purchaseSlip.setAdthiRate(slip.getAdthiRate());
         purchaseSlip.setHamaliRate(slip.getHamaliRate());
         purchaseSlip.setCashCommissionRate(slip.getCcRate());
@@ -193,6 +199,21 @@ public class BTransactionServiceImpl implements BTransactionService{
         purchaseSlip.setBuyerAccountId(slip.getBuyer().getLoginName());
         purchaseSlip.setSupplier(slip.getSupplier().getLoginName());
         purchaseSlip.setSupplierCity(slip.getSupplier().getVillage());
+        
+        Set<BussinessTransactionDO> transactions = slip.getTransactions();
+        for(BussinessTransactionDO transaction : transactions){
+            if(transaction.getAccount().getAccountId().equals(slip.getBuyer().getAccountId()) && transaction.getTransFlow().equals(Constants.DEBIT)){
+                purchaseSlip.setGrossTotal(transaction.getAmount());
+            }else if(transaction.getAccount().getAccountId().equals(slip.getSupplier().getAccountId()) && transaction.getTransFlow().equals(Constants.CREDIT)){
+                purchaseSlip.setNetTotal(transaction.getAmount());
+            }else if(transaction.getAccount().getAccountId().equals(2L) && transaction.getTransFlow().equals(Constants.CREDIT)){
+                purchaseSlip.setTotalHamali(transaction.getAmount());
+            }else if(transaction.getAccount().getAccountId().equals(3L) && transaction.getTransFlow().equals(Constants.CREDIT)){
+                purchaseSlip.setTotalCc(transaction.getAmount());
+            }else if(transaction.getAccount().getAccountId().equals(4L) && transaction.getTransFlow().equals(Constants.CREDIT)){
+                purchaseSlip.setTotalMf(transaction.getAmount());
+            }
+        }
         
         purchaseSlip.setStatus(slip.getStatus());
         purchaseSlip.setDescription(slip.getDescription());
