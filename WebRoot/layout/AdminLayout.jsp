@@ -8,7 +8,7 @@
 
 <html>
 <head>	
-	<title><s:text name="label.marketYard" /></title>
+	<title><tiles:getAsString name="title"/></title></title>
 		<script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/scripts/marketYard.js"></script>		
 		<link href="${pageContext.request.contextPath}/css/my.css" rel="stylesheet" type="text/css"></link>
 </head>

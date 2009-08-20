@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/grid-examples.css" />
 
 <!-- Common Styles for the examples -->
-<link rel="stylesheet" type="text/css" href="../shared/examples.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/ext-examples.css" />
 </head>
 <body>
 

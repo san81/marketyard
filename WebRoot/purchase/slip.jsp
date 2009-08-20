@@ -4,7 +4,7 @@
 
 <%--<s:fielderror></s:fielderror>--%>
 
-<s:form action="conformSlipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit">
+<s:form action="conformSlipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit" validate="true">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
 <s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
@@ -28,16 +28,13 @@
 <table width=100% border=0>
 	<tr><td>
 			<table border=0>
-				<tr>
-						<td colspan=2> 
+				 
 								<s:datetimepicker
-						             tooltip="Select Date"
 						             label="purchase date"
 						             name="purchaseDate" required="true"/>
-						 </td>
-				</tr>
+						
 				<tr>
-					<td align="right"> <s:text name="seeds"></s:text>:</td>
+					<td align="right"> <s:text name="seeds"></s:text><span class="required">*</span>:</td>
 					<td>
 							<s:autocompleter name="seed" theme="ajax" indicator="indicator" href="%{jsonList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring"/>
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
@@ -98,14 +95,14 @@
 					<td colspan=3><s:text name="label.slip.purchaseParty"></s:text></td>
 				</tr>
 				<tr>
-					<td align="right"> <s:text name="label.slip.buyer"></s:text>:</td>
+					<td align="right"> <s:text name="label.slip.buyer"></s:text><span class="required">*</span>:</td>
 					<td colspan="2">
 							<s:autocompleter name="buyerAccountId" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
 					</td>
 				</tr>
 				<tr>
-					<td><s:text name="label.slip.status"></s:text> </td>
+					<td><s:text name="label.slip.status"></s:text><span class="required">*</span> </td>
 					<td>:</td>
 					<td><select name="status">
 							<option value="PENDING">PENDING</option>
@@ -128,7 +125,7 @@
 					<td><s:textfield key="label.slip.city" name="supplierCity" required="true"></s:textfield></td>
 				</tr>
 				<tr>
-					<td align="right"> <s:text name="label.slip.supplier"></s:text>:</td>
+					<td align="right"> <s:text name="label.slip.supplier"></s:text><span class="required">*</span>:</td>
 					<td colspan="2">
 							<s:autocompleter name="supplier" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
