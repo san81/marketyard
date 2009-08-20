@@ -13,5 +13,7 @@ public interface BTransactionsDAO {
 	public void saveBusinessTransaction(BussinessTransactionDO bussinessTransactionDO);
     
     public void saveBusinessTransactions(List<BussinessTransactionDO> businessTransactions);
+    
+    public BussinessTransactionDO getTransactionGivenAccIdAndSlipIdAndFlow(Long accId, Long slipId, String transFlow);
 	
 }

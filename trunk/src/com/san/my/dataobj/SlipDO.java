@@ -44,7 +44,7 @@ public class SlipDO implements java.io.Serializable {
 
 	private String description;
 
-	private Set transactions = new HashSet(0);
+	private Set<BussinessTransactionDO> transactions = new HashSet<BussinessTransactionDO>(0);
 
 	// Constructors
 
@@ -62,7 +62,7 @@ public class SlipDO implements java.io.Serializable {
 			String farmarName, String farmarVillage, Long bags,
 			Long looseBag, Long barthi, Double rate, Double qtls,
 			Double hamaliRate, Double adthiRate, Double ccRate, String status,
-			String description, Set transactions) {
+			String description, Set<BussinessTransactionDO> transactions) {
 		this.slipId = slipId;
 		this.buyer = buyer;
         this.supplier = supplier;
@@ -141,11 +141,11 @@ public class SlipDO implements java.io.Serializable {
 		this.description = description;
 	}
 
-	public Set getTransactions() {
+	public Set<BussinessTransactionDO> getTransactions() {
 		return this.transactions;
 	}
 
-	public void setTransactions(Set transactions) {
+	public void setTransactions(Set<BussinessTransactionDO> transactions) {
 		this.transactions = transactions;
 	}
 

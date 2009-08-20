@@ -33,4 +33,14 @@
             <column name="description" length="65535" />
         </property>
     </class>
+    
+    <query name="getTransactionGivenAccIdAndBillId">
+    	<![CDATA[
+    		select bt from BussinessTransactionDO bt 
+    		where bt.account.accountId = :accountId 
+    		and bt.slip.slipId = :slipId 
+    		and bt.transFlow = :transFlow
+    	]]>
+    </query>
+    
 </hibernate-mapping>
