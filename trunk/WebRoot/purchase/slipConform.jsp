@@ -178,6 +178,17 @@
 		<br/><br/>
 		</td>
 	</tr>
+	<s:if test="action=='load'" >
+		<tr>
+			<td colspan="3" align="left">
+				<s:text name="label.viewPayemnts"></s:text> [ <a href="#" onclick="togglePaymentsDiv()"><span id="collapseDiv">+</span></a> ]
+				<hr>
+				<div id="paymentsDiv" style="display: none">				
+					<jsp:include flush="true" page="/purchase/viewPayments.jsp"></jsp:include>
+				</div>
+			</td>
+		</tr>
+	</s:if>
 	<tr>
 	<s:if test="action=='confirm'" >
 		<td colspan=3 align="center">
@@ -201,6 +212,18 @@
 		</td>
 	</s:elseif>		
 	</tr>
-	
 </table>
 </s:form>
+<script>
+	function togglePaymentsDiv(){
+		var collapseDivCtrl = $('collapseDiv');
+		var paymentsDivCtrl = $('paymentsDiv');
+		if(collapseDivCtrl.innerHTML=='+'){
+			collapseDivCtrl.innerHTML='-';			
+			paymentsDivCtrl.style.display='';
+		}else{
+			collapseDivCtrl.innerHTML='+';
+			paymentsDivCtrl.style.display='none';			
+		}
+	}
+</script>

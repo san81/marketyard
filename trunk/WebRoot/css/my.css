@@ -2,7 +2,7 @@ html, body {height:100%}
 body {
 	padding:0;
 	margin:0;
-	background:#FFFFFF url(leftcolbg.jpg) repeat-y left top;
+	background:#FFFFFF repeat-y left top;
 	color: #000000;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;

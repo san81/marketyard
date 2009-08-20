@@ -4,7 +4,7 @@
         // load using script tags for cross domain, if the data in on the same domain as
         // this page, an HttpProxy would be better
         proxy: new Ext.data.HttpProxy({
-            url: 'json/accountsList.action'
+            url: '../json/accountsList.action'
         }),
 
         // create reader that reads the Topic records
@@ -68,10 +68,10 @@
     
     
   var grid = new Ext.grid.GridPanel({
-        el:'topic-grid',
-        width:700,
-        height:500,
-        title:'Accounts - Browse ',
+        el:'payments-grid',
+        width:600,
+        height:250,
+        title:'Payments - Browse ',
         store: store,
         cm: cm,
         sm:new Ext.grid.RowSelectionModel({selectRow:Ext.emptyFn}),
@@ -81,8 +81,8 @@
             pageSize: 2,
             store: store,
             displayInfo: true,
-            displayMsg: 'Displaying topics {0} - {1} of {2}',
-            emptyMsg: "No topics to display"
+            displayMsg: 'Displaying payments {0} - {1} of {2}',
+            emptyMsg: "No payments to display"
         })
     });
     
