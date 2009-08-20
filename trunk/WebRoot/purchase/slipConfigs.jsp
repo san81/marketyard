@@ -7,7 +7,7 @@
 <s:fielderror />
 
 <s:form action="storeSlipConfigurations" method="post">
-	<table width=100%>
+	<table width=50%>
 		<tr>
 			<td> Hamali Rate  :</td>
 			<td> <input type=text name="hamaliRate" value="${hamaliRate}" size=3 > </td>

@@ -63,5 +63,23 @@ function setDiv(str,divName){
 	divCtrl.innerHTML=str;
 }
 
+function setPaymentDetailsDiv(comboCtrl){
 
+	var paymentDetailsDivCtrl = document.getElementById('paymentDetailsInputDiv');		
+	if(comboCtrl.value=='PENDING')	
+		paymentDetailsDivCtrl.style.display='none';
+	else
+		paymentDetailsDivCtrl.style.display='';
+	
+}
+
+function setBankDetailsDiv(comboCtrl){
+	var bankDetailsDivCtrl = document.getElementById('bankDetailsDiv');
+
+	if(comboCtrl.value=='CASH')
+		bankDetailsDivCtrl.style.display='none';
+	else
+		bankDetailsDivCtrl.style.display='';
+	
+}
 -->

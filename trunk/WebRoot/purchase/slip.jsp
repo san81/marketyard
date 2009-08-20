@@ -26,7 +26,11 @@
 
 
 <table width=100% border=0>
-	<tr><td>
+	  <tr>
+		<td colspan=3 class="subHead"><s:text name="label.purchaseDetails"></s:text><hr></td>
+	  </tr>	
+	  <tr>
+		<td>
 			<table border=0>
 				 
 								<s:datetimepicker
@@ -42,15 +46,11 @@
 
 					</td>
 				</tr>
-				<tr>
-					<td> <s:textfield name="bagwt" key="label.slip.bagWeight" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
-				</tr>
-				<tr>
-					<td> <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield> </td>
-				</tr>
-				<tr>
-					<td> <s:textfield name="cost" key="label.slip.costperQtl" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield> </td>
-				</tr>								
+				
+		         <s:textfield name="bagwt" key="label.slip.bagWeight" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield>
+        		 <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield>
+				 <s:textfield name="cost" key="label.slip.costperQtl" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield>
+				
 			</table>
 		</td>
 		<td>
@@ -59,7 +59,7 @@
 		<td>
 			<table>				
 				<tr>
-					<td> <s:text name="label.slip.qtls"></s:text> </td> <td>:</td>
+					<td> <lable class="lable" for="qtyls"><s:text name="label.slip.qtls"></s:text></lable> </td> <td>:</td>
 					<td> <div id="qtlsDiv" class="derivedInfo">00-00</div> </td>
 				</tr>	
 				<tr>
@@ -86,13 +86,16 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3><hr></td>
+		<td colspan=3 class="subHead"><br>
+			<s:text name="label.buyerSupplierDetails"></s:text>
+			<hr>
+		</td>
 	</tr>
 	<tr>
-		<td>
+		<td valign="top">
 			<table>
 				<tr>
-					<td colspan=3><s:text name="label.slip.purchaseParty"></s:text></td>
+					<td colspan=3 align="center" style="font-weight:bold"><s:text name="label.slip.purchaseParty"></s:text></td>
 				</tr>
 				<tr>
 					<td align="right"> <s:text name="label.slip.buyer"></s:text><span class="required">*</span>:</td>
@@ -104,7 +107,7 @@
 				<tr>
 					<td><s:text name="label.slip.status"></s:text><span class="required">*</span> </td>
 					<td>:</td>
-					<td><select name="status">
+					<td><select name="status" onchange="setPaymentDetailsDiv(this)">
 							<option value="PENDING">PENDING</option>
 							<option value="PARTIAL">PARTIAL</option>							
 							<option value="PAID">PAID</option>							
@@ -119,7 +122,7 @@
 		<td>
 			<table>
 				<tr>
-					<td colspan=3><s:text name="label.slip.farmarDetails"></s:text> </td>
+					<td colspan=3 align="center" style="font-weight:bold"><s:text name="label.slip.farmarDetails"></s:text> </td>
 				</tr>				
 				<tr>
 					<td><s:textfield key="label.slip.city" name="supplierCity" required="true"></s:textfield></td>
@@ -136,42 +139,67 @@
 				</tr>
 			</table>
 		</td>
-	</tr>
+	</tr>	
 	<tr>
-		<td colspan=3 align=center> <hr>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<table border=0>
-				<tr>
-					<td colspan=3><s:text name="label.slip.paymentDetails"></s:text> </td>
-				</tr>
-				<tr>
-						<td><s:text name="label.slip.paymentMode"></s:text> 
-						:</td>
-						<td><select name="paymentMode">
-								<option value="CASH">CASH</option>
-								<option value="CHECK">CHECK</option>							
-							</select>
+		<td colspan="3">
+			<div id="paymentDetailsInputDiv" style="display: none">
+				<table border=0 width="100%">
+					<tr>
+						<td colspan=6 class="subHead"> 
+							<s:text name="label.slip.paymentDetails"></s:text>
+							<hr>
 						</td>
-				</tr>
-				<s:textfield name="paymentAmount" key="label.amount"></s:textfield>
-				<s:textfield name="checkNumber" key="label.checkNumber"></s:textfield>				
-			</table>
-		</td>
-	    <td>
-	    </td>
-	    <td>
-	       <table>
-	       		<tr>
-	       			<td><br><br></td>
-	       		</tr>
-		    	<s:textfield name="bankName" key="label.bankName"></s:textfield>
-				<s:textfield name="branchName" key="label.branchName"></s:textfield>				
-			</table>
-	    </td>
-	</tr>
+					</tr>				
+					<tr>
+							<td><s:text name="label.slip.paymentMode"></s:text><span class="required">*</span>:
+							<select name="paymentMode" onchange="setBankDetailsDiv(this)">
+									<option value="CASH" selected>CASH</option>
+									<option value="CHECK">CHECK</option>
+								</select>
+							</td>							
+					</tr>
+					<tr>
+						<td>
+							<div id="bankDetailsDiv" style="display: none">
+							  <table>
+									<tr>
+										<td>
+											<s:text name="label.amount"></s:text><span class="required">*</span>:</td>						
+										<td>
+											<input type="text" name="paymentAmount">
+										</td>
+										<td>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+										</td>
+										<td>
+											<s:text name="label.bankName"></s:text><span class="required">*</span>:</td>						
+										<td>						
+											<input type="text" name="bankName">
+										</td>
+									</tr>	
+									<tr>
+										<td>
+											<s:text name="label.checkNumber"></s:text><span class="required">*</span>:</td>						
+										<td>
+											<input type="text" name="checkNumber">
+										</td>
+										<td>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+										</td>
+										<td>
+											<s:text name="label.branchName"></s:text><span class="required">*</span>:</td>						
+										<td>						
+											<input type="text" name="branchName">
+										</td>
+									</tr>
+								</table>		
+							</div>
+						</td>
+					</tr>										
+			     </table>
+		   </div>
+	    </td>	   
+	</tr>	
 	<tr>
 		<td colspan=3 align="center"> 
 		<br/><br/>

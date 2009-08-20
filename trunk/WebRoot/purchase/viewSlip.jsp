@@ -4,7 +4,7 @@
 
 <s:fielderror></s:fielderror>
 
-<s:form action="loadSlip.action" namespace="admin" method="post" name="loadSlip">
+<s:form action="loadSlip_cancel.action" namespace="admin" method="post" name="loadSlip">
 
 <s:textfield key="label.slip.id" name="slipId" required="true"></s:textfield></td>
 <s:submit key="label.submit" ></s:submit>			
