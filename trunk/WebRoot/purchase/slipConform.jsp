@@ -47,81 +47,102 @@
 
 	
 <table width=100% border="0">
-	<tr><td>
-			<table border=0>
-				<s:if test="action!='confirm'" >
-					<tr>
-					<td>
-						<b>SLIP ID: </b>${slipId}	<br/><br/>				 
-					</td>
-				</tr>
-				</s:if>				
+	 <s:if test="action!='confirm'" >
+		 <tr>
+			<td colspan="3">
+				<b>SLIP ID: </b><span class="grandTotal">${slipId}</span>				 
+			</td>
+		 </tr>
+		 <tr>
+			<td colspan=3>
+			  	<b><s:text name="label.slip.status"></s:text> :
+				<span class="grandTotal">${status }</span><br/><br/>
+			</td>
+		</tr>
+	 </s:if>	
+	 <tr>
+		<td colspan=3 class="subHead"><s:text name="label.purchaseDetails"></s:text><hr></td>
+	  </tr>	
+	  <tr><td>
+			<table border=0>				
 				<tr>
-						<td colspan=2> 
-								<s:label key="purchaseDate"></s:label>
-						 </td>
-				</tr>
-				<tr>
-					<td>
-							<s:label key="seed"></s:label>
-
-					</td>
-				</tr>
-				<tr>
-					<td> <s:label key="bagwt"> </s:label> </td>
-				</tr>
-				<tr>
-					<td> <s:label key="bags"></s:label>  &nbsp;&nbsp; <s:label key="smallBag"></s:label> </td>
-				</tr>
-				<tr>
-					<td> <s:label key="cost"></s:label> </td>
-				</tr>								
-			</table>
-		</td>
-		<td>
-			
-		</td>
-		<td>
-			<table>				
-				<tr>
-					<td> <s:label key="qtls" ></s:label> </td> 
+					<td> <s:text name="label.slip.purchaseDate"></s:text> </td> <td>:</td>
+					<td> <div id="qtlsDiv" class="derivedInfo">${purchaseDate}</div> </td>
 				</tr>	
 				<tr>
-					<td> <s:label key="grossTotal" cssClass="grandTotal"></s:label> </td> 					
+					<td> <s:text name="label.slip.seeds"></s:text> </td> <td>:</td>
+					<td> <div id="grossTotalDiv" class="derivedInfo">${seed }</div> </td>
 				</tr>
 				<tr>
-					<td> <s:label key="totalHamali" cssClass="expensesColor"></s:label> 
-					&nbsp;at ${hamaliRate} per bag</td>
+					<td> <s:text name="label.slip.bagWeight"></s:text> </td> <td>:</td>
+					<td> <span id="hamaliDiv" class="derivedInfo">${bagwt}</span> </td>
 				</tr>
 				<tr>
-					<td> <s:label key="totalCc" cssClass="expensesColor"></s:label> 
-						&nbsp;at ${cashCommissionRate}% 
-					</td>
+					<td> <s:text name="label.slip.bags"></s:text> </td> <td>:</td>
+					<td> <span id="ccDiv" class="derivedInfo">${bags}</span> </td>
 				</tr>
 				<tr>
-					<td> <s:label key="totalMf" cssClass="expensesColor"></s:label> 
-					&nbsp;at ${adthiRate}%</td>
+					<td> <s:text name="label.slip.costperQtl"></s:text> </td> <td>:</td>
+					<td> <span id="mfDiv" class="derivedInfo">${cost}</span> </td>
+				</tr>										
+			</table>
+		</td>
+		<td>
+			
+		</td>
+		<td>
+			<table>	
+				<tr>
+					<td> <s:text name="label.slip.qtls"></s:text></td> <td>:</td>
+					<td> <div id="qtlsDiv" class="derivedInfo">${qtls }</div> </td>
+				</tr>	
+				<tr>
+					<td> <s:text name="label.slip.grossTotal"></s:text> </td> <td>:</td>
+					<td> <div id="grossTotalDiv" class="grandTotal">${grossTotal }</div> </td>
 				</tr>
 				<tr>
-					<td> <s:label key="netTotal" cssClass="grandTotal"></s:label></td>
+					<td> <s:text name="label.slip.hamali"></s:text> </td> <td>:</td>
+					<td> <span id="hamaliDiv" class="expensesColor">${totalHamali}</span> &nbsp;at ${hamaliRate} per bag</td>
+				</tr>
+				<tr>
+					<td> <s:text name="label.slip.cc"></s:text> </td> <td>:</td>
+					<td> <span id="ccDiv" class="expensesColor">${totalCc}</span> &nbsp;at ${cashCommissionRate}%  </td>
+				</tr>
+				<tr>
+					<td> <s:text name="label.slip.mf"></s:text> </td> <td>:</td>
+					<td> <span id="mfDiv" class="expensesColor">${totalMf}</span> &nbsp;at ${adthiRate}%</td>
+				</tr>
+				<tr>
+					<td> <s:text name="label.slip.netTotal"></s:text> </td> <td>:</td>
+					<td> <div id="netTotalDiv" class="grandTotal">${netTotal}</div> </td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3><hr></td>
+		<td colspan=3 class="subHead"><br>
+			<s:text name="label.buyerSupplierDetails"></s:text>
+			<hr>
+		</td>
 	</tr>
 	<tr>
-		<td>
+		<td valign="top">
 			<table>
 				<tr>
-					<td colspan=3><s:text name="label.slip.purchaseParty"></s:text></td>
+					<td colspan=3 align="center" style="font-weight:bold"><s:text name="label.slip.purchaseParty"></s:text></td>
 				</tr>
 				<tr>
-					<td> <s:label key="buyerAccountId"></s:label>					
-				</tr>				
+					<td align="right"> <s:text name="label.slip.buyer"></s:text></td>
+					<td>:</td>
+					<td colspan="1">
+						${buyerAccountId}
+					</td>
+				</tr>
 				<tr>
-					<td> <s:label key="status"></s:label>					
+					<td><s:text name="label.slip.status"></s:text> </td>
+					<td>:</td>
+					<td colspan="1">
+					${status }</td>
 				</tr>
 			</table>
 		</td>
@@ -131,20 +152,34 @@
 		<td>
 			<table>
 				<tr>
-					<td colspan=3><s:text name="label.slip.farmarDetails"></s:text> </td>
+					<td colspan=3 align="center" style="font-weight:bold"><s:text name="label.slip.farmarDetails"></s:text> </td>
 				</tr>
 				<tr>
-					<td><s:label key="supplier"></s:label></td>
+					<td align="left"> 
+						<s:text name="label.slip.city"></s:text>
+					</td>
+					<td>:</td>
+					<td colspan="1">
+						${supplierCity}
+					</td>
+				</tr>				
+				<tr>
+					<td align="left"> <s:text name="label.slip.supplier"></s:text></td>
+					<td>:</td>
+					<td colspan="1">
+							${supplier}
+					</td>
 				</tr>
 				<tr>
-					<td><s:label key="supplierCity"></s:label></td>									
-				</tr>
-				<tr>
-					<td><s:label key="description"></s:label></td>					
-				</tr>
+					<td align="left"> <s:text name="label.slip.description"></s:text></td>
+					<td>:</td>
+					<td colspan="1">
+						${description}
+					</td>
+				</tr>				
 			</table>
 		</td>
-	</tr>
+	</tr>	
 	
 	<s:if test="action!='load'">
 		<tr>
@@ -155,11 +190,15 @@
 		<td>
 			<table border=0>
 				<tr>
-					<td colspan=3><s:text name="label.slip.paymentDetails"></s:text> </td>
-				</tr>
+					<td colspan=3 class="subHead"> 
+						<s:text name="label.slip.paymentDetails"></s:text>
+						<hr>
+					</td>
+				</tr>	
 				<tr>
-						<td><s:label key="paymentMode"></s:label>
-						</td>
+					<td>
+						<s:label key="paymentMode"></s:label>
+					</td>
 				</tr>
 				<s:label key="paymentAmount" ></s:label>
 				<s:label key="checkNumber" ></s:label>				
@@ -180,14 +219,21 @@
 	</s:if>	
 	<tr>
 		<td colspan=3 align="center"> 
-		<br/><br/>
+		<br/>
 		</td>
 	</tr>
 	<s:if test="action=='load'" >
 		<tr>
-			<td colspan="3" align="left">
-				<s:text name="label.viewPayemnts"></s:text> [ <a href="#" onclick="togglePaymentsDiv()"><span id="collapseDiv">+</span></a> ]
+			<td colspan="3" align="left" class="subHead">
+				
+					<s:text name="label.viewPayemnts"></s:text>
+					[ <a href="#" onclick="togglePaymentsDiv()"><span id="collapseDiv">+</span></a> ]
+				<br>
 				<hr>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
 				<div id="paymentsDiv" style="display: none">				
 					<jsp:include flush="true" page="/purchase/viewPayments.jsp"></jsp:include>
 				</div>
@@ -220,15 +266,5 @@
 </table>
 </s:form>
 <script>
-	function togglePaymentsDiv(){
-		var collapseDivCtrl = $('collapseDiv');
-		var paymentsDivCtrl = $('paymentsDiv');
-		if(collapseDivCtrl.innerHTML=='+'){
-			collapseDivCtrl.innerHTML='-';			
-			paymentsDivCtrl.style.display='';
-		}else{
-			collapseDivCtrl.innerHTML='+';
-			paymentsDivCtrl.style.display='none';			
-		}
-	}
+	var payments = ${paymentsJSON};
 </script>
