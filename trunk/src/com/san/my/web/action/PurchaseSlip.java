@@ -1,13 +1,10 @@
 package com.san.my.web.action;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import net.sf.json.JSONSerializer;
 
 import org.apache.struts2.interceptor.ServletRequestAware;
 
@@ -363,7 +360,8 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
     private String getPaymentsJSON(){
         StringBuilder builder = new StringBuilder();
         builder.append("{'payments' : [");
-        for(BussinessTransactionDO payment : getPayments()){
+        List<BussinessTransactionDO> payments=getPayments();
+        for(BussinessTransactionDO payment : payments){
             builder.append("{'transId':").append(payment.getTransId()).append(",");
             builder.append("'datetime':'").append(new SimpleDateFormat("dd/MM/yyyy").format(payment.getDatetime())).append("',");
             builder.append("'accountName':'").append(payment.getAccount().getLoginName()).append("',");
@@ -372,7 +370,9 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
             builder.append("'mode':'").append(payment.getPaymentMode()).append("',");
             builder.append("'slipId':").append(payment.getSlip().getSlipId()).append("},");
         }
-        builder.deleteCharAt(builder.length()-1);
+        
+        if(payments.size()!=0)
+        	builder.deleteCharAt(builder.length()-1);
         builder.append("]}");
         
         return builder.toString();

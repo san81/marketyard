@@ -14,8 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.san.my.framework.RegSessionContainer;
-import com.san.my.framework.StartUp;
+import com.san.my.framework.SessionContainer;
 
 
 
@@ -41,7 +40,7 @@ public class LoginListener implements Filter {
 		HttpServletRequest hreq = (HttpServletRequest) request;
 		HttpSession session = hreq.getSession();
 		HttpServletResponse hres = (HttpServletResponse) response;
-		RegSessionContainer regSession = new RegSessionContainer(session);
+		SessionContainer regSession = new SessionContainer(session);
         
 		// don't intercept logout, timeout, error and asset requests
 		String contextPath = hreq.getContextPath();
