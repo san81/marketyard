@@ -4,6 +4,7 @@ package com.san.my.service.impl;
 
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -201,6 +202,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         purchaseSlip.setSupplierCity(slip.getSupplier().getVillage());
         
         Set<BussinessTransactionDO> transactions = slip.getTransactions();
+        List<BussinessTransactionDO> payments = new ArrayList<BussinessTransactionDO>();
+        
         for(BussinessTransactionDO transaction : transactions){
             if(transaction.getAccount().getAccountId().equals(slip.getBuyer().getAccountId()) && transaction.getTransFlow().equals(Constants.DEBIT)){
                 purchaseSlip.setGrossTotal(transaction.getAmount());
@@ -212,9 +215,12 @@ public class BTransactionServiceImpl implements BTransactionService{
                 purchaseSlip.setTotalCc(transaction.getAmount());
             }else if(transaction.getAccount().getAccountId().equals(4L) && transaction.getTransFlow().equals(Constants.CREDIT)){
                 purchaseSlip.setTotalMf(transaction.getAmount());
+            }else if(transaction.getAccount().getAccountId().equals(slip.getSupplier().getAccountId()) && transaction.getTransFlow().equals(Constants.DEBIT)){
+                payments.add(transaction);
             }
         }
         
+        purchaseSlip.setPayments(payments);
         purchaseSlip.setStatus(slip.getStatus());
         purchaseSlip.setDescription(slip.getDescription());
     }
