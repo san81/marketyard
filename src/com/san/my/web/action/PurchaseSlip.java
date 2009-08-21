@@ -1,16 +1,28 @@
 package com.san.my.web.action;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import net.sf.json.JSONSerializer;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.san.my.common.global.MessageKey;
 import com.san.my.common.util.SlipConfigs;
+import com.san.my.dataobj.BussinessTransactionDO;
 import com.san.my.service.BTransactionService;
 
 
 
-public class PurchaseSlip extends ActionSupport {
+public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
 	
+    HttpServletRequest request;
+    
 	private Double qtls;
 	
 	//values from config
@@ -49,6 +61,8 @@ public class PurchaseSlip extends ActionSupport {
 	private String checkNumber;
 	private Double paymentAmount;
     
+    List<BussinessTransactionDO> payments;
+    
     private Long slipId;
     
     //Flag to represent the action
@@ -80,9 +94,18 @@ public class PurchaseSlip extends ActionSupport {
 		return SUCCESS;
 	}
     
+    /*
+     * This method actually loads the slip.. method name is kept
+     * cancel to avoid validations. Dont be confused with method name.
+     */
     public String cancel(){
         action = "load";
         transactionService.loadSlip(this);
+        
+        String paymentJSON = getPaymentsJSON();
+        System.out.println("Payment JSON: "+paymentJSON);
+        request.setAttribute("paymentsJSON", paymentJSON);
+        
         return SUCCESS;
     }
 	
@@ -320,6 +343,39 @@ public class PurchaseSlip extends ActionSupport {
     public void setSlipId(Long slipId)
     {
         this.slipId = slipId;
+    }
+
+    public List<BussinessTransactionDO> getPayments()
+    {
+        return payments;
+    }
+
+    public void setPayments(List<BussinessTransactionDO> payments)
+    {
+        this.payments = payments;
+    }
+
+    public void setServletRequest(HttpServletRequest request)
+    {
+        this.request = request;
+    }
+    
+    private String getPaymentsJSON(){
+        StringBuilder builder = new StringBuilder();
+        builder.append("{'payments' : [");
+        for(BussinessTransactionDO payment : getPayments()){
+            builder.append("{'transId':").append(payment.getTransId()).append(",");
+            builder.append("'datetime':'").append(new SimpleDateFormat("dd/MM/yyyy").format(payment.getDatetime())).append("',");
+            builder.append("'accountName':'").append(payment.getAccount().getLoginName()).append("',");
+            builder.append("'amount':").append(payment.getAmount()).append(",");
+            builder.append("'flow':'").append(payment.getTransFlow()).append("',");
+            builder.append("'mode':'").append(payment.getPaymentMode()).append("',");
+            builder.append("'slipId':").append(payment.getSlip().getSlipId()).append("},");
+        }
+        builder.deleteCharAt(builder.length()-1);
+        builder.append("]}");
+        
+        return builder.toString();
     }
 
 	
