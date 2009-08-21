@@ -82,4 +82,16 @@ function setBankDetailsDiv(comboCtrl){
 		bankDetailsDivCtrl.style.display='';
 	
 }
+
+function togglePaymentsDiv(){
+		var collapseDivCtrl = $('collapseDiv');
+		var paymentsDivCtrl = $('paymentsDiv');
+		if(collapseDivCtrl.innerHTML=='+'){
+			collapseDivCtrl.innerHTML='-';			
+			paymentsDivCtrl.style.display='';
+		}else{
+			collapseDivCtrl.innerHTML='+';
+			paymentsDivCtrl.style.display='none';			
+		}
+	}
 -->
