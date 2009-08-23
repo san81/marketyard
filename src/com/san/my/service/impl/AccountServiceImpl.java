@@ -51,8 +51,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 	
 	public List<String[]> listAccountIdsAndNames() {
-		List<AccountDO> accounts = accountDAO.listAllAccounts();
 		List<String[]> accountIdsAndNames=new ArrayList<String[]>();		
+		List<AccountDO> accounts = accountDAO.listAllAccountsForSelection();
 		for(AccountDO account : accounts){
 			String[] accountNameToId = new String[2];
 			accountNameToId[1]=account.getAccountId()+"";

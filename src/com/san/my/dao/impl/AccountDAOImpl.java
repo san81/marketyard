@@ -5,6 +5,9 @@ package com.san.my.dao.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.Type;
 
 import com.san.my.dao.AccountDAO;
@@ -27,6 +30,15 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
 
 	public List<AccountDO> listAllAccounts() {
 		return findAll(AccountDO.class);		
+	}
+	
+	public List<AccountDO> listAllAccountsForSelection() {
+		Criteria criteria = getSession().createCriteria(AccountDO.class);
+		criteria.add(Restrictions.ne("accountType", 1L))
+				.add(Restrictions.ne("accountType", 2L))
+				.add(Restrictions.ne("accountType", 5L));
+				
+		return criteria.list();		
 	}
 
     public List<String> listAllAccountTypes()

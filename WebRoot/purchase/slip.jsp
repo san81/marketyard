@@ -27,7 +27,11 @@
 
 <table width=100% border=0>
 	  <tr>
-		<td colspan=3 class="subHead"><s:text name="label.purchaseDetails"></s:text><hr></td>
+		<td colspan=3>
+			<span  class="subHead">
+				<s:text name="label.purchaseDetails"></s:text>
+			</span>
+		<hr></td>
 	  </tr>	
 	  <tr>
 		<td>
@@ -86,8 +90,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3 class="subHead"><br>
-			<s:text name="label.buyerSupplierDetails"></s:text>
+		<td colspan=3><br>
+			<span  class="subHead">
+				<s:text name="label.buyerSupplierDetails"></s:text>
+			</span>
 			<hr>
 		</td>
 	</tr>
@@ -145,8 +151,10 @@
 			<div id="paymentDetailsInputDiv" style="display: none">
 				<table border=0 width="100%">
 					<tr>
-						<td colspan=6 class="subHead"> 
-							<s:text name="label.slip.paymentDetails"></s:text>
+						<td colspan=6>
+							<span class="subHead"> 
+								<s:text name="label.slip.paymentDetails"></s:text>
+							</span>
 							<hr>
 						</td>
 					</tr>				
@@ -210,7 +218,11 @@
 			<s:submit key="label.submit" ></s:submit>			
 		</td>
 	</tr>
-	
+	<tr>
+		<td colspan=3 align="center"> 
+		<br/><br/>
+		</td>
+	</tr>
 </table>
 </s:form>
 <script>
