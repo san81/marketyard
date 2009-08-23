@@ -61,7 +61,7 @@
 		</tr>
 	 </s:if>	
 	 <tr>
-		<td colspan=3 class="subHead"><s:text name="label.purchaseDetails"></s:text><hr></td>
+		<td colspan=3><span class="subHead"><s:text name="label.purchaseDetails"></s:text></span><hr></td>
 	  </tr>	
 	  <tr><td>
 			<table border=0>				
@@ -120,8 +120,10 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan=3 class="subHead"><br>
-			<s:text name="label.buyerSupplierDetails"></s:text>
+		<td colspan=3><br>
+			<span class="subHead">
+				<s:text name="label.buyerSupplierDetails"></s:text>
+			</span>
 			<hr>
 		</td>
 	</tr>
@@ -190,8 +192,10 @@
 		<td>
 			<table border=0>
 				<tr>
-					<td colspan=3 class="subHead"> 
-						<s:text name="label.slip.paymentDetails"></s:text>
+					<td colspan=3> 
+						<span class="subHead">
+							<s:text name="label.slip.paymentDetails"></s:text>
+						</span>
 						<hr>
 					</td>
 				</tr>	

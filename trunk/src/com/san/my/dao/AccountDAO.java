@@ -12,6 +12,8 @@ public interface AccountDAO{
 	public boolean isLoginNameExists(String loginName);
 	
 	public List<AccountDO> listAllAccounts();
+	
+	public List<AccountDO> listAllAccountsForSelection();
     
     public List<String> listAllAccountTypes();
     
