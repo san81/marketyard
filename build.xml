@@ -10,7 +10,7 @@
 	<property name="test.classes" location="testClasses" />
 	<property name="dist" location="dist" />
 	<property name="junit-result" location="result" />
-	<property name="lib" location="${rootDir}/WebRoot/WEB-INF/lib" />
+	<property name="lib" location="${rootDir}/lib" />
 	<property name="src" location="src" />
 	<property name="src.web" location="WebRoot" />
 	<property name="src.cfg" location="conf" />
