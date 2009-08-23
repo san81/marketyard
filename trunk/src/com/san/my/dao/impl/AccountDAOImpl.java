@@ -34,9 +34,9 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
 	
 	public List<AccountDO> listAllAccountsForSelection() {
 		Criteria criteria = getSession().createCriteria(AccountDO.class);
-		criteria.add(Restrictions.ne("accountType", 1L))
-				.add(Restrictions.ne("accountType", 2L))
-				.add(Restrictions.ne("accountType", 5L));
+		criteria.add(Restrictions.ne("accountType", new AccountTypesDO(1L)))
+				.add(Restrictions.ne("accountType", new AccountTypesDO(2L)))
+				.add(Restrictions.ne("accountType", new AccountTypesDO(5L)));
 				
 		return criteria.list();		
 	}

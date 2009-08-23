@@ -96,9 +96,9 @@ insert into account_types (account_type,description) values ('NOMINAL','account 
 -- essential entries
 insert into accounts (login_name,password,name,account_type_id) values ('anonymous','password','anonymous',4);
 
-insert into accounts (login_name,password,name,account_type_id) values ('Hamali','password','Hamali',4);
-insert into accounts (login_name,password,name,account_type_id) values ('CC','password','CC',4);
-insert into accounts (login_name,password,name,account_type_id) values ('MF','password','MF',4 );
+insert into accounts (login_name,password,name,account_type_id) values ('Hamali','password','Hamali',5);
+insert into accounts (login_name,password,name,account_type_id) values ('CC','password','CC',5);
+insert into accounts (login_name,password,name,account_type_id) values ('MF','password','MF',5);
 
 -- defaul data entries
 insert into seeds (name) values ('paddy');
