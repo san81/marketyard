@@ -5,7 +5,7 @@
 
 <struts>
 
-    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
     <constant name="struts.devMode" value="true" />
 	<constant name="struts.objectFactory" value="spring" />
     <package name="publicPackage" namespace="/" extends="tiles-default">
@@ -96,7 +96,27 @@
        <action name="storeSlipConfigurations" class="slipConfigsActionBean" method="store">
        		<result name="input" type="tiles">slip.configs</result>
        		<result name="success" type="tiles">slip.configs</result>
-       </action>  
+       </action>
+       
+       <action name="paymentForm" class="paymentsAndRecieptsActionBean" method="renderPaymentForm">
+         	<result name="success" type="tiles">payment.form</result>
+       </action>
+       <action name="confirmTransaction" class="paymentsAndRecieptsActionBean" method="confirmTransaction">
+         	<result name="success" type="tiles">payment.confirm</result>
+       </action>
+       <action name="editTransaction" class="paymentsAndRecieptsActionBean" method="editTransaction">
+         	<result name="success" type="tiles">payment.form</result>
+       </action>
+       <action name="makePaymentEntry" class="paymentsAndRecieptsActionBean" method="makePaymentEntry">
+         	<result name="success" type="tiles">admin.layout</result>
+       </action>
+       
+       <action name="receiptForm" class="paymentsAndRecieptsActionBean" method="renderReceiptForm">
+         	<result name="success" type="tiles">payment.form</result>
+       </action>
+       <action name="makeReceiptEntry" class="paymentsAndRecieptsActionBean" method="makeReceiptEntry">
+         	<result name="success" type="tiles">admin.layout</result>
+       </action>
     	
     </package>
     

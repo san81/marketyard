@@ -5,7 +5,8 @@
     <strong>    
     <li><a href="${pageContext.request.contextPath}/admin/purchaseSlip.action"> Purchase Slip </a></li>
     <li><a href="${pageContext.request.contextPath}/admin/viewSlip.action"> View Slip </a></li>
-    <li>Cash Pay/Receipt</li>
+    <li><a href="${pageContext.request.contextPath}/admin/paymentForm.action">Cash Pay</a></li>
+    <li><a href="${pageContext.request.contextPath}/admin/receiptForm.action">Cash Receipt</a></li>
 	<li>View ledger</li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewAccount.action"> Create Account </a></li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewSeed.action"> Seeds </a></li>

@@ -5,6 +5,8 @@ package com.san.my.service.impl;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -20,6 +22,7 @@ import com.san.my.dataobj.SeedDO;
 import com.san.my.dataobj.SlipDO;
 import com.san.my.dataobj.BussinessTransactionDO;
 import com.san.my.service.BTransactionService;
+import com.san.my.web.action.PaymentAndReciept;
 import com.san.my.web.action.PurchaseSlip;
 
 public class BTransactionServiceImpl implements BTransactionService{
@@ -223,6 +226,46 @@ public class BTransactionServiceImpl implements BTransactionService{
         purchaseSlip.setPayments(payments);
         purchaseSlip.setStatus(slip.getStatus());
         purchaseSlip.setDescription(slip.getDescription());
+    }
+
+    public void makePayment(PaymentAndReciept paymentForm)
+    {
+        AccountDO accountDO = accountDAO.loadAccountDO(paymentForm.getAccountKey());
+        Date currentDate = Calendar.getInstance().getTime();
+        
+        BussinessTransactionDO transaction = new BussinessTransactionDO();
+        transaction.setDatetime(currentDate);
+        transaction.setAccount(accountDO);
+        transaction.setAmount(paymentForm.getAmount());
+        
+        if(paymentForm.getSlipId() == null){
+            transaction.setSlip(null);
+        }else{
+            SlipDO slip = (SlipDO)slipDAO.loadSlip(paymentForm.getSlipId());
+            transaction.setSlip(slip);
+        }
+       
+        //money is debited from firm.
+        transaction.setTransFlow(Constants.DEBIT);
+        transaction.setDescription("Firm has paid this amount to "+paymentForm.getAccount());
+        
+        if(paymentForm.getPaymentMode().equals(Constants.PAYMENT_MODE_CASH)){
+            transaction.setPaymentMode(Constants.PAYMENT_MODE_CASH);
+        }else{
+            PaymentDetailsDO paymentDetails = new PaymentDetailsDO();
+            paymentDetails.setDatetime(currentDate);
+            paymentDetails.setAmount(paymentForm.getAmount());
+            paymentDetails.setCheckNumber(paymentForm.getCheckNumber());
+            paymentDetails.setBankName(paymentForm.getBankName());
+            paymentDetails.setBranchName(paymentForm.getBranchName());
+            paymentDetails.setBusinessTransaction(transaction);
+            paymentDetails.setDescription("Firm has paid this amount to "+paymentForm.getAccount());
+            
+            transaction.setPaymentMode(Constants.PAYMENT_MODE_CHECK);
+            transaction.setPaymentDetails(paymentDetails);
+        }
+        
+        transactionsDAO.saveBusinessTransaction(transaction);
     }
 
 }

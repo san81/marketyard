@@ -19,6 +19,10 @@
 	<bean id="slipConfigsActionBean" singleton="false"
 		class="com.san.my.web.action.SlipConfigurations">
 	</bean>
+	<bean id="paymentsAndRecieptsActionBean" singleton="false"
+		class="com.san.my.web.action.PaymentAndReciept">
+		<property name="transactionService" ref="bTransactionService"></property>
+	</bean>
 	<!--  json action beans -->
 	<bean id="seedsListJsonActionBean" singleton="false"
 		class="com.san.my.web.action.SeedsList">
