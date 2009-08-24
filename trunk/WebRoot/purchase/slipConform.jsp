@@ -264,11 +264,11 @@
 			<input type="submit" value="Edit Slip" />
 				&nbsp; &nbsp;
 			<input type="button" value="Print"/>
+			<script>
+				var payments = ${paymentsJSON};
+			</script>
 		</td>
 	</s:elseif>		
 	</tr>
 </table>
 </s:form>
-<script>
-	var payments = ${paymentsJSON};
-</script>

@@ -70,6 +70,11 @@ function setPaymentDetailsDiv(comboCtrl){
 		paymentDetailsDivCtrl.style.display='none';
 	else
 		paymentDetailsDivCtrl.style.display='';
+		
+	if(comboCtrl.value=='PAID')
+		document.conformSlipSubmit.paymentAmount.value=document.conformSlipSubmit.netTotal.value;
+	else
+		document.conformSlipSubmit.paymentAmount.value='';
 	
 }
 
