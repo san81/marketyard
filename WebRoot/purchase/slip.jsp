@@ -4,7 +4,8 @@
 
 <%--<s:fielderror></s:fielderror>--%>
 
-<s:form action="conformSlipSubmit.action" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit" validate="true">
+<%--<s:form action="conformSlipSubmit" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit" validate="true">--%>
+<s:form action="conformSlipSubmit" method="POST">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
 <s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
@@ -37,7 +38,7 @@
 		<td>
 			<table border=0>
 				 
-								<s:datetimepicker
+								<s:datetimepicker value="today"
 						             label="purchase date"
 						             name="purchaseDate" required="true"/>
 						
@@ -51,9 +52,9 @@
 					</td>
 				</tr>
 				
-		         <s:textfield name="bagwt" key="label.slip.bagWeight" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield>
-        		 <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.slipSubmit)" required="true"> </s:textfield>
-				 <s:textfield name="cost" key="label.slip.costperQtl" onchange="makeSlip(document.slipSubmit)" required="true"></s:textfield>
+		         <s:textfield name="bagwt" key="label.slip.bagWeight" onchange="makeSlip(document.conformSlipSubmit)" required="true"> </s:textfield>
+        		 <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.conformSlipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.conformSlipSubmit)" required="true"> </s:textfield>
+				 <s:textfield name="cost" key="label.slip.costperQtl" onchange="makeSlip(document.conformSlipSubmit)" required="true"></s:textfield>
 				
 			</table>
 		</td>
@@ -160,46 +161,23 @@
 					</tr>				
 					<tr>
 							<td><s:text name="label.slip.paymentMode"></s:text><span class="required">*</span>:
-							<select name="paymentMode" onchange="setBankDetailsDiv(this)">
+								<select name="paymentMode" onchange="setBankDetailsDiv(this)">
 									<option value="CASH" selected>CASH</option>
 									<option value="CHECK">CHECK</option>
 								</select>
+							</td>
+							<td>
+								<s:text name="label.amount"></s:text><span class="required">*</span>:
+								<input type="text" name="paymentAmount" class="grandTotal">
 							</td>							
 					</tr>
 					<tr>
-						<td>
+						<td colspan="2">
 							<div id="bankDetailsDiv" style="display: none">
 							  <table>
-									<tr>
-										<td>
-											<s:text name="label.amount"></s:text><span class="required">*</span>:</td>						
-										<td>
-											<input type="text" name="paymentAmount">
-										</td>
-										<td>
-											&nbsp;&nbsp;&nbsp;&nbsp;
-										</td>
-										<td>
-											<s:text name="label.bankName"></s:text><span class="required">*</span>:</td>						
-										<td>						
-											<input type="text" name="bankName">
-										</td>
-									</tr>	
-									<tr>
-										<td>
-											<s:text name="label.checkNumber"></s:text><span class="required">*</span>:</td>						
-										<td>
-											<input type="text" name="checkNumber">
-										</td>
-										<td>
-											&nbsp;&nbsp;&nbsp;&nbsp;
-										</td>
-										<td>
-											<s:text name="label.branchName"></s:text><span class="required">*</span>:</td>						
-										<td>						
-											<input type="text" name="branchName">
-										</td>
-									</tr>
+							  	<s:textfield key="label.bankName" name="bankName" required="true"></s:textfield>
+							  	<s:textfield key="label.checkNumber" name="checkNumber" required="true"></s:textfield>
+							  	<s:textfield key="label.branchName" name="branchName" required="true"></s:textfield>							  										
 								</table>		
 							</div>
 						</td>
@@ -226,5 +204,5 @@
 </table>
 </s:form>
 <script>
-	makeSlip(document.slipSubmit);
+	makeSlip(document.conformSlipSubmit);
 </script>
