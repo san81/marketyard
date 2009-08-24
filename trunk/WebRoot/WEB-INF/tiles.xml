@@ -44,4 +44,10 @@
 	 <definition name="my.purchase.slip.load" extends="admin.layout">
 	 	<put-attribute name="body" value="/purchase/slipConform.jsp" />
 	 </definition>
+	 <definition name="payment.form" extends="admin.layout">
+	 	<put-attribute name="body" value="/payments/paymentsAndReciepts.jsp" />
+	 </definition>
+	 <definition name="payment.confirm" extends="admin.layout">
+	 	<put-attribute name="body" value="/payments/confirmPaymentsAndReciepts.jsp" />
+	 </definition>
 </tiles-definitions>

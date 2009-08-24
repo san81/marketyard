@@ -160,7 +160,7 @@
 						</td>
 					</tr>				
 					<tr>
-							<td><s:text name="label.slip.paymentMode"></s:text><span class="required">*</span>:
+							<td><s:text name="label.paymentMode"></s:text><span class="required">*</span>:
 								<select name="paymentMode" onchange="setBankDetailsDiv(this)">
 									<option value="CASH" selected>CASH</option>
 									<option value="CHECK">CHECK</option>
