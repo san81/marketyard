@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.san.my.dataobj.AccountTypesDO;
 import com.san.my.dataobj.AccountDO;
+import com.san.my.dataobj.BussinessTransactionDO;
+import com.san.my.viewobj.AccountSummaryForm;
 
 public interface AccountDAO{
 	
@@ -22,4 +24,8 @@ public interface AccountDAO{
     public AccountDO loadAccountDO(Long accountId);
     
     public AccountDO getAccountDO(Long accountId);
+    
+   public List<BussinessTransactionDO> getAccountBTransactionDO(AccountSummaryForm accountSummaryForm);
+    
+    public List getAccountStartingBalance(AccountSummaryForm accountSummaryForm);
 }

@@ -25,6 +25,13 @@
 		class="com.san.my.service.impl.AccountServiceImpl">	
 		<property name="accountDAO" ref="accountDAO"></property>	
 	</bean>
+	
+	<bean id="accountSummary"
+		class="com.san.my.service.impl.AccountSummaryImpl">	
+		<property name="accountDAO" ref="accountDAO"></property>	
+		<property name="accountSummaryUtil" ref="accountSummaryUtil"></property>
+		
+	</bean>
 	<bean id="seedsService"
 		class="com.san.my.service.impl.SeedsServiceImpl">	
 		<property name="seedsDAO" ref="seedsDAO"></property>	
@@ -36,5 +43,7 @@
 		<property name="accountDAO" ref="accountDAO"></property>
 		<property name="seedDAO" ref="seedsDAO"></property>
 	</bean>
-	
+	<bean id="accountSummaryUtil"
+		class="com.san.my.service.impl.AccountSummaryUtil">	
+	</bean>
 </beans>

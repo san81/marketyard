@@ -43,4 +43,24 @@
     	]]>
     </query>
     
+    <query name="getStartingBalanceForAccount">
+    	<![CDATA[
+    		from BussinessTransactionDO
+			where account = :account
+			and datetime between :startDate and :endDate
+			order by datetime
+    	]]>
+    </query>
+    
+     <query name="getTransSummaryForAccount">
+    	<![CDATA[
+    		select sum(amount) ,transFlow
+			from BussinessTransactionDO
+			where account = :account
+			and datetime < :uptoDate
+			group by transFlow
+			order by transFlow
+    	]]>
+    </query>
+    
 </hibernate-mapping>
