@@ -13,6 +13,8 @@ import org.hibernate.type.Type;
 import com.san.my.dao.AccountDAO;
 import com.san.my.dataobj.AccountTypesDO;
 import com.san.my.dataobj.AccountDO;
+import com.san.my.dataobj.BussinessTransactionDO;
+import com.san.my.viewobj.AccountSummaryForm;
 
 public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
 
@@ -68,5 +70,22 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
     {
         return (AccountDO)get(AccountDO.class, accountId);
     }
-	
+    public List<BussinessTransactionDO> getAccountBTransactionDO(AccountSummaryForm accountSummaryForm)
+    {
+    	String[] paramNames = {"account","startDate","endDate"};
+    	Object[] paramValues = {loadAccountDO(accountSummaryForm.getAccountId()),accountSummaryForm.getStartDate()};
+    	
+    	List tranFlowSummary = findByNamedQueryAndNamedParam("getStartingBalanceForAccount", paramNames, paramValues);
+    	return tranFlowSummary;
+  
+    }
+    
+    public List getAccountStartingBalance(AccountSummaryForm accountSummaryForm)
+    {
+    	String[] paramNames = {"account","uptoDate"};
+    	Object[] paramValues = {loadAccountDO(accountSummaryForm.getAccountId()),accountSummaryForm.getStartDate()};
+    	
+    	List tranFlowSummary = findByNamedQueryAndNamedParam("getStartingBalanceForAccount", paramNames, paramValues);
+    	return tranFlowSummary;
+    }
 }

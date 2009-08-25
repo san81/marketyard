@@ -35,6 +35,8 @@
 	<bean id="accountsListJsonActionBean" singleton="false"
 		class="com.san.my.web.action.AccountsList">
 		<property name="accountService"><ref bean="accountService"/></property>
+		<property name="accountSummary"><ref bean="accountSummary"/></property>
 	</bean>
+	
 	<!--  json action beans -->
 </beans>
