@@ -92,6 +92,7 @@ insert into account_types (account_type,description) values ('ADMIN','The only A
 insert into account_types (account_type,description) values ('BUYER','people who participate in the buying');
 insert into account_types (account_type,description) values ('SUPPLIER','people who sell out the seeds');
 insert into account_types (account_type,description) values ('NOMINAL','account which do not representing persons');
+insert into account_types (account_type,description) values ('BANK','account which represents banks');
 
 -- essential entries
 insert into accounts (login_name,password,name,account_type_id) values ('anonymous','password','anonymous',4);
@@ -111,3 +112,4 @@ insert into accounts (login_name,password,name,account_type_id) values ('santosh
 insert into accounts (login_name,password,name,account_type_id) values ('srinu','password','Sreenivas',2);
 insert into accounts (login_name,password,name,account_type_id) values ('murali','password','murali',3);
 insert into accounts (login_name,password,name,account_type_id) values ('sudheer','password','sudheer',4);
+insert into accounts (login_name,password,name,account_type_id) values ('SBI','password','SBI',6);

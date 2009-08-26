@@ -2,10 +2,11 @@
 
  <%@ taglib prefix="s" uri="/struts-tags" %>
 
+<span class="errorMessage" id="jsErrorMsgDiv" style="text-align:left"></span>
 <%--<s:fielderror></s:fielderror>--%>
 
 <%--<s:form action="conformSlipSubmit" namespace="admin" method="post" tooltipConfig="%{'jsTooltipEnabled':'true'}" name="slipSubmit" validate="true">--%>
-<s:form action="conformSlipSubmit" method="POST">
+<s:form action="conformSlipSubmit" method="POST" onsubmit="return checkAllBeforeSubmit(document.conformSlipSubmit)">
 <s:head theme="ajax" />
 <s:url id="jsonList" value="../json/seedsList.action"/>
 <s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
@@ -38,14 +39,16 @@
 		<td>
 			<table border=0>
 				 
-								<s:datetimepicker value="today"
-						             label="purchase date"
-						             name="purchaseDate" required="true"/>
-						
+<%--								<s:datetimepicker value="today"--%>
+<%--						             label="purchase date"--%>
+<%--						             name="purchaseDate" required="true" displayFormat="dd/MM/yyyy" staticDisplay="true" disabled="true"/>--%>
+<%--						--%>
 				<tr>
 					<td align="right"> <s:text name="seeds"></s:text><span class="required">*</span>:</td>
 					<td>
-							<s:autocompleter name="seed" theme="ajax" indicator="indicator" href="%{jsonList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring"/>
+							<s:autocompleter name="seed" theme="ajax" 
+								indicator="indicator" href="%{jsonList}" cssStyle="width: 200px;" 
+								autoComplete="false" required="true" requiredposition="right"/>
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
 							
 
@@ -53,7 +56,8 @@
 				</tr>
 				
 		         <s:textfield name="bagwt" key="label.slip.bagWeight" onchange="makeSlip(document.conformSlipSubmit)" required="true"> </s:textfield>
-        		 <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.conformSlipSubmit)" required="true"></s:textfield> &nbsp;&nbsp; <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.conformSlipSubmit)" required="true"> </s:textfield>
+        		 <s:textfield name="bags" key="label.slip.bags" onchange="makeSlip(document.conformSlipSubmit)" required="true"></s:textfield>  
+        		 <s:textfield name="smallBag" key="label.slip.kgs" onchange="makeSlip(document.conformSlipSubmit)" required="true" onfocus="this.style.background=''"> </s:textfield>
 				 <s:textfield name="cost" key="label.slip.costperQtl" onchange="makeSlip(document.conformSlipSubmit)" required="true"></s:textfield>
 				
 			</table>
