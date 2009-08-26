@@ -31,7 +31,7 @@ public class AccountSummaryUtil {
 	 */
 	public Date getFirstDateOfCurrentMonth(){
 		Calendar cal =Calendar.getInstance();
-		cal.set(cal.DATE, 1);
+		cal.set(Calendar.DATE, 1);
 		System.out.println(cal.getTime());
 		return cal.getTime();
 	}
@@ -43,7 +43,7 @@ public class AccountSummaryUtil {
 	 */
 	public Date getLastXmonthDate(int months){
 		Calendar cal =Calendar.getInstance();
-		cal.set(cal.MONTH,(cal.get(cal.MONTH)-months) );
+		cal.set(Calendar.MONTH,(cal.get(Calendar.MONTH)-months) );
 		
 		return cal.getTime();
 		
@@ -58,13 +58,13 @@ public class AccountSummaryUtil {
 	public Date[] getXMonthDates(int period){
 		Date startDate = null;
 		Calendar cal =Calendar.getInstance();
-		cal.set(cal.MONTH,(cal.get(cal.MONTH)-period) );
-		cal.set(cal.DATE,1);
+		cal.set(Calendar.MONTH,(cal.get(Calendar.MONTH)-period) );
+		cal.set(Calendar.DATE,1);
 		startDate = cal.getTime();
 		System.out.println("First date of period month = "+cal.getTime());
 		
 		
-		cal.set(cal.DATE, cal.getActualMaximum(cal.DATE));
+		cal.set(Calendar.DATE, cal.getActualMaximum(Calendar.DATE));
 		
 		System.out.println(" last date of last month = "+cal.getTime());
 		Date[] dts = {startDate, cal.getTime()};
@@ -77,8 +77,8 @@ public class AccountSummaryUtil {
 	 */
 	public Date getFirstDayofCurrentYear(){
 		Calendar cal =Calendar.getInstance();
-		cal.set(cal.MONTH,1 );
-		cal.set(cal.DATE,1);
+		cal.set(Calendar.MONTH,1 );
+		cal.set(Calendar.DATE,1);
 		
 		return cal.getTime();
 		
@@ -90,7 +90,7 @@ public class AccountSummaryUtil {
 	 */
 	public Date getLastXyearDate(int period){
 		Calendar cal =Calendar.getInstance();
-		cal.set(cal.YEAR,cal.get(cal.YEAR)-period);
+		cal.set(Calendar.YEAR,cal.get(Calendar.YEAR)-period);
 		
 		return cal.getTime();
 		
@@ -104,11 +104,11 @@ public class AccountSummaryUtil {
 	 */
 	public Date[] getLastXYearDates(int period){
 		Calendar cal = Calendar.getInstance();
-		cal.set((cal.get(cal.YEAR)-period),0,1);
+		cal.set((cal.get(Calendar.YEAR)-period),0,1);
 		Date stDate = cal.getTime();
 		System.out.println(cal.getTime());
 		
-		cal.set((cal.get(cal.YEAR)-period),11,31);
+		cal.set((cal.get(Calendar.YEAR)-period),11,31);
 		System.out.println(cal.getTime());
 		
 		Date[] dts = {stDate,cal.getTime() };

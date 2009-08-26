@@ -9,8 +9,11 @@ function makeSlip(pform){
 	var hamaliRate=pform.hamaliRate.value;
 	var ccRate=pform.cashCommissionRate.value;
 	var mfRate=pform.adthiRate.value;
-	var grandSum;
-	var netSum;
+	var grandSum=0;
+	var netSum=0;
+	var cc=0;
+	var mf=0;
+	var hamaliVar=0;
 	
 	if(vbagWt!='' && vbags!=''){
 		
@@ -18,43 +21,78 @@ function makeSlip(pform){
 		
 			if(vsmallBag!='')
 				{
+					var looseBagWt=parseInt(vsmallBag);
+					if(looseBagWt>=parseInt(vbagWt)){
+						alert('Loose Bag weight should not be more than Bag weight');
+						pform.smallBag.value='0';
+						pform.smallBag.focus();
+						pform.smallBag.style.background='pink';
+						return;	
+					}					
 					qt+=parseInt(vsmallBag);
 					vbags=parseInt(vbags)+1;
 				}
-		qt=qt/100;
-		pform.qtls.value=qt;
-		setDiv(makeQtlString(qt),"qtlsDiv");
-		var hamaliVar=vbags*hamaliRate;
-		pform.totalHamali.value = hamaliVar;
-		setDiv(hamaliVar,"hamaliDiv");
+				
+		qt=qt/100;		
+		hamaliVar=vbags*hamaliRate;
+		hamaliVar = roundTo(hamaliVar);
 		
 		if(vcost!=''){
-			grandSum=qt*vcost;
-			grandSum=Math.ceil(grandSum);
-			pform.grossTotal.value=grandSum;				
-			setDiv(makeQtlString(grandSum),"grossTotalDiv");
+		
+			grandSum=qt*vcost;			
 			var t=parseFloat(grandSum/100);
-			t=Math.ceil(t);
-			var cc=t*ccRate;
-			var mf=t*mfRate;
-			pform.totalCc.value=cc;
-			pform.totalMf.value=mf;
-			setDiv(cc,"ccDiv");
-			setDiv(mf,"mfDiv");
+			
+			if(grandSum>750){ //this needs to be configurable
+				cc=t*ccRate;							
+			}			
+			mf=t*mfRate;
+			
+			mf = roundTo(mf);
+			cc = roundTo(cc);
+			grandSum = roundTo(grandSum);
+			
 			netSum=grandSum-(hamaliVar+cc+mf);
-			netSum=Math.ceil(netSum);
+			netSum=roundTo(netSum);	
+			
+			pform.grossTotal.value=grandSum;
+			pform.totalCc.value=cc;	
+			pform.totalMf.value=mf;		
 			pform.netTotal.value=netSum;
-			setDiv(netSum,"netTotalDiv");
+			
+			setDiv(makeFormatedString(cc),"ccDiv");
+			setDiv(makeFormatedString(mf),"mfDiv");
+			setDiv(makeFormatedString(grandSum),"grossTotalDiv");
+			setDiv(makeFormatedString(netSum),"netTotalDiv");
 		}
+		
+		
+		pform.qtls.value=qt;
+		pform.totalHamali.value = hamaliVar;
+		setDiv(makeFormatedString(qt),"qtlsDiv");
+		setDiv(makeFormatedString(hamaliVar),"hamaliDiv");
 		
 	}
 }
-function makeQtlString(str){
+
+function roundTo(value,decimalPlaces){
+		var valToUse = 100;
+		if(decimalPlaces) 
+			valToUse=Math.pow(10,decimalPlaces);
+		var roundedVar = value * valToUse;
+	roundedVar=Math.round(roundedVar);
+	roundedVar=roundedVar/valToUse;
+	return roundedVar;
+
+}
+function makeFormatedString(str){
+	
 			str=String(str);
 			if(str.indexOf(".")==-1)
 				return str+".00";
-			if((str.length-(str.indexOf(".")+1))!=2)
+			if((str.length-(str.indexOf(".")+1))<2)
 				return str+"0";
+			else if((str.length-(str.indexOf(".")+1))>2)				
+				return str.substr(0,str.indexOf(".")+3);			
 			else
 				return str;				
 }
@@ -99,4 +137,45 @@ function togglePaymentsDiv(){
 			paymentsDivCtrl.style.display='none';			
 		}
 	}
+
+function checkAllBeforeSubmit(pform){
+	//buyername and supplier name should not be same
+	if(pform.buyerAccountId.value==pform.supplier.value){
+		setErrorMsg('Buyer and Supplier should not be same');
+		return false;
+	}
+		
+	var varPaymentAmount=parseInt(pform.paymentAmount.value);
+	var varNetTotal=parseInt(pform.netTotal.value);
+	
+	if(pform.status.value=='PAID'){
+		if(varPaymentAmount!=varNetTotal){
+			setErrorMsg('When slip status is paid, Amount paid must be equal to net total');
+			pform.paymentAmount.value=pform.netTotal.value;
+			return false;
+		}
+	}
+	
+	if(varPaymentAmount>varNetTotal){
+		if(varPaymentAmount!=varNetTotal){
+			setErrorMsg('You are not allowed to pay more than net total');
+			pform.paymentAmount.value=pform.netTotal.value;
+			return false;
+		}
+	}
+	
+	//if paymentMode is check, then bank related info is required
+	if(pform.paymentMode.value=='CHECK'){
+		if(pform.bankName.value=='' || pform.checkNumber.value=='' || pform.branchName.value==''){
+			setErrorMsg('Check related information is required.');
+			return false;
+		}
+	}
+	return true;
+}
+function setErrorMsg(msg){
+	var errorsDivCtrl = document.getElementById('jsErrorMsgDiv');
+	errorsDivCtrl.innerHTML="<li>"+msg+"</li>";
+	
+}
 -->

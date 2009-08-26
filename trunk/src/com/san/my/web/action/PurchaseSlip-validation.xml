@@ -3,12 +3,7 @@
   		"-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
   		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
   		
-<validators> 
-	<field name="purchaseDate">
-		<field-validator type="required">
-			<message key="validation.slip.dateRequired"></message>
-		</field-validator>
-	</field>	
+<validators> 		
 	<field name="seed">
 		<field-validator type="requiredstring">
 			<param name="trim">true</param>
@@ -38,6 +33,11 @@
 	<field name="buyerAccountId">
 		<field-validator type="required">			
 			<message>Buyer name is required</message>
+		</field-validator>
+	</field>
+	<field name="supplier">
+		<field-validator type="required">			
+			<message>Supplier name is required</message>
 		</field-validator>
 	</field>
 	<field name="paymentMode">

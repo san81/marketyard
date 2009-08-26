@@ -65,10 +65,10 @@
 	  </tr>	
 	  <tr><td>
 			<table border=0>				
-				<tr>
-					<td> <s:text name="label.slip.purchaseDate"></s:text> </td> <td>:</td>
-					<td> <div id="qtlsDiv" class="derivedInfo">${purchaseDate}</div> </td>
-				</tr>	
+<%--				<tr>--%>
+<%--					<td> <s:text name="label.slip.purchaseDate"></s:text> </td> <td>:</td>--%>
+<%--					<td> <div id="qtlsDiv" class="derivedInfo">${purchaseDate}</div> </td>--%>
+<%--				</tr>	--%>
 				<tr>
 					<td> <s:text name="label.slip.seeds"></s:text> </td> <td>:</td>
 					<td> <div id="grossTotalDiv" class="derivedInfo">${seed }</div> </td>
@@ -185,41 +185,52 @@
 	
 	<s:if test="action!='load'">
 		<tr>
-			<td colspan=3 align=center> <hr>
+			<td colspan=3> 
+				<span class="subHead">
+						<s:text name="label.slip.paymentDetails"></s:text>
+				</span>
+				<hr>
 			</td>
 		</tr>
 		<tr>
-		<td>
-			<table border=0>
-				<tr>
-					<td colspan=3> 
-						<span class="subHead">
-							<s:text name="label.slip.paymentDetails"></s:text>
-						</span>
-						<hr>
-					</td>
-				</tr>	
-				<tr>
-					<td>
-						<s:label key="paymentMode"></s:label>
-					</td>
-				</tr>
-				<s:label key="paymentAmount" ></s:label>
-				<s:label key="checkNumber" ></s:label>				
-			</table>
-		</td>
-	    <td>
-	    </td>
-	    <td>
-	       <table>
-	       		<tr>
-	       			<td><br><br></td>
-	       		</tr>
-		    	<s:label key="bankName"></s:label>
-				<s:label key="branchName"></s:label>				
-			</table>
-	    </td>
-	</tr>
+			<td colspan="3">
+				<table border=0>
+					<tr>
+						<td align="left"> <s:text name="label.paymentMode"></s:text></td>
+						<td>:</td>
+						<td>${paymentMode}</td>
+						<td width="100"></td>
+						<td align="left"> <s:text name="label.amount"></s:text></td>
+						<td>:</td>
+						<td class="grandTotal">
+							<s:if test="status!='PENDING'">
+								${paymentAmount}
+							</s:if>
+							<s:else>
+								DUE
+							</s:else>
+						</td>
+					</tr>					
+					<s:if test="paymentMode=='CHECK'">
+					<tr>
+						<td align="left"> <s:text name="label.bankName"></s:text></td>
+						<td>:</td>
+						<td>${bankName}</td>						
+					</tr>
+					<tr>
+						<td align="left"> <s:text name="label.checkNumber"></s:text></td>
+						<td>:</td>
+						<td>${checkNumber}</td>						
+					</tr>
+					<tr>
+						<td align="left"> <s:text name="label.branchName"></s:text></td>
+						<td>:</td>
+						<td>${branchName}</td>						
+					</tr>								
+					</s:if>					
+				</table>
+			</td>	    
+	  </tr>
 	</s:if>	
 	<tr>
 		<td colspan=3 align="center"> 
