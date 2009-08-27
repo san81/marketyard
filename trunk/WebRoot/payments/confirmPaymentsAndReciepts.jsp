@@ -12,6 +12,8 @@
 <s:hidden name="bankName"></s:hidden>
 <s:hidden name="branchName"></s:hidden>
 
+<s:hidden name="action"></s:hidden>
+
 	<table width="100%">
 		<tr>
 			<td> <s:text name="Account"></s:text> </td> <td>:</td>
@@ -32,9 +34,9 @@
 		</tr>
 		<tr>
 			<td colspan=3 align="center">
-				<input type="submit" value="Edit Payment" />
+				<input type="submit" value="Edit Transaction" />
 				&nbsp; &nbsp;
-				<input type="button" value="Make Payment" onClick="document.editTransaction.action='makePaymentEntry.action';document.editTransaction.submit();"/>
+				<input type="button" value="Make Transaction" onClick="document.editTransaction.action='makeTransaction.action';document.editTransaction.submit();"/>	
 			</td>
 		</tr>
 	</table>

@@ -7,7 +7,7 @@
     <li><a href="${pageContext.request.contextPath}/admin/viewSlip.action"> View Slip </a></li>
     <li><a href="${pageContext.request.contextPath}/admin/paymentForm.action">Cash Pay</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/receiptForm.action">Cash Receipt</a></li>
-	<li>View ledger</li>
+    <li><a href="${pageContext.request.contextPath}/admin/ledgerForm.action">View ledger</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewAccount.action"> Create Account </a></li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewSeed.action"> Seeds </a></li>
      <li><a href="${pageContext.request.contextPath}/admin/loadSlipConfigurations.action?action=load"> Slip Configs </a></li>

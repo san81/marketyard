@@ -23,6 +23,8 @@ import com.san.my.dataobj.SeedDO;
 import com.san.my.dataobj.SlipDO;
 import com.san.my.dataobj.BussinessTransactionDO;
 import com.san.my.service.BTransactionService;
+import com.san.my.viewobj.DaySheetView;
+import com.san.my.web.action.Ledger;
 import com.san.my.web.action.PaymentAndReciept;
 import com.san.my.web.action.PurchaseSlip;
 
@@ -34,6 +36,8 @@ public class BTransactionServiceImpl implements BTransactionService{
     private SeedsDAO seedDAO;
 	
 	public void savePurchase(PurchaseSlip purchaseSlip) {
+        
+        Date currentTime = Calendar.getInstance().getTime();
         
         AccountDO buyerAccountDO = accountDAO.loadAccountDO(purchaseSlip.getBuyerAccountIdKey());
         AccountDO supplierAccountDO = accountDAO.loadAccountDO(purchaseSlip.getSupplierKey());
@@ -49,7 +53,7 @@ public class BTransactionServiceImpl implements BTransactionService{
 		
 		slipDO.setBags(purchaseSlip.getBags());		
 		slipDO.setBarthi(purchaseSlip.getBagwt());
-		slipDO.setDatetime(purchaseSlip.getPurchaseDate());
+		slipDO.setDatetime(currentTime);
         
         slipDO.setBuyer(buyerAccountDO);
         slipDO.setSupplier(supplierAccountDO);
@@ -68,7 +72,7 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         //Debit from buyer transaction.
 		BussinessTransactionDO buyerTransactionDO = new BussinessTransactionDO();
-        buyerTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
+        buyerTransactionDO.setDatetime(currentTime);
         buyerTransactionDO.setAmount(purchaseSlip.getGrossTotal());
         buyerTransactionDO.setAccount(buyerAccountDO);
         buyerTransactionDO.setSlip(slipDO);
@@ -80,7 +84,7 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         //Credit to supplier transaction.
         BussinessTransactionDO supplierTransactionDO = new BussinessTransactionDO();
-        supplierTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
+        supplierTransactionDO.setDatetime(currentTime);
         supplierTransactionDO.setAmount(purchaseSlip.getNetTotal());
         supplierTransactionDO.setAccount(supplierAccountDO);
         supplierTransactionDO.setSlip(slipDO);
@@ -92,7 +96,7 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         //Credit to HAMALI transaction.
         BussinessTransactionDO hamaliTransactionDO = new BussinessTransactionDO();
-        hamaliTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
+        hamaliTransactionDO.setDatetime(currentTime);
         hamaliTransactionDO.setAmount(purchaseSlip.getTotalHamali());
         hamaliTransactionDO.setAccount(hamaliAccountDO);
         hamaliTransactionDO.setSlip(slipDO);
@@ -105,7 +109,7 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         //Credit to CC transaction.
         BussinessTransactionDO ccTransactionDO = new BussinessTransactionDO();
-        ccTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
+        ccTransactionDO.setDatetime(currentTime);
         ccTransactionDO.setAmount(purchaseSlip.getTotalCc());
         ccTransactionDO.setAccount(ccAccountDO);
         ccTransactionDO.setSlip(slipDO);
@@ -117,7 +121,7 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         //Credit to MF transaction.
         BussinessTransactionDO mfTransactionDO = new BussinessTransactionDO();
-        mfTransactionDO.setDatetime(purchaseSlip.getPurchaseDate());
+        mfTransactionDO.setDatetime(currentTime);
         mfTransactionDO.setAmount(purchaseSlip.getTotalMf());
         mfTransactionDO.setAccount(mfAccountDO);
         mfTransactionDO.setSlip(slipDO);
@@ -128,20 +132,20 @@ public class BTransactionServiceImpl implements BTransactionService{
         transactionObjects.add(mfTransactionDO);
         
         //If purchase status is closed, add debit to firm from supplier transaction too.
-        if(!purchaseSlip.getStatus().equals("PENDING")){
+        if(!purchaseSlip.getStatus().equals(Constants.BILL_STATUS_PENDING)){
             //supplier transaction.
             BussinessTransactionDO payment = new BussinessTransactionDO();
-            payment.setDatetime(purchaseSlip.getPurchaseDate());
+            payment.setDatetime(currentTime);
             payment.setAmount(purchaseSlip.getPaymentAmount());
             payment.setAccount(supplierAccountDO);
             payment.setSlip(slipDO);
             payment.setTransFlow(Constants.DEBIT);
             
-            if(purchaseSlip.getPaymentMode().equals("CASH")){
+            if(purchaseSlip.getPaymentMode().equals(Constants.PAYMENT_MODE_CASH)){
                 payment.setPaymentMode(Constants.PAYMENT_MODE_CASH);
             }else{
                 PaymentDetailsDO paymentDetails = new PaymentDetailsDO();
-                paymentDetails.setDatetime(purchaseSlip.getPurchaseDate());
+                paymentDetails.setDatetime(currentTime);
                 paymentDetails.setAmount(purchaseSlip.getPaymentAmount());
                 paymentDetails.setCheckNumber(purchaseSlip.getCheckNumber());
                 paymentDetails.setBankName(purchaseSlip.getBankName());
@@ -231,44 +235,83 @@ public class BTransactionServiceImpl implements BTransactionService{
         purchaseSlip.setDescription(slip.getDescription());
     }
 
-    public void makePayment(PaymentAndReciept paymentForm)
+    public void makeTransaction(PaymentAndReciept form)
     {
-        AccountDO accountDO = accountDAO.loadAccountDO(paymentForm.getAccountKey());
-        Date currentDate = Calendar.getInstance().getTime();
+        Date currentTime = Calendar.getInstance().getTime();
+        AccountDO accountDO = accountDAO.loadAccountDO(form.getAccountKey());
         
         BussinessTransactionDO transaction = new BussinessTransactionDO();
-        transaction.setDatetime(currentDate);
+        transaction.setDatetime(currentTime);
         transaction.setAccount(accountDO);
-        transaction.setAmount(paymentForm.getAmount());
+        transaction.setAmount(form.getAmount());
         
-        if(paymentForm.getSlipId() == null){
+        if(form.getSlipId() == null){
             transaction.setSlip(null);
         }else{
-            SlipDO slip = (SlipDO)slipDAO.loadSlip(paymentForm.getSlipId());
+            SlipDO slip = (SlipDO)slipDAO.loadSlip(form.getSlipId());
             transaction.setSlip(slip);
         }
-       
-        //money is debited from firm.
-        transaction.setTransFlow(Constants.DEBIT);
-        transaction.setDescription("Firm has paid this amount to "+paymentForm.getAccount());
         
-        if(paymentForm.getPaymentMode().equals(Constants.PAYMENT_MODE_CASH)){
+        String action = form.getAction();
+        if(action.equals(Constants.TRANSACTION_PAYMENT)){
+            transaction.setTransFlow(Constants.DEBIT);
+            transaction.setDescription("Firm has Paid this amount to "+form.getAccount());
+        }else if(action.equals(Constants.TRANSACTION_RECEIPT)){
+            transaction.setTransFlow(Constants.CREDIT);
+            transaction.setDescription("Firm has Recieved this amount from "+form.getAccount());
+        }
+        
+        if(form.getPaymentMode().equals(Constants.PAYMENT_MODE_CASH)){
             transaction.setPaymentMode(Constants.PAYMENT_MODE_CASH);
         }else{
             PaymentDetailsDO paymentDetails = new PaymentDetailsDO();
-            paymentDetails.setDatetime(currentDate);
-            paymentDetails.setAmount(paymentForm.getAmount());
-            paymentDetails.setCheckNumber(paymentForm.getCheckNumber());
-            paymentDetails.setBankName(paymentForm.getBankName());
-            paymentDetails.setBranchName(paymentForm.getBranchName());
+            paymentDetails.setDatetime(currentTime);
+            paymentDetails.setAmount(form.getAmount());
+            paymentDetails.setCheckNumber(form.getCheckNumber());
+            paymentDetails.setBankName(form.getBankName());
+            paymentDetails.setBranchName(form.getBranchName());
             paymentDetails.setBusinessTransaction(transaction);
-            paymentDetails.setDescription("Firm has paid this amount to "+paymentForm.getAccount());
+            
+            if(action.equals(Constants.TRANSACTION_PAYMENT))
+                paymentDetails.setDescription("Firm has Paid this amount to "+form.getAccount());
+            else if(action.equals(Constants.TRANSACTION_RECEIPT))
+                paymentDetails.setDescription("Firm has Recieved this amount from "+form.getAccount());
             
             transaction.setPaymentMode(Constants.PAYMENT_MODE_CHECK);
             transaction.setPaymentDetails(paymentDetails);
         }
         
         transactionsDAO.saveBusinessTransaction(transaction);
+    }
+
+    public void getLedger(Ledger ledger)
+    {
+        Double balance = 0.0;
+        List<BussinessTransactionDO> transactions = transactionsDAO.getLedger(ledger.getAccountKey());
+        for(BussinessTransactionDO transaction : transactions){
+            if(transaction.getTransFlow().equals(Constants.DEBIT)){
+                transaction.setAmount(transaction.getAmount()*-1);
+            }
+            
+            System.out.println("amount: "+transaction.getAmount());
+            balance+=transaction.getAmount();
+            
+        }
+        
+        System.out.println("Balance: "+balance);
+        ledger.setTransactions(transactions);
+        ledger.setBalance(balance);
+    }
+
+    public DaySheetView getDayTransactionsSheet(Calendar calendar)
+    {
+        List<BussinessTransactionDO> transactions = transactionsDAO.getDayTransactionsSheet(calendar);
+        
+        for(BussinessTransactionDO transaction : transactions){
+            System.out.println(transaction.getAccount().getLoginName()+" : "+transaction.getAmount());
+        }
+        
+        return null;
     }
 
 }
