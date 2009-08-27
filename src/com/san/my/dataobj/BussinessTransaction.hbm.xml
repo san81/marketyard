@@ -43,6 +43,21 @@
     	]]>
     </query>
     
+    <query name="getBTransactionsInGivenTimeRange">
+    	<![CDATA[
+    		select bt from BussinessTransactionDO bt 
+    		where datetime between :startTime and :endTime
+    		order by bt.account.accountId
+    	]]>
+    </query>
+    
+    <query name="getLedger">
+    	<![CDATA[
+    		select bt from BussinessTransactionDO bt 
+    		where bt.account.accountId = :accountId
+    	]]>
+    </query>
+    
     <query name="getStartingBalanceForAccount">
     	<![CDATA[
     		from BussinessTransactionDO

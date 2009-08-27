@@ -2,6 +2,7 @@
 package com.san.my.web.action;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.san.my.common.global.Constants;
 import com.san.my.service.BTransactionService;
 
 public class PaymentAndReciept extends ActionSupport
@@ -25,12 +26,16 @@ public class PaymentAndReciept extends ActionSupport
     
     public String execute()
     {
-        System.out.println("in payments and receipts action class");
         return SUCCESS;
     }
     
     public String renderPaymentForm(){
-        action = "Payment";
+        action = Constants.TRANSACTION_PAYMENT;
+        return SUCCESS;
+    }
+    
+    public String renderReceiptForm(){
+        action = Constants.TRANSACTION_RECEIPT;
         return SUCCESS;
     }
     
@@ -44,19 +49,8 @@ public class PaymentAndReciept extends ActionSupport
         return SUCCESS;
     }
     
-    public String makePaymentEntry()
-    {
-        transactionService.makePayment(this);
-        return SUCCESS;
-    }
-    
-    public String renderReceiptForm(){
-        action = "Receipt";
-        return SUCCESS;
-    }
-    
-    public String makeReceiptEntry(){
-//        transactionService.makePayment(this);
+    public String makeTransaction(){
+        transactionService.makeTransaction(this);
         return SUCCESS;
     }
     

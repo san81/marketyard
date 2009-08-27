@@ -20,6 +20,13 @@ public class Constants {
     
     public static final String PAYMENT_MODE_CASH = "CASH";
     public static final String PAYMENT_MODE_CHECK = "CHECK";
+    
+    public static final String TRANSACTION_PAYMENT = "PAYMENT";
+    public static final String TRANSACTION_RECEIPT = "RECEIPT";
+    
+    public static final String BILL_STATUS_PENDING = "PENDING";
+    public static final String BILL_STATUS_PARTIAL = "PARTIAL";
+    public static final String BILL_STATUS_PAID = "PAID";
 	
 	public static final String TURKISH_I_LOWER = "\u0131";
 	public static final String TURKISH_I_UPPER = "\u0130";  

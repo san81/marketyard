@@ -105,23 +105,26 @@
        <action name="paymentForm" class="paymentsAndRecieptsActionBean" method="renderPaymentForm">
          	<result name="success" type="tiles">payment.form</result>
        </action>
+        <action name="receiptForm" class="paymentsAndRecieptsActionBean" method="renderReceiptForm">
+         	<result name="success" type="tiles">payment.form</result>
+       </action>
        <action name="confirmTransaction" class="paymentsAndRecieptsActionBean" method="confirmTransaction">
          	<result name="success" type="tiles">payment.confirm</result>
        </action>
        <action name="editTransaction" class="paymentsAndRecieptsActionBean" method="editTransaction">
          	<result name="success" type="tiles">payment.form</result>
        </action>
-       <action name="makePaymentEntry" class="paymentsAndRecieptsActionBean" method="makePaymentEntry">
+       <action name="makeTransaction" class="paymentsAndRecieptsActionBean" method="makeTransaction">
          	<result name="success" type="tiles">admin.layout</result>
        </action>
        
-       <action name="receiptForm" class="paymentsAndRecieptsActionBean" method="renderReceiptForm">
-         	<result name="success" type="tiles">payment.form</result>
+       <action name="ledgerForm">
+         	<result name="success" type="tiles">account.ledger</result>
        </action>
-       <action name="makeReceiptEntry" class="paymentsAndRecieptsActionBean" method="makeReceiptEntry">
-         	<result name="success" type="tiles">admin.layout</result>
+       <action name="viewLedger" class="ledgerActionBean">
+         	<result name="success" type="tiles">account.ledger</result>
        </action>
-    	
+       
     </package>
     
     <package name="my-json-package" extends="json-default" namespace="/json">	    	

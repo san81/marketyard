@@ -1,6 +1,10 @@
 package com.san.my.service;
 
+import java.util.Calendar;
+
 import com.san.my.common.exception.BusinessServiceException;
+import com.san.my.viewobj.DaySheetView;
+import com.san.my.web.action.Ledger;
 import com.san.my.web.action.PaymentAndReciept;
 import com.san.my.web.action.PurchaseSlip;
 
@@ -34,6 +38,10 @@ public interface BTransactionService {
     
     public void loadSlip(PurchaseSlip purchaseSlip) throws BusinessServiceException;
     
-    public void makePayment(PaymentAndReciept paymentForm);
+    public void makeTransaction(PaymentAndReciept paymentForm);
+    
+    public void getLedger(Ledger ledger);
+    
+    public DaySheetView getDayTransactionsSheet(Calendar calendar);
 	
 }

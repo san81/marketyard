@@ -50,4 +50,7 @@
 	 <definition name="payment.confirm" extends="admin.layout">
 	 	<put-attribute name="body" value="/payments/confirmPaymentsAndReciepts.jsp" />
 	 </definition>
+	 <definition name="account.ledger" extends="admin.layout">
+	 	<put-attribute name="body" value="/ledger/ledger.jsp" />
+	 </definition>
 </tiles-definitions>
