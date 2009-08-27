@@ -16,7 +16,7 @@
 			<interceptor-stack name="loginAndTrans">				
 				<interceptor-ref name="transactionInterceptor"></interceptor-ref>
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
-				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>				
 			</interceptor-stack>
 		</interceptors>
 		<!-- end of interceptors -->
@@ -45,7 +45,11 @@
 				<interceptor-ref name="loginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
-		</interceptors>
+			<interceptor-stack name="stackForSubmitActions">
+       			<interceptor-ref name="loginAndTrans"></interceptor-ref>
+	       		<interceptor-ref name="token"></interceptor-ref>
+       	   </interceptor-stack>
+		</interceptors>		
 		<!-- end of interceptors -->
 		<default-interceptor-ref name="loginAndTrans"></default-interceptor-ref>
        	<!-- Login Form Configuration -->
@@ -62,8 +66,8 @@
          	<result name="success" type="tiles">my.purchase.slip</result>
        </action> 
        <action name="saveSlip" class="purchaseSlipActionBean" method="savePurchaseSlip">
-         	<result name="success" type="tiles">my.purchase.slip.conform</result>
-         	<result name="input" type="tiles">my.purchase.slip</result>
+       		<result name="input" type="tiles">my.purchase.slip</result>
+         	<result name="success" type="redirectAction">loadSlip_cancel?slipId=${slipId}</result>
        </action>
        <action name="viewSlip">
          	<result name="success" type="tiles">my.purchase.slip.view</result>

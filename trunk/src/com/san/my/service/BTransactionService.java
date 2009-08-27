@@ -1,5 +1,6 @@
 package com.san.my.service;
 
+import com.san.my.common.exception.BusinessServiceException;
 import com.san.my.web.action.PaymentAndReciept;
 import com.san.my.web.action.PurchaseSlip;
 
@@ -31,7 +32,7 @@ public interface BTransactionService {
      */
     public void editPurchase(PurchaseSlip purchaseSlip);
     
-    public void loadSlip(PurchaseSlip purchaseSlip);
+    public void loadSlip(PurchaseSlip purchaseSlip) throws BusinessServiceException;
     
     public void makePayment(PaymentAndReciept paymentForm);
 	

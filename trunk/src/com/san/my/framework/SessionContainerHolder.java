@@ -8,20 +8,20 @@ public class SessionContainerHolder
         sessionContainerThreadLocal.set(sessionContainer);
     }
     
-    private static SessionContainer getSessionContainerToThreadContext(){
+    private static SessionContainer getSessionContainerFromThreadContext(){
         return (SessionContainer)sessionContainerThreadLocal.get();
     }
     
     public static void setAttribute(String name, Object value){
-        getSessionContainerToThreadContext().setAttribute(name, value);
+    	getSessionContainerFromThreadContext().setAttribute(name, value);
     }
     
     public static Object getAttribute(String name){
-        return getSessionContainerToThreadContext().getAttribute(name);
+        return getSessionContainerFromThreadContext().getAttribute(name);
     }
     
     public static void removeAttribute(String name){
-        getSessionContainerToThreadContext().removeAttribute(name);
+    	getSessionContainerFromThreadContext().removeAttribute(name);
     }
 
 }

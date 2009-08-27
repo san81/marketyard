@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import com.san.my.common.exception.BusinessServiceException;
 import com.san.my.common.global.Constants;
 import com.san.my.dao.AccountDAO;
 import com.san.my.dao.BTransactionsDAO;
@@ -184,10 +185,12 @@ public class BTransactionServiceImpl implements BTransactionService{
     {
     }
 
-    public void loadSlip(PurchaseSlip purchaseSlip)
+    public void loadSlip(PurchaseSlip purchaseSlip) throws BusinessServiceException
     {
         SlipDO slip = slipDAO.loadSlip(purchaseSlip.getSlipId());
-        
+        if(slip==null){
+        	throw new BusinessServiceException("Slip ID not found");
+        }
         purchaseSlip.setSlipId(slip.getSlipId());
         purchaseSlip.setAdthiRate(slip.getAdthiRate());
         purchaseSlip.setHamaliRate(slip.getHamaliRate());
