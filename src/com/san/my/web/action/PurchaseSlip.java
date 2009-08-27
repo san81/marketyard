@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.san.my.common.exception.BusinessServiceException;
 import com.san.my.common.global.MessageKey;
 import com.san.my.common.util.SlipConfigs;
 import com.san.my.dataobj.BussinessTransactionDO;
@@ -18,7 +20,8 @@ import com.san.my.service.BTransactionService;
 
 public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
 	
-    HttpServletRequest request;
+    Logger logger = Logger.getLogger(PurchaseSlip.class);
+	HttpServletRequest request;
     
 	private Double qtls;
 	
@@ -97,7 +100,18 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
      */
     public String cancel(){
         action = "load";
-        transactionService.loadSlip(this);
+        
+        if(slipId==null)
+        	return INPUT;
+        
+        try {
+			transactionService.loadSlip(this);
+		} catch (BusinessServiceException e) {
+			addActionMessage("Slip Id "+slipId+" not found");
+			logger.debug("Slip Id "+slipId+" not found");
+			//e.printStackTrace();
+			return INPUT;
+		}
         
         String paymentJSON = getPaymentsJSON();
         System.out.println("Payment JSON: "+paymentJSON);
