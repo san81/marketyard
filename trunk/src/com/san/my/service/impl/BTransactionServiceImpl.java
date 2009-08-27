@@ -289,12 +289,12 @@ public class BTransactionServiceImpl implements BTransactionService{
         Double balance = 0.0;
         List<BussinessTransactionDO> transactions = transactionsDAO.getLedger(ledger.getAccountKey());
         for(BussinessTransactionDO transaction : transactions){
-            if(transaction.getTransFlow().equals(Constants.DEBIT)){
-                transaction.setAmount(transaction.getAmount()*-1);
-            }
+            Double amt = 0.0;
+            if(transaction.getTransFlow().equals(Constants.DEBIT))
+                amt = transaction.getAmount()*-1;
             
             System.out.println("amount: "+transaction.getAmount());
-            balance+=transaction.getAmount();
+            balance+=amt;
             
         }
         
