@@ -53,4 +53,7 @@
 	 <definition name="account.ledger" extends="admin.layout">
 	 	<put-attribute name="body" value="/ledger/ledger.jsp" />
 	 </definition>
+	 <definition name="day.sheet" extends="admin.layout">
+	 	<put-attribute name="body" value="/ledger/daySheet.jsp" />
+	 </definition>
 </tiles-definitions>

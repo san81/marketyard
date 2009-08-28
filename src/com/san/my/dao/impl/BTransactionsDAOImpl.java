@@ -36,7 +36,7 @@ public class BTransactionsDAOImpl extends ObjectDAOImpl implements BTransactions
 //        return this.findByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_GET_LEDGER, "accountId", accountId);
 //    }
     
-    public List<BussinessTransactionDO> getDayTransactionsSheet(Calendar calendar)
+    public List getDayTransactionsSheet(Calendar calendar)
     {
         Calendar startTime = (Calendar)calendar.clone();
         startTime.set(Calendar.HOUR_OF_DAY, 0);
@@ -51,10 +51,16 @@ public class BTransactionsDAOImpl extends ObjectDAOImpl implements BTransactions
         endTime.set(Calendar.MILLISECOND, 1000);
         
         String[] paramNames = {"startTime", "endTime"};
-        Object[] values = {startTime.getTime(), endTime.getTime()};
+        Object[] values = {startTime.getTime(), endTime.getTime()};        
         
-        return this.findByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_GET_TRANSACTIONS_IN_GIVEN_TIMERANGE, paramNames, values);
+        return this.findByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_GET_TRANSACTION_SUMMARY_IN_GIVEN_TIMERANGE, paramNames, values);
     }
+
+    public List getTotalBalance(Calendar calendar)
+    {
+        return this.findByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_GET_TOTAL_BALANCE_AT_GIVEN_TIME, "datetime", calendar.getTime());
+    }
+
     
     
     

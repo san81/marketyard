@@ -43,5 +43,7 @@ public interface BTransactionService {
 //    public void getLedger(Ledger ledger);
     
     public DaySheetView getDayTransactionsSheet(Calendar calendar);
+    
+    public Double getTotalBalance(Calendar calendar);
 	
 }
