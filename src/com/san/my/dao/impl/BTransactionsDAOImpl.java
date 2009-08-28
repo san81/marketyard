@@ -31,10 +31,10 @@ public class BTransactionsDAOImpl extends ObjectDAOImpl implements BTransactions
         return (BussinessTransactionDO)this.findOneByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_TRANSACTION_GIVEN_ACC_AND_SLIP, paramNames, values);
     }
 
-    public List<BussinessTransactionDO> getLedger(Long accountId)
-    {
-        return this.findByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_GET_LEDGER, "accountId", accountId);
-    }
+//    public List<BussinessTransactionDO> getLedger(Long accountId)
+//    {
+//        return this.findByNamedQueryAndNamedParam(HbmConstants.NAMED_QUERY_GET_LEDGER, "accountId", accountId);
+//    }
     
     public List<BussinessTransactionDO> getDayTransactionsSheet(Calendar calendar)
     {

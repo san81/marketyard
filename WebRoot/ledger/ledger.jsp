@@ -13,34 +13,56 @@
 <s:fielderror></s:fielderror>
 
 <s:url id="accountsList" value="../json/accountIdsAndNamesList.action"></s:url>
+<s:url id="accountTransactions" value="/json/accountsList.action" />
 
 <s:form action="viewLedger.action" namespace="admin" method="post">
 	<s:head theme="ajax" />
-	<table width="100%">
+	<table width="100%" border=0>
+		<tr>
+			<td colspan=2>
+				<span  class="subHead">
+					<s:text name="label.accountSummary"></s:text>
+				</span>
+			<hr></td>
+	    </tr>	
 		<tr>
 			<td align="right">
 				<s:text name="Account"></s:text>
 				<span class="required">*</span>
 			</td>
-			<td colspan="2">
-				<s:autocompleter name="account" theme="ajax" indicator="indicator"
+			<td>
+				<s:autocompleter name="accountSummaryForm.accountId" theme="ajax" indicator="indicator"
 					href="%{accountsList}" cssStyle="width: 200px;"
 					autoComplete="false" searchType="" />
 				<img id="indicator"
 					src="${pageContext.request.contextPath}/images/indicator.gif"
 					alt="Loading..." style="display:none" />
 			</td>
-		</tr>
-		<tr>
+		  </tr>
+		  <tr>
+			<td align="right">
+				<s:text name="Duration"></s:text>
+				<span class="required">*</span>
+			</td>
 			<td>
-				<br/>
+				<select>
+					<option value="1">Current Month</option>
+					<option value="2">Current and Last Month</option>
+				</select>
 			</td>
 		</tr>
-		<s:submit key="label.submit" ></s:submit>		
+		<tr>
+			<td colspan="2"><br></td>
+		</tr>
+		<s:submit key="label.submit" ></s:submit>
+		<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
+		<s:submit type="submit" theme="ajax" value="submit" targets="ledger-grid" href="%{accountTransactions}" align="center" indicator="indicator"/>
+				
 	</table>
 
 </s:form>
-<div id="ledger-grid"></div>
+	<jsp:include flush="true" page="/accounts/accountSummary.jsp"></jsp:include>
+
 <script>
 	var ledgerJSON = ${ledgerJSON};
 	//alert("ledgerJSON: "+ledgerJSON);

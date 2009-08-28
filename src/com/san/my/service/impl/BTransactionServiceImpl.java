@@ -284,24 +284,24 @@ public class BTransactionServiceImpl implements BTransactionService{
         transactionsDAO.saveBusinessTransaction(transaction);
     }
 
-    public void getLedger(Ledger ledger)
-    {
-        Double balance = 0.0;
-        List<BussinessTransactionDO> transactions = transactionsDAO.getLedger(ledger.getAccountKey());
-        for(BussinessTransactionDO transaction : transactions){
-            Double amt = 0.0;
-            if(transaction.getTransFlow().equals(Constants.DEBIT))
-                amt = transaction.getAmount()*-1;
-            
-            System.out.println("amount: "+transaction.getAmount());
-            balance+=amt;
-            
-        }
-        
-        System.out.println("Balance: "+balance);
-        ledger.setTransactions(transactions);
-        ledger.setBalance(balance);
-    }
+//    public void getLedger(Ledger ledger)
+//    {
+//        Double balance = 0.0;
+//        List<BussinessTransactionDO> transactions = transactionsDAO.getLedger(ledger.getAccountKey());
+//        for(BussinessTransactionDO transaction : transactions){
+//            Double amt = 0.0;
+//            if(transaction.getTransFlow().equals(Constants.DEBIT))
+//                amt = transaction.getAmount()*-1;
+//            
+//            System.out.println("amount: "+transaction.getAmount());
+//            balance+=amt;
+//            
+//        }
+//        
+//        System.out.println("Balance: "+balance);
+//        ledger.setTransactions(transactions);
+//        ledger.setBalance(balance);
+//    }
 
     public DaySheetView getDayTransactionsSheet(Calendar calendar)
     {

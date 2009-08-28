@@ -17,7 +17,7 @@ public class AccountSummaryUtil {
 	/**
 	 * todays date
 	 */
-	public Date getTodaysDate(){
+	public static Date getTodaysDate(){
 		Calendar cal =Calendar.getInstance();
 		//todays date
 		Date date  = cal.getTime();
@@ -29,7 +29,7 @@ public class AccountSummaryUtil {
 	 * First date of current month
 	 *
 	 */
-	public Date getFirstDateOfCurrentMonth(){
+	public static Date getFirstDateOfCurrentMonth(){
 		Calendar cal =Calendar.getInstance();
 		cal.set(Calendar.DATE, 1);
 		System.out.println(cal.getTime());
@@ -41,7 +41,7 @@ public class AccountSummaryUtil {
 	 * @param months
 	 * @return
 	 */
-	public Date getLastXmonthDate(int months){
+	public static Date getLastXmonthDate(int months){
 		Calendar cal =Calendar.getInstance();
 		cal.set(Calendar.MONTH,(cal.get(Calendar.MONTH)-months) );
 		
@@ -55,7 +55,7 @@ public class AccountSummaryUtil {
 	 * the current date. 
 	 *
 	 */
-	public Date[] getXMonthDates(int period){
+	public static Date[] getXMonthDates(int period){
 		Date startDate = null;
 		Calendar cal =Calendar.getInstance();
 		cal.set(Calendar.MONTH,(cal.get(Calendar.MONTH)-period) );
@@ -75,10 +75,20 @@ public class AccountSummaryUtil {
 	 * get first date of current year
 	 * @return
 	 */
-	public Date getFirstDayofCurrentYear(){
+	public static Date getFirstDayofCurrentYear(){
 		Calendar cal =Calendar.getInstance();
 		cal.set(Calendar.MONTH,1 );
 		cal.set(Calendar.DATE,1);
+		cal.set(Calendar.DATE,cal.get(Calendar.DATE)-1);
+		
+		return cal.getTime();
+		
+	}
+	
+	public static Date getSummaryCalculationDate(Date date){
+		Calendar cal =Calendar.getInstance();
+		cal.setTime(date);
+		cal.set(Calendar.DATE,cal.get(Calendar.DATE)-1);
 		
 		return cal.getTime();
 		
@@ -88,7 +98,7 @@ public class AccountSummaryUtil {
 	 * get the past x year date from the current date.
 	 * @return
 	 */
-	public Date getLastXyearDate(int period){
+	public static Date getLastXyearDate(int period){
 		Calendar cal =Calendar.getInstance();
 		cal.set(Calendar.YEAR,cal.get(Calendar.YEAR)-period);
 		
@@ -102,7 +112,7 @@ public class AccountSummaryUtil {
 	 * @param period
 	 * @return
 	 */
-	public Date[] getLastXYearDates(int period){
+	public static Date[] getLastXYearDates(int period){
 		Calendar cal = Calendar.getInstance();
 		cal.set((cal.get(Calendar.YEAR)-period),0,1);
 		Date stDate = cal.getTime();

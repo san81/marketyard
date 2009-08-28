@@ -13,7 +13,7 @@
            fields:[
            		{name: 'transId'},
            		{name: 'datetime'},
-           		{name: 'accountName'},
+           		{name: 'description'},
            		{name: 'amount'},
            		{name: 'flow'},
 				{name: 'mode'},
@@ -44,8 +44,8 @@
            align: 'center'
            //renderer: renderLast
         },{
-           header: "Account Name",
-           dataIndex: 'accountName',
+           header: "Description",
+           dataIndex: 'description',
            width: 100,
            align: 'center'
         },{

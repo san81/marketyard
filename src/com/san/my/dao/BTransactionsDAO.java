@@ -18,7 +18,7 @@ public interface BTransactionsDAO {
     
     public BussinessTransactionDO getTransactionGivenAccIdAndSlipIdAndFlow(Long accId, Long slipId, String transFlow);
     
-    public List<BussinessTransactionDO> getLedger(Long accountId);
+//    public List<BussinessTransactionDO> getLedger(Long accountId);
     
     public List<BussinessTransactionDO> getDayTransactionsSheet(Calendar calendar);
 	

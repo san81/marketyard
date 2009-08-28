@@ -25,7 +25,7 @@
 	</bean>
 	<bean id="ledgerActionBean" singleton="false"
 		class="com.san.my.web.action.Ledger">
-		<property name="transactionService" ref="bTransactionService"></property>
+		<property name="accountService" ref="accountService"></property>
 	</bean>
 	<!--  json action beans -->
 	<bean id="seedsListJsonActionBean" singleton="false"

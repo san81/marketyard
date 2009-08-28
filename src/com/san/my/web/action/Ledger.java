@@ -9,7 +9,10 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.san.my.dataobj.BussinessTransactionDO;
+import com.san.my.service.AccountService;
+import com.san.my.service.AccountSummary;
 import com.san.my.service.BTransactionService;
+import com.san.my.viewobj.AccountSummaryForm;
 
 public class Ledger extends ActionSupport implements ServletRequestAware
 {
@@ -17,15 +20,11 @@ public class Ledger extends ActionSupport implements ServletRequestAware
 
     HttpServletRequest request;
     
-    private String account;
-    private Long accountKey;
-    private List<BussinessTransactionDO> transactions;
-    private Double balance;
+    AccountService accountService;
+    AccountSummaryForm accountSummaryForm;
     
-    private BTransactionService transactionService;
-    
-    public String execute(){        
-        transactionService.getLedger(this);
+    public String execute(){  
+    	accountService.listAccountBTransactions(accountSummaryForm);
         
         String ledgerJSON = getLedgerJSON();
         System.out.println("Ledger JSON: "+ledgerJSON);
@@ -33,61 +32,18 @@ public class Ledger extends ActionSupport implements ServletRequestAware
         return SUCCESS;
     }
     
-    public String getAccount()
-    {
-        return account;
-    }
-    public void setAccount(String account)
-    {
-        this.account = account;
-    }
-    public Long getAccountKey()
-    {
-        return accountKey;
-    }
-    public void setAccountKey(Long accountKey)
-    {
-        this.accountKey = accountKey;
-    }
-    public Double getBalance()
-    {
-        return balance;
-    }
-    public void setBalance(Double balance)
-    {
-        this.balance = balance;
-    }
-    
-    public BTransactionService getTransactionService()
-    {
-        return transactionService;
-    }
-
-    public void setTransactionService(BTransactionService transactionService)
-    {
-        this.transactionService = transactionService;
-    }
-
-    public List<BussinessTransactionDO> getTransactions()
-    {
-        return transactions;
-    }
-
-    public void setTransactions(List<BussinessTransactionDO> transactions)
-    {
-        this.transactions = transactions;
-    }
-    
+   
     private String getLedgerJSON(){
         StringBuilder builder = new StringBuilder();
         builder.append("{'transactions' : [");
-        List<BussinessTransactionDO> transaction= getTransactions();
+        List<BussinessTransactionDO> transaction= accountSummaryForm.getAccountBTransactions();
         for(BussinessTransactionDO payment : transaction){
             builder.append("{'transId':").append(payment.getTransId()).append(",");
             builder.append("'datetime':'").append(new SimpleDateFormat("dd/MM/yyyy").format(payment.getDatetime())).append("',");
-            builder.append("'accountName':'").append(payment.getAccount().getLoginName()).append("',");
+            builder.append("'description':'").append(payment.getDescription()).append("',");
             builder.append("'amount':").append(payment.getAmount()).append(",");
-            builder.append("'flow':'").append(payment.getTransFlow()).append("',");
+            builder.append("'dr':'").append(payment.getTransFlow()).append("',");
+            builder.append("'cr':'").append(payment.getTransFlow()).append("',");
             builder.append("'mode':'").append(payment.getPaymentMode()).append("',");
             builder.append("'slipId':").append(getSlipId(payment)).append("},");
         }
@@ -103,9 +59,23 @@ public class Ledger extends ActionSupport implements ServletRequestAware
         return payment.getSlip() == null? "''":payment.getSlip().getSlipId();
     }
 
-    public void setServletRequest(HttpServletRequest request)
-    {
+    public void setServletRequest(HttpServletRequest request){
         this.request = request;
     }
+
+
+	public void setAccountService(AccountService accountService) {
+		this.accountService = accountService;
+	}
+
+
+	public AccountSummaryForm getAccountSummaryForm() {
+		return accountSummaryForm;
+	}
+
+
+	public void setAccountSummaryForm(AccountSummaryForm accountSummaryForm) {
+		this.accountSummaryForm = accountSummaryForm;
+	}
 
 }
