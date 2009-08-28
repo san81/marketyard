@@ -7,9 +7,12 @@ package com.san.my.service.impl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import com.san.my.common.exception.BusinessServiceException;
 import com.san.my.common.global.Constants;
@@ -305,13 +308,51 @@ public class BTransactionServiceImpl implements BTransactionService{
 
     public DaySheetView getDayTransactionsSheet(Calendar calendar)
     {
-        List<BussinessTransactionDO> transactions = transactionsDAO.getDayTransactionsSheet(calendar);
+        DaySheetView daySheet = new DaySheetView();
+        daySheet.setDate(calendar.getTime());
         
-        for(BussinessTransactionDO transaction : transactions){
-            System.out.println(transaction.getAccount().getLoginName()+" : "+transaction.getAmount());
+        //TODO: Use the appropriate implementation of map.
+        Map<String, Double> creditsMap = new TreeMap<String, Double>();
+        Map<String, Double> debitsMap = new TreeMap<String, Double>();
+        
+        Double sumOfCredits = 0.0;
+        Double sumOfDebits = 0.0;
+        
+        List<Object[]> list = transactionsDAO.getDayTransactionsSheet(calendar);
+        
+        for(Object[] result : list){            
+            if(Constants.CREDIT.equals(result[2])){
+                creditsMap.put((String)result[1], (Double)result[0]);
+                sumOfCredits += (Double)result[0];
+            }else{
+                debitsMap.put((String)result[1], (Double)result[0]);
+                sumOfDebits += (Double)result[0];
+            }
+            
+//            System.out.println(result[0]+" : "+result[1]+" : "+result[2]);
         }
         
-        return null;
+        daySheet.setCreditsMap(creditsMap);
+        daySheet.setSumOfCredits(sumOfCredits);
+        daySheet.setDebitsMap(debitsMap);        
+        daySheet.setSumOfDebits(sumOfDebits);
+        daySheet.setBalance(getTotalBalance(calendar));
+        
+        return daySheet;
+    }
+    
+    public Double getTotalBalance(Calendar calendar){        
+        List<Object[]> list = transactionsDAO.getTotalBalance(calendar);
+        
+        Double sumOfCredits = 0.0;
+        Double sumOfDebits = 0.0;
+        if(list.get(0) != null)
+            sumOfCredits = (Double)((Object[])list.get(0))[0];
+        
+        if(list.get(1) != null)
+            sumOfDebits = (Double)((Object[])list.get(1))[0];
+        
+        return (sumOfCredits - sumOfDebits);
     }
 
 }

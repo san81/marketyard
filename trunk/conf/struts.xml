@@ -126,6 +126,10 @@
          	<result name="success" type="tiles">account.ledger</result>
        </action>
        
+       <action name="daySheet" class="daySheetActionBean">
+         	<result name="success" type="tiles">day.sheet</result>
+       </action>
+       
     </package>
     
     <package name="my-json-package" extends="json-default" namespace="/json">	    	

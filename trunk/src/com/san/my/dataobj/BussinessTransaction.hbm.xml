@@ -43,11 +43,21 @@
     	]]>
     </query>
     
-    <query name="getBTransactionsInGivenTimeRange">
+    <query name="getBTransactionSummaryInGivenTimeRange">
     	<![CDATA[
-    		select bt from BussinessTransactionDO bt 
-    		where datetime between :startTime and :endTime
-    		order by bt.account.accountId
+    		select sum(bt.amount), bt.account.loginName, bt.transFlow 
+    		from BussinessTransactionDO bt 
+    		where bt.datetime between :startTime and :endTime 
+    		group by bt.account.loginName, bt.transFlow
+    	]]>
+    </query>
+    
+    <query name="getTotalBalanceAtGivenTime">
+    	<![CDATA[
+    		select sum(bt.amount), bt.transFlow from BussinessTransactionDO bt     		
+    		where bt.datetime <= :datetime 
+    		group by bt.transFlow 
+    		order by bt.transFlow
     	]]>
     </query>
     

@@ -8,9 +8,10 @@
     <li><a href="${pageContext.request.contextPath}/admin/paymentForm.action">Cash Pay</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/receiptForm.action">Cash Receipt</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/ledgerForm.action">View ledger</a></li>
+    <li><a href="${pageContext.request.contextPath}/admin/daySheet.action">Day Sheet</a></li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewAccount.action"> Create Account </a></li>
     <li><a href="${pageContext.request.contextPath}/admin/createNewSeed.action"> Seeds </a></li>
-     <li><a href="${pageContext.request.contextPath}/admin/loadSlipConfigurations.action?action=load"> Slip Configs </a></li>
+    <li><a href="${pageContext.request.contextPath}/admin/loadSlipConfigurations.action?action=load"> Slip Configs </a></li>
  	<li><a href="${pageContext.request.contextPath}/j_acegi_logout"> Logout </a></li>   
     </strong>
   </ul>

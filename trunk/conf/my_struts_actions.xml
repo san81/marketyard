@@ -27,6 +27,10 @@
 		class="com.san.my.web.action.Ledger">
 		<property name="accountService" ref="accountService"></property>
 	</bean>
+	<bean id="daySheetActionBean" singleton="false"
+		class="com.san.my.web.action.DaySheet">
+		<property name="transactionService" ref="bTransactionService"></property>
+	</bean>
 	<!--  json action beans -->
 	<bean id="seedsListJsonActionBean" singleton="false"
 		class="com.san.my.web.action.SeedsList">
