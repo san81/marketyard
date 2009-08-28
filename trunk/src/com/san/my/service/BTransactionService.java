@@ -40,7 +40,7 @@ public interface BTransactionService {
     
     public void makeTransaction(PaymentAndReciept paymentForm);
     
-    public void getLedger(Ledger ledger);
+//    public void getLedger(Ledger ledger);
     
     public DaySheetView getDayTransactionsSheet(Calendar calendar);
 	

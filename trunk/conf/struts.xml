@@ -122,6 +122,7 @@
          	<result name="success" type="tiles">account.ledger</result>
        </action>
        <action name="viewLedger" class="ledgerActionBean">
+	        <result name="input" type="tiles">account.ledger</result>
          	<result name="success" type="tiles">account.ledger</result>
        </action>
        

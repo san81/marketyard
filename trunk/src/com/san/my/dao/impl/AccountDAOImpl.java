@@ -73,7 +73,7 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
     public List<BussinessTransactionDO> getAccountBTransactionDO(AccountSummaryForm accountSummaryForm)
     {
     	String[] paramNames = {"account","startDate","endDate"};
-    	Object[] paramValues = {loadAccountDO(accountSummaryForm.getAccountId()),accountSummaryForm.getStartDate()};
+    	Object[] paramValues = {loadAccountDO(accountSummaryForm.getAccountIdKey()),accountSummaryForm.getStartDate(),accountSummaryForm.getEndDate()};
     	
     	List tranFlowSummary = findByNamedQueryAndNamedParam("getStartingBalanceForAccount", paramNames, paramValues);
     	return tranFlowSummary;
@@ -83,9 +83,9 @@ public class AccountDAOImpl extends ObjectDAOImpl implements AccountDAO {
     public List getAccountStartingBalance(AccountSummaryForm accountSummaryForm)
     {
     	String[] paramNames = {"account","uptoDate"};
-    	Object[] paramValues = {loadAccountDO(accountSummaryForm.getAccountId()),accountSummaryForm.getStartDate()};
+    	Object[] paramValues = {loadAccountDO(accountSummaryForm.getAccountIdKey()),accountSummaryForm.getStartDate()};
     	
-    	List tranFlowSummary = findByNamedQueryAndNamedParam("getStartingBalanceForAccount", paramNames, paramValues);
+    	List tranFlowSummary = findByNamedQueryAndNamedParam("getTransSummaryForAccount", paramNames, paramValues);
     	return tranFlowSummary;
     }
 }

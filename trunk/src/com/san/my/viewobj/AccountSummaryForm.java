@@ -14,7 +14,11 @@ import com.san.my.dataobj.BussinessTransactionDO;
  */
 public class AccountSummaryForm {
 	
-	private Long accountId;
+	private Long accountIdKey;
+	private String accountName;
+	private String city;
+	private String mobile;
+	private String accountType;
 	
 	//dates between
 	private Date startDate;
@@ -28,7 +32,7 @@ public class AccountSummaryForm {
 	  years = 5 (last x year(s))
 	  year =6 (one of last 4 years)
 	 */
-	private int option;
+	private int option=1;
 	
 	//for option 2 ,3,5 or 6.
 	private int period;
@@ -40,19 +44,22 @@ public class AccountSummaryForm {
 	//starting balance
 	private Double startDrBalance;
 	private Double startCrBalance;
+	//crBalance-DrBlanace. It may be negative.
+	private Double openingBalance;	
 	
 	
+	
+	public Double getOpeningBalance() {
+		return openingBalance;
+	}
+	public void setOpeningBalance(Double openingBalance) {
+		this.openingBalance = openingBalance;
+	}
 	public List<BussinessTransactionDO> getAccountBTransactions() {
 		return accountBTransactions;
 	}
 	public void setAccountBTransactions(List<BussinessTransactionDO> accountBTransactions) {
 		this.accountBTransactions = accountBTransactions;
-	}
-	public Long getAccountId() {
-		return accountId;
-	}
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
 	}
 	public Double getCrTotal() {
 		return crTotal;
@@ -102,4 +109,34 @@ public class AccountSummaryForm {
 	public void setPeriod(int period) {
 		this.period = period;
 	}
+	public Long getAccountIdKey() {
+		return accountIdKey;
+	}
+	public void setAccountIdKey(Long accountIdKey) {
+		this.accountIdKey = accountIdKey;
+	}
+	public String getAccountName() {
+		return accountName;
+	}
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getAccountType() {
+		return accountType;
+	}
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}	
 }
