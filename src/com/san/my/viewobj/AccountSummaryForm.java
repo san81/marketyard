@@ -3,9 +3,11 @@
  */
 package com.san.my.viewobj;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.san.my.common.global.Constants;
 import com.san.my.dataobj.BussinessTransactionDO;
 
 /**
@@ -38,15 +40,15 @@ public class AccountSummaryForm {
 	private int period;
 	
 	private List<BussinessTransactionDO> accountBTransactions;
-	private Double drTotal;
-	private Double crTotal;
+	private Double drTotal=0.0;
+	private Double crTotal=0.0;
 	
 	//starting balance
-	private Double startDrBalance;
-	private Double startCrBalance;
+	private Double startDrBalance=0.0;
+	private Double startCrBalance=0.0;
 	//crBalance-DrBlanace. It may be negative.
-	private Double openingBalance;	
-	
+	private Double openingBalance=0.0;	
+	private Double closingBalance=0.0;
 	
 	
 	public Double getOpeningBalance() {
@@ -138,5 +140,18 @@ public class AccountSummaryForm {
 	}
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
+	}
+	public Double getClosingBalance() {	
+		return closingBalance;
 	}	
+	public void setClosingBalance(Double closingBalance) {
+		this.closingBalance = closingBalance;
+	}
+	public String getEndDateToDisplay() {
+		return new SimpleDateFormat(Constants.DATE_FORMAT).format(endDate);
+		 
+	}
+	public String getStartDateToDisplay() {
+		return new SimpleDateFormat(Constants.DATE_FORMAT).format(startDate);		
+	}
 }

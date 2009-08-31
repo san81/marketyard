@@ -6,6 +6,7 @@
 <s:form action="confirmTransaction.action" namespace="admin" method="post"
 	validate="true">
 <s:head theme="ajax" />
+<s:hidden name="action"></s:hidden>
 <s:url id="accountsList" value="../json/accountIdsAndNamesList.action"></s:url>
 	<table width="100%" border="0">
 		<tr>

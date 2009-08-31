@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ServletRequestAware;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.san.my.common.global.Constants;
 import com.san.my.dataobj.BussinessTransactionDO;
 import com.san.my.service.AccountService;
 import com.san.my.service.AccountSummary;
@@ -39,18 +40,23 @@ public class Ledger extends ActionSupport implements ServletRequestAware
         List<BussinessTransactionDO> transaction= accountSummaryForm.getAccountBTransactions();
         for(BussinessTransactionDO payment : transaction){
             builder.append("{'transId':").append(payment.getTransId()).append(",");
-            builder.append("'datetime':'").append(new SimpleDateFormat("dd/MM/yyyy").format(payment.getDatetime())).append("',");
-            builder.append("'description':'").append(payment.getDescription()).append("',");
-            builder.append("'amount':").append(payment.getAmount()).append(",");
-            builder.append("'dr':'").append(payment.getTransFlow()).append("',");
-            builder.append("'cr':'").append(payment.getTransFlow()).append("',");
+            builder.append("'datetime':'").append(new SimpleDateFormat(Constants.DATE_FORMAT).format(payment.getDatetime())).append("',");
+            builder.append("'description':'").append(payment.getDescription()).append("',");            
+            if(Constants.CREDIT.equals(payment.getTransFlow())){
+	            builder.append("'"+Constants.DEBIT+"':'',");
+	            builder.append("'"+Constants.CREDIT+"':").append(payment.getAmount()).append(",");
+            }else{
+            	builder.append("'"+Constants.DEBIT+"':").append(payment.getAmount()).append(",");
+	            builder.append("'"+Constants.CREDIT+"':'',");
+            }
             builder.append("'mode':'").append(payment.getPaymentMode()).append("',");
             builder.append("'slipId':").append(getSlipId(payment)).append("},");
         }
         
         if(transaction.size()!=0)
             builder.deleteCharAt(builder.length()-1);
-        builder.append("]}");
+        builder.append("],");
+        builder.append("'totalCount':"+transaction.size()+"}");
         
         return builder.toString();
     }

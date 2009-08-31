@@ -18,6 +18,8 @@ public class Constants {
     public static final String CREDIT = "CR";
     public static final String DEBIT = "DR";
     
+    public static final String DATE_FORMAT="dd/MM/yyyy";
+    
     public static final String PAYMENT_MODE_CASH = "CASH";
     public static final String PAYMENT_MODE_CHECK = "CHECK";
     

@@ -1,5 +1,4 @@
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
-<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <div id="progressInfo"
 	style="position: absolute; top: 37%; left: 40%; width: 25%; height: 25%; visibility: hidden">
@@ -26,7 +25,7 @@
 								border="0" />
 						</TD>					
 						<TD valign="middle" class="formLabel" nowrap bgcolor="#F0F0F0">
-							<bean:message key='string.processingRequest'/>...
+							<s:text name="inform.loading"></s:text>
 							<span id="progress_msg"> </span>
 						</TD>
 					</TR>
