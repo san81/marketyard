@@ -14,8 +14,8 @@
            		{name: 'transId'},
            		{name: 'datetime'},
            		{name: 'description'},
-           		{name: 'amount'},
-           		{name: 'flow'},
+           		{name: 'DR'},
+           		{name: 'CR'},
 				{name: 'mode'},
 				{name: 'slipId'}
 				//{name: 'regdate',type: 'date', dateFormat: 'timestamp'}
@@ -25,18 +25,10 @@
      // turn on remote sorting
         remoteSort: false
     });
- 	store.setDefaultSort('accountName');
+ 	//store.setDefaultSort('datetime');
  	
  	
  var cm = new Ext.grid.ColumnModel([{
-           id: 'transId', // id assigned so we can apply custom css (e.g. .x-grid-col-topic b { color:#333 })
-           header: "Trans ID",
-           dataIndex: 'transId',
-           width: 100,
-           align: 'center'
-           //renderer: renderTopic
-           
-        },{
            
            header: "Date Time",
            dataIndex: 'datetime',
@@ -46,20 +38,28 @@
         },{
            header: "Description",
            dataIndex: 'description',
-           width: 100,
-           align: 'center'
+           width: 400,
+           align: 'left',           
+           renderer:renderDescription
         },{
-           header: "Amount",
-           dataIndex: 'amount',
+           header: "DR",
+           dataIndex: 'DR',
            width: 70,
-           align: 'center'
+           align: 'right',
+           valign: 'center',
+           renderer:renderAmount
         },{
-           id: 'flow',
-           header: "Flow",
-           dataIndex: 'flow',
+           id: 'CR',
+           header: "CR",
+           dataIndex: 'CR',
            width: 70,
-           align: 'center'
-          //renderer: renderLast
+           align: 'right',
+          renderer: renderAmount
+        },{
+           header: "Balance",           
+           width: 70,
+           align: 'right',
+          renderer: renderBalance
         },{
            header: "Payment Mode",
            dataIndex: 'mode',
@@ -69,17 +69,44 @@
            header: "Bill ID",
            dataIndex: 'slipId',
            width: 90,
-           align: 'center'
+           align: 'center',
+           renderer:renderSlipId
         }]);
+ 
+ var myViewConfig = {
+       
+
+//      Return CSS class to apply to rows depending upon data values
+
+        getRowClass: function(record, index) {
+            var c = record.get('DR');
+            if (index%2 == 0) {
+                return 'altRow';
+            } else  {
+                return '';
+            }
+        }
+    };
  
  cm.defaultSortable = true;
  
-  function renderTopic(value, p, record){
-        return String.format(
-                '<b><a href="http://extjs.com/forum/showthread.php?t={2}" target="_blank">{0}</a></b><a href="http://extjs.com/forum/forumdisplay.php?f={3}" target="_blank">{1} Forum</a>',
-                value, record.data.forumtitle, record.id, record.data.forumid);
+  function renderDescription(value, p, record){
+        return String.format('<b>{0}<br><br></b>',value);
     }
-    function renderMyDate(value,p,r){
+ function renderAmount(value,p,r){
+    	return String.format('<font color="blue"><b>{0}<b></font>',makeFormatedString(value));
+    } 
+ function renderSlipId(value,p,r){
+    	return String.format('<a href="loadSlip_cancel.action?slipId={0}" target="_blank">{0}</a>',value);
+    }
+ function renderBalance(value,p,r){
+	 if(r.data['DR']!='')
+	 	openingBal-=r.data['DR'];
+	 else
+		 openingBal+=r.data['CR'];
+   	return String.format('<span class="gsumDisplay">{0}</span>',makeFormatedString(openingBal));
+  }    
+ function renderMyDate(value,p,r){
     	return String.format('',value.dateFormat('M j, Y, g:i a'),r.data['datetime']);
     }
  function renderLast(value, p, r){
@@ -91,19 +118,21 @@
         el:'ledger-grid',
         width:700,
         height:250,
-        title:'Ledger Details - Browse ',
+        columnLines:true,
+        title:accountHolder+'Ledger Details - Browse ',
         store: store,
         cm: cm,
         sm:new Ext.grid.RowSelectionModel({selectRow:Ext.emptyFn}),
        trackMouseOver:false,
-        loadMask: true,  
-          bbar: new Ext.PagingToolbar({
-            pageSize: 2,
-            store: store,
-            displayInfo: true,
-            displayMsg: 'Displaying Transactions {0} - {1} of {2}',
-            emptyMsg: "No Transactions to display"
-        })
+        loadMask: true,
+        viewConfig:myViewConfig
+//          bbar: new Ext.PagingToolbar({
+//            pageSize: 2,
+//            store: store,
+//            displayInfo: true,
+//            displayMsg: 'Displaying Transactions {0} - {1} of {2}',
+//            emptyMsg: "No Transactions to display"
+//        })
     });
     
     

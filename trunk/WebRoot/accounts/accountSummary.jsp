@@ -6,18 +6,24 @@
 				<table>
 					<tr>
 						<td>
-							Name: ${accountSummaryForm.accountName}
+							Name 
 						</td>
+						<td>:</td>
+						<td><b>${accountSummaryForm.accountName}</b></td>
 					</tr>
 					<tr>
 						<td>
-							City: ${accountSummaryForm.city}
+							City
 						</td>
+						<td>:</td>
+						<td><b>${accountSummaryForm.city}</b></td>
 					</tr>
 					<tr>
 						<td>
-							Opening Balance as on ${accountSummaryForm.startDate} : ${accountSummaryForm.openingBalance }
+							Opening Balance <br>as on <b>${accountSummaryForm.startDateToDisplay}</b>
 						</td>
+						<td>:</td>
+						<td class="gsumDisplay">${accountSummaryForm.openingBalance }</td>
 					</tr>
 				</table>
 			</td>
@@ -25,18 +31,24 @@
 				<table>
 					<tr>
 						<td>
-							Type : ${accountSummaryForm.accountType}
+							Type
 						</td>
+						<td>:</td>
+						<td><b>${accountSummaryForm.accountType}</b></td>
 					</tr>
 					<tr>
 						<td>
-							Duration: CurrentMonth
+							Duration
 						</td>
+						<td>:</td>
+						<td><b>CurrentMonth</b></td>
 					</tr>
 					<tr>
 						<td>
-							Closing Balance as on ${accountSummaryForm.endDate} : 4,000 CR
+							Closing Balance <br>as on <b>${accountSummaryForm.endDateToDisplay}</b>
 						</td>
+						<td>:</td>
+						<td class="gsumDisplay">${accountSummaryForm.closingBalance }</td>
 					</tr>
 				</table>
 			</td>

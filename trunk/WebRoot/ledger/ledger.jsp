@@ -13,7 +13,7 @@
 <s:fielderror></s:fielderror>
 
 <s:url id="accountsList" value="../json/accountIdsAndNamesList.action"></s:url>
-<s:url id="accountTransactions" value="/json/accountsList.action" />
+<%--<s:url id="accountTransactions" value="/json/accountsList.action" />--%>
 
 <s:form action="viewLedger.action" namespace="admin" method="post">
 	<s:head theme="ajax" />
@@ -45,7 +45,7 @@
 				<span class="required">*</span>
 			</td>
 			<td>
-				<select>
+				<select name="accountSummaryForm.period">
 					<option value="1">Current Month</option>
 					<option value="2">Current and Last Month</option>
 				</select>
@@ -54,16 +54,25 @@
 		<tr>
 			<td colspan="2"><br></td>
 		</tr>
-		<s:submit key="label.submit" ></s:submit>
-		<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
-		<s:submit type="submit" theme="ajax" value="submit" targets="ledger-grid" href="%{accountTransactions}" align="center" indicator="indicator"/>
+		<s:submit key="label.submit" align="center"></s:submit>
+<%--		<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>--%>
+<%--		<s:submit type="submit" theme="ajax" value="submit" targets="ledger-grid" href="%{accountTransactions}" align="center" indicator="indicator"/>--%>
 				
 	</table>
 
 </s:form>
 	<jsp:include flush="true" page="/accounts/accountSummary.jsp"></jsp:include>
 
-<script>
-	var ledgerJSON = ${ledgerJSON};
-	//alert("ledgerJSON: "+ledgerJSON);
-</script>
+<% if(request.getAttribute("ledgerJSON")!=null){ %>
+	<script> 
+		var accountHolder='${accountSummaryForm.accountName} ';	
+		var ledgerJSON = ${ledgerJSON}; 
+		var openingBal= ${accountSummaryForm.openingBalance};
+	</script>
+<%}else{ %>
+	<script> 
+		var accountHolder='';	
+		var ledgerJSON = '';
+		var openingBal=0; 
+	</script>
+<%} %>

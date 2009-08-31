@@ -87,6 +87,7 @@ function roundTo(value,decimalPlaces){
 function makeFormatedString(str){
 	
 			str=String(str);
+			if(str=='') return "";
 			if(str.indexOf(".")==-1)
 				return str+".00";
 			if((str.length-(str.indexOf(".")+1))<2)

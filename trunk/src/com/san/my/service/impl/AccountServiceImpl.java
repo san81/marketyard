@@ -134,25 +134,21 @@ public class AccountServiceImpl implements AccountService {
     	Double drTotal=0.0;
     	Double crTotal=0.0;
     	
-    	for(BussinessTransactionDO btransaction :accountSummaryForm.getAccountBTransactions() ){
-    		//TODO:move DR and CR to constants
-    		if(Constants.DEBIT.equals(btransaction.getTransFlow())){
+    	for(BussinessTransactionDO btransaction :accountSummaryForm.getAccountBTransactions() ){    	
+    		if(Constants.DEBIT.equals(btransaction.getTransFlow()))
     			drTotal+=btransaction.getAmount();
-    		}else{
+    		else
     			crTotal+=btransaction.getAmount();
-    		}
+    		
     	}
     	
-    	//add the starting balance to the existing figures.
-    	if(accountSummaryForm.getStartDrBalance()!=null &&
-    			accountSummaryForm.getStartDrBalance()>0){
-    		drTotal+=accountSummaryForm.getStartDrBalance();
-    	}else{
+    	//add the starting balance to the existing figures.    	
+    		drTotal+=accountSummaryForm.getStartDrBalance();    	
     		crTotal+=accountSummaryForm.getStartCrBalance();
-    	}
     	
     	accountSummaryForm.setDrTotal(drTotal);
     	accountSummaryForm.setCrTotal(crTotal);
+    	accountSummaryForm.setClosingBalance(crTotal-drTotal);
     	
     }
     
@@ -179,8 +175,7 @@ public class AccountServiceImpl implements AccountService {
     	}
     	 accountSummaryForm.setStartDrBalance(drTotal);
 		 accountSummaryForm.setStartCrBalance(crTotal);
-    	 accountSummaryForm.setOpeningBalance(crTotal-drTotal);
-    	
+    	 accountSummaryForm.setOpeningBalance(crTotal-drTotal);    	
    }
     
 }
