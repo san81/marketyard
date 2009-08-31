@@ -10,5 +10,5 @@
 
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/jslib/extjs/css/ext-all.css" />
 
-<jsp:include flush="true" page="<%=request.getContextPath() %>/includes/userAlerts/progressBox.jsp"></jsp:include>
-<jsp:include flush="true" page="<%=request.getContextPath() %>/includes/userAlerts/customMsgBox.jsp"></jsp:include>
+<jsp:include flush="true" page="includes/userAlerts/progressBox.jsp"></jsp:include>
+<jsp:include flush="true" page="includes/userAlerts/customMsgBox.jsp"></jsp:include>

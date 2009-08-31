@@ -11,8 +11,6 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.san.my.common.global.Constants;
 import com.san.my.dataobj.BussinessTransactionDO;
 import com.san.my.service.AccountService;
-import com.san.my.service.AccountSummary;
-import com.san.my.service.BTransactionService;
 import com.san.my.viewobj.AccountSummaryForm;
 
 public class Ledger extends ActionSupport implements ServletRequestAware
