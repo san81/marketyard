@@ -87,7 +87,8 @@ public class AccountServiceImpl implements AccountService {
 		  //for option 2 ,3,5 or 6.
 		  private int period;
 		*/
-    	
+    	option=2;
+        period=2;
     	if(option > 0){
     		if(option == 1){
     			accountSummaryForm.setStartDate(accountSummaryUtil.getFirstDateOfCurrentMonth());
