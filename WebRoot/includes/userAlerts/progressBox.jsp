@@ -21,7 +21,7 @@
 				<table bgcolor="#F0F0F0" class="userAlertInnerTable" cellpadding="5" cellspacing="5">
 					<TR>
 						<TD valign="middle" bgcolor="#F0F0F0">
-							<img src="images/progress-bar-circle.gif" width="48" height="48"
+							<img src="${pageContext.request.contextPath}/images/progress-bar-circle.gif" width="48" height="48"
 								border="0" />
 						</TD>					
 						<TD valign="middle" class="formLabel" nowrap bgcolor="#F0F0F0">

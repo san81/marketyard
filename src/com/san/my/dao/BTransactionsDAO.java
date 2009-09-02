@@ -20,7 +20,7 @@ public interface BTransactionsDAO {
     
 //    public List<BussinessTransactionDO> getLedger(Long accountId);
     
-    public List getDayTransactionsSheet(Calendar calendar);
+    public List getTransactionsSheet(Calendar startTime, Calendar endTime);
     
     public List getTotalBalance(Calendar calendar);
 	

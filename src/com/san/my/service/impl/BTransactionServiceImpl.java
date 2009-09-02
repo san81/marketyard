@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import com.agentrics.mgs.web.util.NumberFormatUtil;
 import com.san.my.common.exception.BusinessServiceException;
 import com.san.my.common.global.Constants;
 import com.san.my.dao.AccountDAO;
@@ -30,6 +31,7 @@ import com.san.my.viewobj.DaySheetView;
 import com.san.my.web.action.Ledger;
 import com.san.my.web.action.PaymentAndReciept;
 import com.san.my.web.action.PurchaseSlip;
+import com.san.my.web.util.MathUtil;
 
 public class BTransactionServiceImpl implements BTransactionService{
 
@@ -312,36 +314,47 @@ public class BTransactionServiceImpl implements BTransactionService{
         daySheet.setDate(calendar.getTime());
         
         //TODO: Use the appropriate implementation of map.
-        Map<String, Double> creditsMap = new TreeMap<String, Double>();
-        Map<String, Double> debitsMap = new TreeMap<String, Double>();
+        Map<String, String> creditsMap = new TreeMap<String, String>();
+        Map<String, String> debitsMap = new TreeMap<String, String>();
         
         Double sumOfCredits = 0.0;
         Double sumOfDebits = 0.0;
         
-        List<Object[]> list = transactionsDAO.getDayTransactionsSheet(calendar);
+        Calendar startTime = (Calendar)calendar.clone();
+        startTime.set(Calendar.HOUR_OF_DAY, 0);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.SECOND, 0);
+        startTime.set(Calendar.MILLISECOND, 0);
+        
+        Calendar endTime = calendar;
+        endTime.set(Calendar.HOUR_OF_DAY, 23);
+        endTime.set(Calendar.MINUTE, 59);
+        endTime.set(Calendar.SECOND, 59);
+        endTime.set(Calendar.MILLISECOND, 1000);
+        
+        List<Object[]> list = transactionsDAO.getTransactionsSheet(startTime, endTime);
         
         for(Object[] result : list){            
             if(Constants.CREDIT.equals(result[2])){
-                creditsMap.put((String)result[1], (Double)result[0]);
+                creditsMap.put((String)result[1], NumberFormatUtil.getFormattedNumber((Double)result[0]));
                 sumOfCredits += (Double)result[0];
             }else{
-                debitsMap.put((String)result[1], (Double)result[0]);
+                debitsMap.put((String)result[1], NumberFormatUtil.getFormattedNumber((Double)result[0]));
                 sumOfDebits += (Double)result[0];
-            }
-            
-//            System.out.println(result[0]+" : "+result[1]+" : "+result[2]);
+            }            
         }
         
         daySheet.setCreditsMap(creditsMap);
         daySheet.setSumOfCredits(sumOfCredits);
         daySheet.setDebitsMap(debitsMap);        
         daySheet.setSumOfDebits(sumOfDebits);
-        daySheet.setBalance(getTotalBalance(calendar));
+        daySheet.setOpeningBalance(getTotalBalanceAtTime(startTime));
+        daySheet.setClosingBalance(getTotalBalanceAtTime(endTime));
         
         return daySheet;
     }
     
-    public Double getTotalBalance(Calendar calendar){        
+    public Double getTotalBalanceAtTime(Calendar calendar){        
         List<Object[]> list = transactionsDAO.getTotalBalance(calendar);
         
         Double sumOfCredits = 0.0;
@@ -351,8 +364,8 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         if(list.get(1) != null)
             sumOfDebits = (Double)((Object[])list.get(1))[0];
-        
-        return (sumOfCredits - sumOfDebits);
+//        MathUtil.subtractDoubles(sumOfCredits, sumOfDebits);
+        return MathUtil.subtractDoubles(sumOfCredits, sumOfDebits);
     }
 
 }

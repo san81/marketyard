@@ -4,6 +4,9 @@ package com.san.my.viewobj;
 import java.util.Date;
 import java.util.Map;
 
+import com.agentrics.mgs.web.util.NumberFormatUtil;
+import com.san.my.common.global.Constants;
+
 public class DaySheetView
 {
     private Date date;
@@ -16,7 +19,9 @@ public class DaySheetView
     
     private Double sumOfDebits;
     
-    private Double balance;
+    private Double openingBalance;
+    
+    private Double closingBalance;
 
     public Map getCreditsMap()
     {
@@ -67,15 +72,45 @@ public class DaySheetView
     {
         this.date = date;
     }
-
-    public Double getBalance()
+    
+    public Double getOpeningBalance()
     {
-        return balance;
+        return openingBalance;
+    }
+    
+    public void setOpeningBalance(Double openingBalance)
+    {
+        this.openingBalance = openingBalance;
+    }
+   
+    public Double getClosingBalance()
+    {
+        return closingBalance;
     }
 
-    public void setBalance(Double balance)
+    public void setClosingBalance(Double closingBalance)
     {
-        this.balance = balance;
+        this.closingBalance = closingBalance;
     }
 
+    public String getSumOfCreditsFormatted()
+    {
+        return NumberFormatUtil.getFormattedNumber(Constants.NUMBER_FORMAT_US, sumOfCredits, 2);
+    }
+    
+    public String getSumOfDebitsFormatted()
+    {
+        return NumberFormatUtil.getFormattedNumber(Constants.NUMBER_FORMAT_US, sumOfDebits, 2);
+    }
+    
+    public String getOpeningBalanceFormatted()
+    {
+        return NumberFormatUtil.getFormattedNumber(Constants.NUMBER_FORMAT_US, openingBalance, 2);
+    }
+    
+    public String getClosingBalanceFormatted()
+    {
+        return NumberFormatUtil.getFormattedNumber(Constants.NUMBER_FORMAT_US, closingBalance, 2);
+    }
+    
 }

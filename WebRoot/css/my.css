@@ -435,3 +435,12 @@ h6 {
 	color:#FF6600;
 	font-weight: bold;
 }
+
+.tableHeader {
+	background-color: #CEDDFF;
+	color: #666666;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+

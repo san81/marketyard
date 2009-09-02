@@ -128,6 +128,7 @@
        
        <action name="daySheet" class="daySheetActionBean">
          	<result name="success" type="tiles">day.sheet</result>
+         	<result name="ajax">/ledger/daySheetContent.jsp</result>
        </action>
        
     </package>

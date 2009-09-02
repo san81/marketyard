@@ -44,6 +44,6 @@ public interface BTransactionService {
     
     public DaySheetView getDayTransactionsSheet(Calendar calendar);
     
-    public Double getTotalBalance(Calendar calendar);
+    public Double getTotalBalanceAtTime(Calendar calendar);
 	
 }
