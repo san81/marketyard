@@ -29,6 +29,11 @@ public class Constants {
     public static final String BILL_STATUS_PENDING = "PENDING";
     public static final String BILL_STATUS_PARTIAL = "PARTIAL";
     public static final String BILL_STATUS_PAID = "PAID";
+    
+//  Number formats
+    public final static String NUMBER_FORMAT_US = "#,###.##";
+    public final static String NUMBER_FORMAT_GERMANY = "#.###,##";
+    public final static String NUMBER_FORMAT_FRANCE = "# ###,##";
 	
 	public static final String TURKISH_I_LOWER = "\u0131";
 	public static final String TURKISH_I_UPPER = "\u0130";  

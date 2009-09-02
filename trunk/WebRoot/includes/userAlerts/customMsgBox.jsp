@@ -1,5 +1,4 @@
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>
-<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 
 <table class="embeddedWindow" id="customMsgBox" border="0" cellpadding="0"
 	cellspacing="0"
@@ -9,7 +8,7 @@
 			<a href="javascript://"
 				onClick="hideMsgBox('customMsgBox');return false"><img
 					src="images/exit.gif" border="0" /> </a>
-			<bean:message key="string.notice" />
+			<s:text name="string.notice" />
 		</td>
 	</tr>
 	<tr>
