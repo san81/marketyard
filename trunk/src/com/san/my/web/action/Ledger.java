@@ -12,6 +12,7 @@ import com.san.my.common.global.Constants;
 import com.san.my.dataobj.BussinessTransactionDO;
 import com.san.my.service.AccountService;
 import com.san.my.viewobj.AccountSummaryForm;
+import com.san.my.web.util.NumberFormatUtil;
 
 public class Ledger extends ActionSupport implements ServletRequestAware
 {
@@ -36,17 +37,21 @@ public class Ledger extends ActionSupport implements ServletRequestAware
         StringBuilder builder = new StringBuilder();
         builder.append("{'transactions' : [");
         List<BussinessTransactionDO> transaction= accountSummaryForm.getAccountBTransactions();
+        Double balance=accountSummaryForm.getOpeningBalance();
         for(BussinessTransactionDO payment : transaction){
             builder.append("{'transId':").append(payment.getTransId()).append(",");
-            builder.append("'datetime':'").append(new SimpleDateFormat(Constants.DATE_FORMAT).format(payment.getDatetime())).append("',");
+            builder.append("'datetime':'").append(new SimpleDateFormat("dd-MM-yyyy").format(payment.getDatetime())).append("',");
             builder.append("'description':'").append(payment.getDescription()).append("',");            
             if(Constants.CREDIT.equals(payment.getTransFlow())){
 	            builder.append("'"+Constants.DEBIT+"':'',");
-	            builder.append("'"+Constants.CREDIT+"':").append(payment.getAmount()).append(",");
+	            builder.append("'"+Constants.CREDIT+"':'").append(payment.getAmountToDisplay()).append("',");
+	            balance+=payment.getAmount();
             }else{
-            	builder.append("'"+Constants.DEBIT+"':").append(payment.getAmount()).append(",");
+            	builder.append("'"+Constants.DEBIT+"':'").append(payment.getAmountToDisplay()).append("',");
 	            builder.append("'"+Constants.CREDIT+"':'',");
+	            balance-=payment.getAmount();
             }
+            builder.append("'balance':'"+NumberFormatUtil.getFormattedNumber(balance)+"',");
             builder.append("'mode':'").append(payment.getPaymentMode()).append("',");
             builder.append("'slipId':").append(getSlipId(payment)).append("},");
         }

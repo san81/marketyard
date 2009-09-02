@@ -1,4 +1,4 @@
- Ext.onReady(function(){
+function renderGrid(){
  
  var store = new Ext.data.Store({
         // load using script tags for cross domain, if the data in on the same domain as
@@ -16,6 +16,7 @@
            		{name: 'description'},
            		{name: 'DR'},
            		{name: 'CR'},
+           		{name: 'balance'},           		
 				{name: 'mode'},
 				{name: 'slipId'}
 				//{name: 'regdate',type: 'date', dateFormat: 'timestamp'}
@@ -56,7 +57,8 @@
            align: 'right',
           renderer: renderAmount
         },{
-           header: "Balance",           
+           header: "Balance",
+           dataIndex: 'balance',           
            width: 70,
            align: 'right',
           renderer: renderBalance
@@ -100,11 +102,7 @@
     	return String.format('<a href="loadSlip_cancel.action?slipId={0}" target="_blank">{0}</a>',value);
     }
  function renderBalance(value,p,r){
-	 if(r.data['DR']!='')
-	 	openingBal-=r.data['DR'];
-	 else
-		 openingBal+=r.data['CR'];
-   	return String.format('<span class="gsumDisplay">{0}</span>',makeFormatedString(openingBal));
+	return String.format('<span class="gsumDisplay">{0}</span>',value);
   }    
  function renderMyDate(value,p,r){
     	return String.format('',value.dateFormat('M j, Y, g:i a'),r.data['datetime']);
@@ -140,4 +138,4 @@
    
     store.load({params:{start:0, limit:25}});  
     
-});
+}

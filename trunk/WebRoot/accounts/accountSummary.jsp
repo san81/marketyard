@@ -23,7 +23,7 @@
 							Opening Balance <br>as on <b>${accountSummaryForm.startDateToDisplay}</b>
 						</td>
 						<td>:</td>
-						<td class="gsumDisplay">${accountSummaryForm.openingBalance }</td>
+						<td class="gsumDisplay">${accountSummaryForm.openingBalanceToDisplay }</td>
 					</tr>
 				</table>
 			</td>
@@ -41,14 +41,14 @@
 							Duration
 						</td>
 						<td>:</td>
-						<td><b>CurrentMonth</b></td>
+						<td><b>${accountSummaryForm.duration}</b></td>
 					</tr>
 					<tr>
 						<td>
 							Closing Balance <br>as on <b>${accountSummaryForm.endDateToDisplay}</b>
 						</td>
 						<td>:</td>
-						<td class="gsumDisplay">${accountSummaryForm.closingBalance }</td>
+						<td class="gsumDisplay">${accountSummaryForm.closingBalanceToDisplay }</td>
 					</tr>
 				</table>
 			</td>
@@ -60,3 +60,8 @@
 			</td>
 		</tr>
 	</table>
+<form name="hiddenValuesForm">
+	<input type=hidden name="accountHolderCtrl" value="${accountSummaryForm.accountName}">
+	<div id='ledgerJSONDiv' style="display:none">ledgerJSON=${ledgerJSON}</div>
+	<input type=hidden name="openingBalCtrl" value="${openingBal}">
+</form>
