@@ -431,6 +431,21 @@ h6 {
 	bgcolor: #DFF2FF;
 	background-color: #DFF2FF;
 }
+
+.listRow { /* font-family: Verdana, Arial, Helvetica, sans-serif; */
+	font-size: 8pt;
+	background-color: #ffffff;
+	border-style: none;
+	border-color: #6d7b8d;
+}
+
+.listAltRow { /*font-family: Verdana, Arial, Helvetica, sans-serif;*/
+	font-size: 8pt;
+	background-color: #eeeeeb;
+	border-style: none;
+	border-color: #6d7b8d;
+}
+
 .gsumDisplay{
 	color:#FF6600;
 	font-weight: bold;
