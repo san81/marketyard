@@ -16,7 +16,7 @@
 			<table border="0" width="100%"
 		style="border: 0.1em solid rgb(202, 218, 231);">
 		
-		<% String[] rowStyles = { "altRow", "" };   %>		  
+		<% String[] rowStyles = { "listRow", "listAltRow" };   %>		  
 											
 		<tr>
 			<td valign="top" width="45%">
