@@ -122,8 +122,8 @@
          	<result name="success" type="tiles">account.ledger</result>
        </action>
        <action name="viewLedger" class="ledgerActionBean">
-	        <result name="input" type="tiles">account.ledger</result>
-         	<result name="success" type="tiles">account.ledger</result>
+	        <result name="input">/accounts/accountSummary.jsp</result>
+         	<result name="success">/accounts/accountSummary.jsp</result>
        </action>
        
        <action name="daySheet" class="daySheetActionBean">

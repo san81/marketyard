@@ -77,9 +77,8 @@ public class AccountSummaryUtil {
 	 */
 	public static Date getFirstDayofCurrentYear(){
 		Calendar cal =Calendar.getInstance();
-		cal.set(Calendar.MONTH,1 );
-		cal.set(Calendar.DATE,1);
-		cal.set(Calendar.DATE,cal.get(Calendar.DATE)-1);
+		cal.set(Calendar.MONTH,0);
+		cal.set(Calendar.DATE,1);		
 		
 		return cal.getTime();
 		

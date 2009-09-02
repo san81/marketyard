@@ -6,9 +6,14 @@ package com.san.my.viewobj;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
+import org.springframework.context.MessageSource;
 
 import com.san.my.common.global.Constants;
+import com.san.my.common.util.springs.ServiceLocator;
 import com.san.my.dataobj.BussinessTransactionDO;
+import com.san.my.web.util.NumberFormatUtil;
 
 /**
  * @author radhika
@@ -34,10 +39,10 @@ public class AccountSummaryForm {
 	  years = 5 (last x year(s))
 	  year =6 (one of last 4 years)
 	 */
-	private int option=1;
+	private int option;
 	
 	//for option 2 ,3,5 or 6.
-	private int period;
+	private int period=1;
 	
 	private List<BussinessTransactionDO> accountBTransactions;
 	private Double drTotal=0.0;
@@ -53,6 +58,9 @@ public class AccountSummaryForm {
 	
 	public Double getOpeningBalance() {
 		return openingBalance;
+	}
+	public String getOpeningBalanceToDisplay(){
+		return NumberFormatUtil.getFormattedNumber(openingBalance);
 	}
 	public void setOpeningBalance(Double openingBalance) {
 		this.openingBalance = openingBalance;
@@ -143,7 +151,10 @@ public class AccountSummaryForm {
 	}
 	public Double getClosingBalance() {	
 		return closingBalance;
-	}	
+	}
+	public String getClosingBalanceToDisplay() {	
+		return NumberFormatUtil.getFormattedNumber(closingBalance);
+	}
 	public void setClosingBalance(Double closingBalance) {
 		this.closingBalance = closingBalance;
 	}
@@ -153,5 +164,17 @@ public class AccountSummaryForm {
 	}
 	public String getStartDateToDisplay() {
 		return new SimpleDateFormat(Constants.DATE_FORMAT).format(startDate);		
+	}
+	public String getDuration(){
+		String msg="";
+		MessageSource messageSource = ServiceLocator.getMessageSource();
+		if(option==1)
+			msg = messageSource.getMessage("label.duration.currentMonth",null, new Locale("EN"));			
+		else if(option==2)
+			msg = messageSource.getMessage("label.duration.currentAndLastMonth",null, new Locale("EN"));	
+		else if(option==4)
+			msg = messageSource.getMessage("label.duration.currentYear",null, new Locale("EN"));
+		
+		return msg;
 	}
 }
