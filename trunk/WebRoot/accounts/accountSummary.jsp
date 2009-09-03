@@ -1,7 +1,15 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
 <table  width="100%">
-		<tr class="acHeader">
+		<tr>
+			<td colspan=2>
+				<span  class="subHead">
+					${accountSummaryForm.accountName}&nbsp;&nbsp;&nbsp;
+					<s:text name="label.accountSummary"></s:text>
+				</span>
+			<hr></td>
+	    </tr>
+		<tr>
 			<td>
 				<table>
 					<tr>
@@ -53,7 +61,11 @@
 				</table>
 			</td>
 		</tr>
-		
+		<tr>
+			<td colspan=2>				
+				<hr>
+			</td>
+	    </tr>
 		<tr>
 			<td colspan=2>
 				<div id="ledger-grid"></div>
