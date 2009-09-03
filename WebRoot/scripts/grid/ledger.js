@@ -31,19 +31,19 @@ function renderGrid(){
  	
  var cm = new Ext.grid.ColumnModel([{
            
-           header: "Date Time",
+           header: "<b>Date Time</b>",
            dataIndex: 'datetime',
            width: 100,
            align: 'center'
            //renderer: renderLast
         },{
-           header: "Description",
+           header: "<b>Description</b>",
            dataIndex: 'description',
-           width: 400,
+           width: 300,
            align: 'left',           
            renderer:renderDescription
         },{
-           header: "DR",
+           header: "<b>DR</b>",
            dataIndex: 'DR',
            width: 70,
            align: 'right',
@@ -51,24 +51,24 @@ function renderGrid(){
            renderer:renderAmount
         },{
            id: 'CR',
-           header: "CR",
+           header: "<b>CR</b>",
            dataIndex: 'CR',
            width: 70,
            align: 'right',
           renderer: renderAmount
         },{
-           header: "Balance",
+           header: "<b>Balance</b>",
            dataIndex: 'balance',           
            width: 70,
            align: 'right',
           renderer: renderBalance
         },{
-           header: "Payment Mode",
+           header: "<b>Payment Mode</b>",
            dataIndex: 'mode',
            width: 80,
            align: 'center'
         },{
-           header: "Bill ID",
+           header: "<b>Bill ID</b>",
            dataIndex: 'slipId',
            width: 90,
            align: 'center',
@@ -83,7 +83,7 @@ function renderGrid(){
         getRowClass: function(record, index) {
             var c = record.get('DR');
             if (index%2 == 0) {
-                return 'altRow';
+                return 'listAltRow';
             } else  {
                 return '';
             }
@@ -93,7 +93,7 @@ function renderGrid(){
  cm.defaultSortable = true;
  
   function renderDescription(value, p, record){
-        return String.format('<b>{0}<br><br></b>',value);
+        return String.format('{0}<br><br>',value);
     }
  function renderAmount(value,p,r){
     	return String.format('<font color="blue"><b>{0}<b></font>',makeFormatedString(value));
