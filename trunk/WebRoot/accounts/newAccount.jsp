@@ -10,11 +10,13 @@
 
 	<table>
 		<tr>
-			<td colspan="3">
-				<s:label key="label.account.createTitle" />				
-				<s:fielderror />
+			<td colspan=3 valign="top">
+				<span  class="subHead">					
+						<s:text name="label.account.createTitle"></s:text>					
+				</span>
+				<hr>
 			</td>
-		</tr>
+	   </tr>		
 		<tr>
 			<td>
 				<s:textfield name="loginName" key="label.account.loginName" />

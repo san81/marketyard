@@ -14,6 +14,7 @@ function makeSlip(pform){
 	var cc=0;
 	var mf=0;
 	var hamaliVar=0;
+	var doNotCalculateVar=document.conformSlipSubmit.doNotCalculate.checked;
 	
 	if(vbagWt!='' && vbags!=''){
 		

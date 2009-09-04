@@ -3,20 +3,16 @@
 <s:form action="admin/saveSeed" method="POST" validate="true">
 	<table>
 		<tr>
-			<td colspan="3">
-				<s:label key="label.seed.createTitle" />				
-				<s:fielderror />
+			<td colspan=3 valign="top">
+				<span  class="subHead">					
+						<s:text name="label.seed.createTitle"></s:text>					
+				</span>
+				<hr>
 			</td>
-		</tr>
-		<tr>
-			<td>
-				<s:textfield name="seedName" key="label.seed.seedName" />
-			</td>
-		</tr>
-		<tr>
-			<td colspan="3" align="center">
-				<s:submit></s:submit>
-			</td>
-		</tr>
+	   </tr>
+		
+		<s:textfield name="seedName" key="label.seed.seedName" />
+		<s:submit></s:submit>
+			
 	</table>
 </s:form>
