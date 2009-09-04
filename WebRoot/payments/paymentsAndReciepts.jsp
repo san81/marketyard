@@ -12,7 +12,7 @@
 		<tr>
 			<td colspan=2 valign="top">
 				<span  class="subHead">
-					<s:if test="action=='Receipt'">
+					<s:if test="action=='RECEIPT'">
 						<s:text name="label.receiptVoucher"></s:text>
 					</s:if>
 					<s:else>

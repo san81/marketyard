@@ -1,7 +1,7 @@
  <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
  <%@ taglib prefix="s" uri="/struts-tags" %>
-
+<script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/scripts/editUtil.js"></script>
 <span class="errorMessage" id="jsErrorMsgDiv" style="text-align:left"></span>
 <%--<s:fielderror></s:fielderror>--%>
 
@@ -76,16 +76,19 @@
 					<td> <div id="grossTotalDiv" class="grandTotal">00.00</div> </td>
 				</tr>
 				<tr>
+					<td colspan="3"> <input type="checkbox" name="doNotCalculate" onchange="setEditableStyles(this)">:<s:text name="label.slip.doNotCalculate"></s:text> </td>					
+				</tr>
+				<tr>
 					<td> <s:text name="label.slip.hamali"></s:text> </td> <td>:</td>
-					<td> <span id="hamaliDiv" class="expensesColor">00.00</span> &nbsp;at ${hamaliRate} per bag</td>
+					<td> <span id="hamaliDiv" class="expensesColor" onclick="makeEditable(this)">00.00</span> &nbsp;at ${hamaliRate} per bag</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.cc"></s:text> </td> <td>:</td>
-					<td> <span id="ccDiv" class="expensesColor">00.00</span> &nbsp;at ${cashCommissionRate}%  </td>
+					<td> <span id="ccDiv" class="expensesColor"  onclick="makeEditable(this)">00.00</span> &nbsp;at ${cashCommissionRate}%  </td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.mf"></s:text> </td> <td>:</td>
-					<td> <span id="mfDiv" class="expensesColor">00.00</span> &nbsp;at ${adthiRate}%</td>
+					<td> <span id="mfDiv" class="expensesColor"  onclick="makeEditable(this)">00.00</span> &nbsp;at ${adthiRate}%</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.netTotal"></s:text> </td> <td>:</td>

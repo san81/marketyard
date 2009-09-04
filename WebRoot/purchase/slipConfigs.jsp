@@ -9,6 +9,14 @@
 <s:form action="storeSlipConfigurations" method="post">
 	<table width=50%>
 		<tr>
+			<td colspan=3 valign="top">
+				<span  class="subHead">					
+						<s:text name="label.slipConfig.title"></s:text>					
+				</span>
+				<hr>
+			</td>
+	   </tr>
+		<tr>
 			<td> Hamali Rate  :</td>
 			<td> <input type=text name="hamaliRate" value="${hamaliRate}" size=3 > </td>
 		</tr>

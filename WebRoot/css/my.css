@@ -405,6 +405,11 @@ h6 {
 	color:green;
 }
 
+.editableExpensesColor{
+	color:green;
+	background-color: yellow;
+}
+
 .grandTotal{
 	color:red;
 	font-size: 15px;

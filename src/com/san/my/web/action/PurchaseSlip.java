@@ -30,7 +30,8 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
 	private Double adthiRate;
 	private Double cashCommissionRate;
 	
-	//drived values
+	private boolean doNotCalculate;
+	//derived values
 	private Double grossTotal;
 	private Double netTotal;
 	private Double totalHamali;
@@ -391,6 +392,14 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
         
         return builder.toString();
     }
+
+	public boolean isDoNotCalculate() {
+		return doNotCalculate;
+	}
+
+	public void setDoNotCalculate(boolean doNotCalculate) {
+		this.doNotCalculate = doNotCalculate;
+	}
 
 	
 }
