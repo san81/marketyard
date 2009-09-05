@@ -11,9 +11,9 @@ function makeSlip(pform){
 	var mfRate=pform.adthiRate.value;
 	var grandSum=0;
 	var netSum=0;
-	var cc=0;
-	var mf=0;
-	var hamaliVar=0;
+	var cc=parseFloat(pform.totalCc.value);
+	var mf=parseFloat(pform.totalMf.value);
+	var hamaliVar=parseFloat(pform.totalHamali.value);
 	var doNotCalculateVar=document.conformSlipSubmit.doNotCalculate.checked;
 	
 	if(vbagWt!='' && vbags!=''){
@@ -34,22 +34,24 @@ function makeSlip(pform){
 					vbags=parseInt(vbags)+1;
 				}
 				
-		qt=qt/100;		
-		hamaliVar=vbags*hamaliRate;
-		hamaliVar = roundTo(hamaliVar);
+		qt=qt/100;
+		if(!doNotCalculateVar){
+			hamaliVar=vbags*hamaliRate;
+			hamaliVar = roundTo(hamaliVar);
+		}
 		
 		if(vcost!=''){
 		
 			grandSum=qt*vcost;			
 			var t=parseFloat(grandSum/100);
-			
-			if(grandSum>750){ //this needs to be configurable
-				cc=t*ccRate;							
-			}			
-			mf=t*mfRate;
-			
-			mf = roundTo(mf);
-			cc = roundTo(cc);
+			if(!doNotCalculateVar){
+				if(grandSum>750){ //this needs to be configurable
+					cc=t*ccRate;							
+				}			
+				mf=t*mfRate;
+				mf = roundTo(mf);
+				cc = roundTo(cc);
+			}
 			grandSum = roundTo(grandSum);
 			
 			netSum=grandSum-(hamaliVar+cc+mf);
@@ -173,6 +175,7 @@ function checkAllBeforeSubmit(pform){
 			return false;
 		}
 	}
+	makeSlip(document.conformSlipSubmit);
 	return true;
 }
 function setErrorMsg(msg){

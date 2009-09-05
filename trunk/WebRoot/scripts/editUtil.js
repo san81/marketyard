@@ -1,10 +1,20 @@
 <!--
  
   function setEditableStyles(checkBoxCtrl){
-  	var colorToSet="white";  	
+  	var colorToSet="white";  
+  	var displayToSet='';	
   	
-  	if(checkBoxCtrl.checked)
+  	if(checkBoxCtrl.checked){
   		colorToSet="yellow";
+  		displayToSet='none';  		
+  	}
+  	
+  	var ratesDiv=document.getElementById('hamaliRateDiv');
+  		ratesDiv.style.display=displayToSet;
+  		ratesDiv=document.getElementById('ccRateDiv');
+  		ratesDiv.style.display=displayToSet;
+  		ratesDiv=document.getElementById('mfRateDiv');
+  		ratesDiv.style.display=displayToSet;
 	
 	var divCtrl=document.getElementById('hamaliDiv');  
 	divCtrl.style.backgroundColor=colorToSet;
@@ -19,28 +29,32 @@
   function makeEditable(divCtrl){
   	if(!document.conformSlipSubmit.doNotCalculate.checked)
   		return;
-  	currentEditingDiv=divCtrl;alert(currentEditingDiv.id);
+  	currentEditingDiv=divCtrl;
   	divCtrl.onclick='';
   	var eTextBox="<input type='text' name='editingBox' size='6' value='"+divCtrl.innerHTML+"' ";
   	eTextBox+="onblur='resetEditedVal(this)' ";
   	eTextBox+="/>";
   	divCtrl.innerHTML=eTextBox;
-  	//document.conformSlipSubmit.editingBox.setFocus();
+  	document.conformSlipSubmit.editingBox.focus();
   		
   }
   
- function resetEditedVal(editingBoxCtrl){alert(currentEditingDiv.id);alert(this);
+ function resetEditedVal(editingBoxCtrl){
  	if(isNaN(editingBoxCtrl.value)) alert('not a number');
- 	currentEditingDiv.innerHTML=editingBoxCtrl.value;
+	var editedVal=parseFloat(editingBoxCtrl.value);
  	//set value to hidden variable
  	var pform=document.conformSlipSubmit; 	
  	if(currentEditingDiv.id=='hamaliDiv')
- 		pform.totalHamali.value=editingBoxCtrl.value;
+ 		pform.totalHamali.value=editedVal; 		
  	else if(currentEditingDiv.id=='ccDiv')
- 		pform.totalCc.value=editingBoxCtrl.value;
+ 		pform.totalCc.value=editedVal;
  	else if(currentEditingDiv.id=='mfDiv')
- 		pform.totalMf.value=editingBoxCtrl.value;
- 		
+ 		pform.totalMf.value=editedVal;
+ 	
+ 	makeSlip(pform);
+ 	var numNF = new NumberFormat(editingBoxCtrl.value);
+    numNF.setPlaces(2);
+ 	currentEditingDiv.innerHTML=numNF.toFormatted();
  	currentEditingDiv.onclick=function(){makeEditable(this);};
  }
 -->

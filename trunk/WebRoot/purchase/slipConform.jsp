@@ -44,6 +44,7 @@
 <s:hidden name="branchName"></s:hidden>
 <s:hidden name="checkNumber"></s:hidden>
 <s:hidden name="paymentAmount"></s:hidden>
+<s:hidden name="doNotCalculate"></s:hidden>
 
 	
 <table width=100% border="0">

@@ -37,6 +37,9 @@
         <property name="qtls" type="java.lang.Double">
             <column name="qtls" precision="12" />
         </property>
+        <property name="autoCalculate" type="java.lang.Boolean">
+            <column name="auto_calculate" />
+        </property>
         <property name="hamaliRate" type="java.lang.Double">
             <column name="hamali_rate" precision="10" />
         </property>
