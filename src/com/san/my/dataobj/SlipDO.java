@@ -33,6 +33,8 @@ public class SlipDO implements java.io.Serializable {
 	private Double rate;
 
 	private Double qtls;
+	
+	private Boolean autoCalculate;
 
 	private Double hamaliRate;
 
@@ -222,5 +224,13 @@ public class SlipDO implements java.io.Serializable {
     {
         this.supplier = supplier;
     }
+
+	public Boolean getAutoCalculate() {
+		return autoCalculate;
+	}
+
+	public void setAutoCalculate(Boolean autoCalculate) {
+		this.autoCalculate = autoCalculate;
+	}
 
 }

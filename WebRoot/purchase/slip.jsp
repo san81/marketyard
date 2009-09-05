@@ -76,19 +76,30 @@
 					<td> <div id="grossTotalDiv" class="grandTotal">00.00</div> </td>
 				</tr>
 				<tr>
-					<td colspan="3"> <input type="checkbox" name="doNotCalculate" onchange="setEditableStyles(this)">:<s:text name="label.slip.doNotCalculate"></s:text> </td>					
+					<td colspan="3"> <input type="checkbox" name="doNotCalculate" onchange="setEditableStyles(this)"
+					<s:if test="doNotCalculate=='on'">checked</s:if>/>
+					:<s:text name="label.slip.doNotCalculate"></s:text> </td>					
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.hamali"></s:text> </td> <td>:</td>
-					<td> <span id="hamaliDiv" class="expensesColor" onclick="makeEditable(this)">00.00</span> &nbsp;at ${hamaliRate} per bag</td>
+					<td> <span id="hamaliDiv" class="expensesColor" onclick="makeEditable(this)">00.00</span> 
+						 &nbsp;
+						 <span id="hamaliRateDiv">at ${hamaliRate} per bag</span>
+					</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.cc"></s:text> </td> <td>:</td>
-					<td> <span id="ccDiv" class="expensesColor"  onclick="makeEditable(this)">00.00</span> &nbsp;at ${cashCommissionRate}%  </td>
+					<td> <span id="ccDiv" class="expensesColor"  onclick="makeEditable(this)">00.00</span> 
+						 &nbsp;
+						 <span id="ccRateDiv">at ${cashCommissionRate}%  </span>
+					</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.mf"></s:text> </td> <td>:</td>
-					<td> <span id="mfDiv" class="expensesColor"  onclick="makeEditable(this)">00.00</span> &nbsp;at ${adthiRate}%</td>
+					<td> <span id="mfDiv" class="expensesColor"  onclick="makeEditable(this)">00.00</span> 
+						&nbsp;
+						<span id="mfRateDiv">at ${adthiRate}%</span>
+					</td>
 				</tr>
 				<tr>
 					<td> <s:text name="label.slip.netTotal"></s:text> </td> <td>:</td>
@@ -212,4 +223,5 @@
 </s:form>
 <script>
 	makeSlip(document.conformSlipSubmit);
+	setEditableStyles(document.conformSlipSubmit.doNotCalculate);
 </script>

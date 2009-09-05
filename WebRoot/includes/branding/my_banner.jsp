@@ -27,3 +27,7 @@
 </div>
 <!-- End banner content -->
 <div style="clear: both;"></div>
+<script>
+	var groupSeparator = ",";
+	var decimalSeparator = ".";
+</script>

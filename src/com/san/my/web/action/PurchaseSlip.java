@@ -30,13 +30,13 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
 	private Double adthiRate;
 	private Double cashCommissionRate;
 	
-	private boolean doNotCalculate;
+	private String doNotCalculate;
 	//derived values
 	private Double grossTotal;
 	private Double netTotal;
-	private Double totalHamali;
-	private Double totalCc;
-	private Double totalMf;
+	private Double totalHamali=0.0;
+	private Double totalCc=0.0;
+	private Double totalMf=0.0;
 	
 	
 	private String seed;
@@ -393,13 +393,13 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
         return builder.toString();
     }
 
-	public boolean isDoNotCalculate() {
+	public String getDoNotCalculate() {
 		return doNotCalculate;
 	}
 
-	public void setDoNotCalculate(boolean doNotCalculate) {
+	public void setDoNotCalculate(String doNotCalculate) {
 		this.doNotCalculate = doNotCalculate;
 	}
 
-	
+		
 }
