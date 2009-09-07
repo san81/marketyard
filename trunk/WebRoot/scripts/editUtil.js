@@ -57,4 +57,18 @@
  	currentEditingDiv.innerHTML=numNF.toFormatted();
  	currentEditingDiv.onclick=function(){makeEditable(this);};
  }
+ 
+ function setAnonymousSupplier(){
+ 	
+ 	var pform=document.conformSlipSubmit;
+ 	pform.supplierCity.value='hyd';
+ 	pform.supplierKey.value=1;
+// 	pform.supplier.value='anonymous';
+ 	pform.description.value='Cash purchase';
+ 	var autoCompleter = dojo.widget.byId("supplier");
+     //key (key will be set to "AL" and value to "Alabama")
+     //autoCompleter.setSelectedKey(1);
+     //value (key will be set to "AL" and value to "Alabama")
+     autoCompleter.setAllValues("anonymous",1); 	
+ }
 -->

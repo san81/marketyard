@@ -48,6 +48,7 @@ public class BTransactionServiceImpl implements BTransactionService{
         SeedDO seedDO = seedDAO.loadSeed(purchaseSlip.getSeedKey());
         
 		SlipDO slipDO = new SlipDO();
+		slipDO.setAutoCalculate(!"on".equalsIgnoreCase(purchaseSlip.getDoNotCalculate()));
 		slipDO.setAdthiRate(purchaseSlip.getAdthiRate());
 		slipDO.setHamaliRate(purchaseSlip.getHamaliRate());
 		slipDO.setCcRate(purchaseSlip.getCashCommissionRate());
