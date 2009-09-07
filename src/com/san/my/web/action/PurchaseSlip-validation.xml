@@ -30,7 +30,7 @@
 			<message>Cost/Qtls is required</message>
 		</field-validator>
 	</field>
-	<field name="buyerAccountId">
+	<field name="buyerAccountIdKey">
 		<field-validator type="required">			
 			<message>Buyer name is required</message>
 		</field-validator>
