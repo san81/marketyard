@@ -69,6 +69,10 @@
        		<result name="input" type="tiles">my.purchase.slip</result>
          	<result name="success" type="redirectAction">loadSlip_cancel?slipId=${slipId}</result>
        </action>
+       <action name="editSlip" class="purchaseSlipActionBean" method="edit">
+       		<result name="input" type="tiles">my.purchase.slip</result>
+         	<result name="success" type="redirectAction">loadSlip_cancel?slipId=${slipId}</result>
+       </action>
        <action name="viewSlip">
          	<result name="success" type="tiles">my.purchase.slip.view</result>
        </action>

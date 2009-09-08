@@ -115,6 +115,8 @@ function setPaymentDetailsDiv(comboCtrl){
 		
 	if(comboCtrl.value=='PAID')
 		document.conformSlipSubmit.paymentAmount.value=document.conformSlipSubmit.netTotal.value;
+	else if(comboCtrl.value=='PARTIAL' && document.conformSlipSubmit.action.value == 'edit')
+		document.conformSlipSubmit.paymentAmount.value=document.conformSlipSubmit.paymentAmount.value;
 	else
 		document.conformSlipSubmit.paymentAmount.value='';
 	
@@ -141,6 +143,18 @@ function togglePaymentsDiv(){
 			paymentsDivCtrl.style.display='none';			
 		}
 	}
+function togglePaymentDetailsDiv(){
+	var paymentToggleCtrl = $('paymentToggle');
+	var paymentsDetailsDiv = $('paymentDetailsInputDiv');
+	if(paymentToggleCtrl.innerHTML=='+'){
+		paymentToggleCtrl.innerHTML='-';			
+		paymentsDetailsDiv.style.display='';
+	}else{
+		paymentToggleCtrl.innerHTML='+';
+		paymentsDetailsDiv.style.display='none';			
+	}
+	document.getElementById('paymentDetailsTitleRow').style.display='none';
+}
 
 function checkAllBeforeSubmit(pform){
 	//buyername and supplier name should not be same

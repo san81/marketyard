@@ -30,7 +30,7 @@
 				</span>
 			<hr></td>
 	 </tr>
-	<s:datetimepicker label="Sheet For Date" name="date" value="today" required="true" />
+	<s:datetimepicker label="Sheet For Date" name="date" value="today" required="true" displayFormat="MM/dd/yyyy" />
 	<s:submit key="label.submit" align="center" onclick="javascript:getDaySheet();"></s:submit>
 </s:form>
 

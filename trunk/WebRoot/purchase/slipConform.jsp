@@ -10,6 +10,7 @@
 <s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
 
 <%---- values from config --%>
+<s:hidden name="slipId"></s:hidden>
 <s:hidden name="cashCommissionRate"></s:hidden>
 <s:hidden name="adthiRate"></s:hidden>
 <s:hidden name="hamaliRate"></s:hidden>
@@ -239,11 +240,30 @@
 		</td>
 	</tr>
 	<s:if test="action=='load'" >
+		<s:if test="status!='PAID'" >	
+			<tr>
+				<td colspan="3" align="left" class="subHead">
+					<s:text name="Make Payment"></s:text>
+					[ <a href="#" onclick="togglePaymentDetailsDiv();"><span id="paymentToggle">+</span></a> ]
+					<br>
+					<hr>
+				</td>
+			</tr>
+		</s:if>
+		<tr>
+			<td colspan="3" align="center">
+				<div id="paymentDetailsInputDiv" style="display: none">
+					<jsp:include flush="true" page="/payments/paymentDetails.jsp"></jsp:include>
+					<br/>
+					<input align="center" type="button" value="Make Payment">
+					<br/><br/><br/>
+				</div>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="3" align="left" class="subHead">
-				
-					<s:text name="label.viewPayemnts"></s:text>
-					[ <a href="#" onclick="togglePaymentsDiv()"><span id="collapseDiv">+</span></a> ]
+				<s:text name="label.viewPayemnts"></s:text>
+				[ <a href="#" onclick="togglePaymentsDiv()"><span id="collapseDiv">+</span></a> ]
 				<br>
 				<hr>
 			</td>
@@ -261,7 +281,12 @@
 		<td colspan=3 align="center">
 			<input type="submit" value="Edit Slip" />
 				&nbsp; &nbsp;
-			<input type="button" value="Save" onClick="document.slipSubmit.action='saveSlip.action';document.slipSubmit.submit();"/>
+			<s:if test="slipId!=null">
+				<input type="button" value="Save" onClick="document.slipSubmit.action='editSlip.action';document.slipSubmit.submit();"/>
+			</s:if>
+			<s:else>
+				<input type="button" value="Save" onClick="document.slipSubmit.action='saveSlip.action';document.slipSubmit.submit();"/>
+			</s:else>
 		</td>
 	</s:if>
 	<s:elseif test="action=='save'">
@@ -271,10 +296,13 @@
 			<input type="button" value="Make Another Purchase"/>
 		</td>
 	</s:elseif>
-	<s:elseif test="action=='load'">
+	<s:elseif test="action=='load'">	
 		<td colspan=3 align="center">
-			<input type="submit" value="Edit Slip" />
-				&nbsp; &nbsp;
+			<s:if test="status=='PENDING'" >
+				<input type="submit" value="Edit Slip" />
+					&nbsp; &nbsp;
+			</s:if>
+			
 			<input type="button" value="Print"/>
 			<script>
 				var payments = ${paymentsJSON};
