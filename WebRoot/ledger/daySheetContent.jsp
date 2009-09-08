@@ -98,7 +98,7 @@
 				</table>
 			</td>
 			<td width="4%"></td>
-			<TD style="border-left: 1px solid blue; padding: 5px;">
+			<TD style="border-left: 1px solid blue; padding: 5px;"></TD>
 			<td width="5%"></td>
 			<td>
 				<table width="100%">

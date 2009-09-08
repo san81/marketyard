@@ -12,9 +12,12 @@
 <s:url id="buyerAccountsList" value="../json/accountIdsAndNamesList.action"/>
 
 <%---- values from config --%>
+<s:hidden name="slipId"></s:hidden>
 <s:hidden name="cashCommissionRate"></s:hidden>
 <s:hidden name="adthiRate"></s:hidden>
 <s:hidden name="hamaliRate"></s:hidden>
+<s:hidden name="action"></s:hidden>
+
 <%--values from config--%>
 <%--derived values --%>
 <s:hidden name="qtls"></s:hidden>
@@ -28,6 +31,16 @@
 
 
 <table width=100% border=0>
+	  <tr>
+	  	<td colspan="3">
+	  		<s:if test="slipId == null">
+	  			<s:text name="label.create.purchaseSlip"></s:text>
+	  		</s:if>
+	  		<s:else>
+	  			<s:text name="label.edit.purchaseSlip"><s:param >${slipId}</s:param></s:text>
+	  		</s:else>
+	  	</td>
+	  </tr>
 	  <tr>
 		<td colspan=3>
 			<span  class="subHead">
@@ -129,16 +142,7 @@
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
 					</td>
 				</tr>
-				<tr>
-					<td><s:text name="label.slip.status"></s:text><span class="required">*</span> </td>
-					<td>:</td>
-					<td><select name="status" onchange="setPaymentDetailsDiv(this)">
-							<option value="PENDING">PENDING</option>
-							<option value="PARTIAL">PARTIAL</option>							
-							<option value="PAID">PAID</option>							
-						</select>
-					</td>
-				</tr>
+				<s:select key="label.slip.status" name="status" list="#{'PENDING':'PENDING', 'PARTIAL':'PARTIAL', 'PAID':'PAID'}" onchange="setPaymentDetailsDiv(this)" required="true"></s:select>
 			</table>
 		</td>
 		<td>
@@ -150,12 +154,17 @@
 					<td colspan=3 align="center" style="font-weight:bold"><s:text name="label.slip.farmarDetails"></s:text> </td>
 				</tr>				
 				<tr>
+					<td align="center" colspan="3">
+						<input type="button" name="pickAnonymous" onClick="setAnonymousSupplier(this)" value="<s:text name="label.slip.pickAnonymous"></s:text>"/>
+					</td>					
+				</tr>
+				<tr>
 					<td><s:textfield key="label.slip.city" name="supplierCity" required="true"></s:textfield></td>
 				</tr>
 				<tr>
 					<td align="right"> <s:text name="label.slip.supplier"></s:text><span class="required">*</span>:</td>
 					<td colspan="2">
-							<s:autocompleter name="supplier" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
+							<s:autocompleter id="supplier" name="supplier" theme="ajax" indicator="indicator" href="%{buyerAccountsList}" cssStyle="width: 200px;" autoComplete="false" searchType="substring" />
 							<img id="indicator" src="${pageContext.request.contextPath}/images/indicator.gif" alt="Loading..." style="display:none"/>
 					</td>
 				</tr>
@@ -168,40 +177,8 @@
 	<tr>
 		<td colspan="3">
 			<div id="paymentDetailsInputDiv" style="display: none">
-				<table border=0 width="100%">
-					<tr>
-						<td colspan=6>
-							<span class="subHead"> 
-								<s:text name="label.slip.paymentDetails"></s:text>
-							</span>
-							<hr>
-						</td>
-					</tr>				
-					<tr>
-							<td><s:text name="label.paymentMode"></s:text><span class="required">*</span>:
-								<select name="paymentMode" onchange="setBankDetailsDiv(this)">
-									<option value="CASH" selected>CASH</option>
-									<option value="CHECK">CHECK</option>
-								</select>
-							</td>
-							<td>
-								<s:text name="label.amount"></s:text><span class="required">*</span>:
-								<input type="text" name="paymentAmount" class="grandTotal">
-							</td>							
-					</tr>
-					<tr>
-						<td colspan="2">
-							<div id="bankDetailsDiv" style="display: none">
-							  <table>
-							  	<s:textfield key="label.bankName" name="bankName" required="true"></s:textfield>
-							  	<s:textfield key="label.checkNumber" name="checkNumber" required="true"></s:textfield>
-							  	<s:textfield key="label.branchName" name="branchName" required="true"></s:textfield>							  										
-								</table>		
-							</div>
-						</td>
-					</tr>										
-			     </table>
-		   </div>
+				<jsp:include flush="true" page="/payments/paymentDetails.jsp"></jsp:include>
+			</div>
 	    </td>	   
 	</tr>	
 	<tr>
@@ -224,4 +201,6 @@
 <script>
 	makeSlip(document.conformSlipSubmit);
 	setEditableStyles(document.conformSlipSubmit.doNotCalculate);
+	setPaymentDetailsDiv(document.conformSlipSubmit.status);
+	setBankDetailsDiv(document.conformSlipSubmit.paymentMode);
 </script>

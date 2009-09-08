@@ -20,6 +20,8 @@ import com.san.my.service.BTransactionService;
 
 public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
 	
+    private static final long serialVersionUID = -8429542108355347651L;
+    
     Logger logger = Logger.getLogger(PurchaseSlip.class);
 	HttpServletRequest request;
     
@@ -85,7 +87,8 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
 		return SUCCESS;
 	}
 	
-	public String back(){		
+	public String back(){
+        action = "edit";
 		return SUCCESS;
 	}
 	
@@ -118,6 +121,12 @@ public class PurchaseSlip extends ActionSupport implements ServletRequestAware {
         System.out.println("Payment JSON: "+paymentJSON);
         request.setAttribute("paymentsJSON", paymentJSON);
         
+        return SUCCESS;
+    }
+    
+    public String edit(){
+        action = "save";
+        transactionService.editPurchase(this);
         return SUCCESS;
     }
 	

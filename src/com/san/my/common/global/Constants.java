@@ -15,6 +15,10 @@ public class Constants {
 	public final static String FALSE = "false";
 	public final static String TRUE = "true";
     
+    public static final Long HAMALI_ID = 2L;
+    public static final Long CC_ID = 3L;
+    public static final Long MF_ID = 4L;
+    
     public static final String CREDIT = "CR";
     public static final String DEBIT = "DR";
     

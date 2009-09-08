@@ -34,7 +34,7 @@ public class BTransactionServiceImpl implements BTransactionService{
 	private BTransactionsDAO transactionsDAO;
 	private SlipDAO slipDAO;
     private AccountDAO accountDAO;
-    private SeedsDAO seedDAO;
+    private SeedsDAO  seedDAO;
 	
 	public void savePurchase(PurchaseSlip purchaseSlip) {
         
@@ -133,9 +133,9 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         transactionObjects.add(mfTransactionDO);
         
-        //If purchase status is closed, add debit to firm from supplier transaction too.
+        //Insert payment transaction if purchase status is not pending.
         if(!purchaseSlip.getStatus().equals(Constants.BILL_STATUS_PENDING)){
-            //supplier transaction.
+            //payment transaction.
             BussinessTransactionDO payment = new BussinessTransactionDO();
             payment.setDatetime(currentTime);
             payment.setAmount(purchaseSlip.getPaymentAmount());
@@ -189,6 +189,83 @@ public class BTransactionServiceImpl implements BTransactionService{
 
     public void editPurchase(PurchaseSlip purchaseSlip)
     {
+        SlipDO slip = slipDAO.loadSlip(purchaseSlip.getSlipId());
+        AccountDO supplier = accountDAO.loadAccountDO(purchaseSlip.getSupplierKey());
+        AccountDO buyer = accountDAO.loadAccountDO(purchaseSlip.getBuyerAccountIdKey());
+        
+        //edit slip transactions.
+        Set<BussinessTransactionDO> transactions = slip.getTransactions();
+        //TODO: this set size should not be greater than 5 check for this
+        for(BussinessTransactionDO transaction : transactions){
+            if(transaction.getAccount().getAccountId().equals(Constants.HAMALI_ID)){
+                transaction.setAmount(purchaseSlip.getTotalHamali());
+            }else if(transaction.getAccount().getAccountId().equals(Constants.CC_ID)){
+                transaction.setAmount(purchaseSlip.getTotalCc());
+            }else if(transaction.getAccount().getAccountId().equals(Constants.MF_ID)){
+                transaction.setAmount(purchaseSlip.getTotalMf());
+            /*
+             * If transaction account is other than HAMALI, CC, MF.. then transaction with flow
+             *    -- CR is assumed as supplier transaction.
+             *    -- DR is assumed as buyer transaction.
+             * The alternative to this assumption could be to have previous supplier and 
+             * buyer information in the purchase slip while editing the slip.
+             */
+            }else if(transaction.getTransFlow().equals(Constants.CREDIT)){ //Supplier transaction.
+                transaction.setAmount(purchaseSlip.getNetTotal());
+                transaction.setAccount(supplier);
+            }else if(transaction.getTransFlow().equals(Constants.DEBIT)){ //Buyer transaction
+                transaction.setAmount(purchaseSlip.getGrossTotal());
+                transaction.setAccount(buyer);
+            }
+        }
+        
+        //Insert payment transaction if purchase status is not pending.
+        if(!purchaseSlip.getStatus().equals(Constants.BILL_STATUS_PENDING)){
+            Date currentTime = Calendar.getInstance().getTime();
+            //payment transaction.
+            BussinessTransactionDO payment = new BussinessTransactionDO();
+            payment.setDatetime(currentTime);
+            payment.setAmount(purchaseSlip.getPaymentAmount());
+            payment.setAccount(supplier);
+            payment.setSlip(slip);
+            payment.setTransFlow(Constants.DEBIT);
+            
+            if(purchaseSlip.getPaymentMode().equals(Constants.PAYMENT_MODE_CASH)){
+                payment.setPaymentMode(Constants.PAYMENT_MODE_CASH);
+            }else{
+                PaymentDetailsDO paymentDetails = new PaymentDetailsDO();
+                paymentDetails.setDatetime(currentTime);
+                paymentDetails.setAmount(purchaseSlip.getPaymentAmount());
+                paymentDetails.setCheckNumber(purchaseSlip.getCheckNumber());
+                paymentDetails.setBankName(purchaseSlip.getBankName());
+                paymentDetails.setBranchName(purchaseSlip.getBranchName());
+                paymentDetails.setBusinessTransaction(payment);
+                paymentDetails.setDescription("Firm has paid this amount towards this bill");
+                
+                payment.setPaymentMode(Constants.PAYMENT_MODE_CHECK);
+                payment.setPaymentDetails(paymentDetails);
+            }
+            
+            payment.setDescription("Firm has paid this amount to supplier");
+            
+            transactionsDAO.saveBusinessTransaction(payment);
+        }
+        
+        //Edit slip
+        SeedDO seed = seedDAO.loadSeed(purchaseSlip.getSeedKey());
+        slip.setSeed(seed);
+        slip.setSupplier(supplier);
+        slip.setBuyer(buyer);
+        slip.setBarthi(purchaseSlip.getBagwt());
+        slip.setBags(purchaseSlip.getBags());
+        slip.setLooseBag(purchaseSlip.getSmallBag());
+        slip.setRate(purchaseSlip.getCost());
+        slip.setQtls(purchaseSlip.getQtls());
+        slip.setHamaliRate(purchaseSlip.getHamaliRate());
+        slip.setCcRate(purchaseSlip.getCashCommissionRate());
+        slip.setAdthiRate(purchaseSlip.getAdthiRate());
+        slip.setStatus(purchaseSlip.getStatus());
+        slip.setDescription(purchaseSlip.getDescription());        
     }
 
     public void loadSlip(PurchaseSlip purchaseSlip) throws BusinessServiceException
@@ -204,13 +281,16 @@ public class BTransactionServiceImpl implements BTransactionService{
         
         purchaseSlip.setPurchaseDate(slip.getDatetime());
         purchaseSlip.setSeed(slip.getSeed().getName());
+        purchaseSlip.setSeedKey(slip.getSeed().getSeedId());
         purchaseSlip.setBagwt(slip.getBarthi());
         purchaseSlip.setBags(slip.getBags());
         purchaseSlip.setSmallBag(slip.getLooseBag());
         purchaseSlip.setCost(slip.getRate());
         
         purchaseSlip.setBuyerAccountId(slip.getBuyer().getLoginName());
+        purchaseSlip.setBuyerAccountIdKey(slip.getBuyer().getAccountId());
         purchaseSlip.setSupplier(slip.getSupplier().getLoginName());
+        purchaseSlip.setSupplierKey(slip.getSupplier().getAccountId());
         purchaseSlip.setSupplierCity(slip.getSupplier().getVillage());
         
         Set<BussinessTransactionDO> transactions = slip.getTransactions();
@@ -221,11 +301,11 @@ public class BTransactionServiceImpl implements BTransactionService{
                 purchaseSlip.setGrossTotal(transaction.getAmount());
             }else if(transaction.getAccount().getAccountId().equals(slip.getSupplier().getAccountId()) && transaction.getTransFlow().equals(Constants.CREDIT)){
                 purchaseSlip.setNetTotal(transaction.getAmount());
-            }else if(transaction.getAccount().getAccountId().equals(2L) && transaction.getTransFlow().equals(Constants.CREDIT)){
+            }else if(transaction.getAccount().getAccountId().equals(Constants.HAMALI_ID) && transaction.getTransFlow().equals(Constants.CREDIT)){
                 purchaseSlip.setTotalHamali(transaction.getAmount());
-            }else if(transaction.getAccount().getAccountId().equals(3L) && transaction.getTransFlow().equals(Constants.CREDIT)){
+            }else if(transaction.getAccount().getAccountId().equals(Constants.CC_ID) && transaction.getTransFlow().equals(Constants.CREDIT)){
                 purchaseSlip.setTotalCc(transaction.getAmount());
-            }else if(transaction.getAccount().getAccountId().equals(4L) && transaction.getTransFlow().equals(Constants.CREDIT)){
+            }else if(transaction.getAccount().getAccountId().equals(Constants.MF_ID) && transaction.getTransFlow().equals(Constants.CREDIT)){
                 purchaseSlip.setTotalMf(transaction.getAmount());
             }else if(transaction.getAccount().getAccountId().equals(slip.getSupplier().getAccountId()) && transaction.getTransFlow().equals(Constants.DEBIT)){
                 payments.add(transaction);
