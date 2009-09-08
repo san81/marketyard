@@ -23,9 +23,9 @@ public class TransactionInterceptor extends AbstractInterceptor
 			txTemplate.execute(new TransactionCallbackWithoutResult(){
 				public void doInTransactionWithoutResult(TransactionStatus status) {
 					try {
-                        logger.debug("Begin transaction interceptor");
+                        //logger.debug("Begin transaction interceptor");
 						finalInvoker.invoke();
-                        logger.debug("End transaction interceptor");
+                        //logger.debug("End transaction interceptor");
 					} 
 					catch(Throwable ex)
 					{
