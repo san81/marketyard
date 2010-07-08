@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="objectDAO" class="com.san.my.dao.impl.ObjectDAOImpl">
+		<property name="sessionFactory"><ref bean="sessionFactory"/></property>
+	</bean>
+	
+	<bean id="accountDAO"
+		class="com.san.my.dao.impl.AccountDAOImpl"
+		parent="objectDAO">		
+	</bean>
+	<bean id="seedsDAO"
+		class="com.san.my.dao.impl.SeedsDAOImpl"
+		parent="objectDAO">		
+	</bean>
+	<bean id="bTransactionsDAO"
+		class="com.san.my.dao.impl.BTransactionsDAOImpl"
+		parent="objectDAO">		
+	</bean>
+	<bean id="slipDAO"
+		class="com.san.my.dao.impl.SlipDAOImpl"
+		parent="objectDAO">		
+	</bean>
+</beans>

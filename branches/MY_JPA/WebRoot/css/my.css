@@ -1,0 +1,466 @@
+html, body {height:100%}
+body {
+	padding:0;
+	margin:0;
+	background:#FFFFFF repeat-y left top;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 16px;
+	text-decoration: none;
+}
+#outer{
+	height:100%;
+	min-height:100%;
+	margin-left:160px;
+	margin-right:180px;
+	background:#FFFFFF;	
+	margin-bottom:-52px;
+	color: #000000;
+}
+html>body #outer{height:auto;} /*for mozilla as IE treats height as min-height anyway*/
+#header{
+	position:relative;
+	top:0;
+	left:0;
+	width:100%;	
+	background:#FFFFFF;
+	border-top:1px solid #FFFFFF;
+	border-bottom:1px solid #0199FE;
+	overflow:hidden;
+	color: #000000;
+}
+#left {
+	position:relative;/*ie needs this to show float */
+	width:160px;
+	/*width:auto;*/
+	float:left;
+	margin-left:-159px;/*must be 1px less than width otherwise won't push footer down */
+	VERTICAL-ALIGN: top
+}
+#class {
+	height: 5px;
+}
+#left p {padding-left:3px;padding-right:2px}
+#right p {padding-left:3px;padding-right:2px}
+
+#right {
+	position:relative;/*ie needs this to show float */
+	width:180px;
+	float:right;
+	margin-right:-190px;/*must be 1px less than width otherwise won't push footer down */
+	}
+#footer {
+	width:100%;
+	clear:both;
+	height:50px;
+	border-top:1px solid #C3D8ED; 
+	border-bottom:1px solid #C3D8ED;
+	background-color: #FFFFFF;
+	color: #000000;
+	text-align:center;
+	position:relative;
+}
+* html #footer {/*only ie gets this style*/
+	\height:52px;/* for ie5 */
+	he\ight:50px;/* for ie6 */
+}
+#clearheader{height:0px;}/*needed to make room for header*/
+.google {
+	text-align: center;
+	background-color: #DFF2FF;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #0199FE;
+	border-bottom-color: #86CDFD;
+	margin-top: 5px;
+}
+#clearfooter{clear:both;height:50px;}/*needed to make room for footer*/
+div,p  {margin-top:2px}/*clear top margin for mozilla*/
+* html #centrecontent {height:1%;margin-bottom:12px}/* combat IE's 3 pixel jog */
+#centrecontent {float:right;width:100%;position:relative;margin: 0 -0.5%;}
+.outerwrap {
+float: left;
+width: 100%;
+position: relative;
+border-left:1px solid #C3D8ED;
+border-right:1px solid #C3D8ED;
+}
+ul {	
+	margin: 0;
+	padding: 0;
+	}	
+#menu {
+	padding: 0px;
+	margin: 0px;
+	}
+	
+#menu li a {
+	height: 20px;
+	text-decoration: none;
+	padding: 0px 0px 0px 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	}	
+	
+#menu li a:link, #menu li a:visited {
+	color: #0066CC;
+	display: block;
+	background: #DFF2FF;
+	padding: 0px 0px 0px 10px;
+	}
+	
+#menu li a:hover {
+	color: #FF9900;
+	background:#F2E7C9 ;
+	padding: 0px 0px 0px 10px;
+	}
+	
+#menu li a:active {
+	color: #0066CC;
+	background:#E9F2FA;
+	padding: 0px 0px 0px 10px;
+	}
+
+#menu li {
+	height: 20px;
+	width: 98%;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #C3D8ED;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	float: left;
+	position: relative;
+	list-style-type: none;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #C3D8ED;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #C3D8ED;
+}
+.banner {
+	float: right;
+	margin-top: -55px;
+	clear: left;
+	padding-right: 10px;
+}
+a:link {
+	color: #0066CC;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #FF9900;
+}
+a:hover {
+	text-decoration: underline;
+	color: #FF9900;
+}
+a:active {
+	text-decoration: none;
+	color: #0066CC;
+}
+.advt {
+	line-height: 20px;
+}
+#contacthead {
+	width: 200px;
+	background-color: #FFFFFF;
+	position:relative;
+	left:20px;
+	top:6px;
+	text-align:center;
+	font-weight: bold;
+	color:#FF6600;
+}
+h1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	margin: 5px 0px;
+}
+h2 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #981739;
+	margin: 5px 0px;
+	font-weight: bold;
+	text-align: center;
+}
+h3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+	background-color: #EFEFEF;
+	height: 25px;
+	width: 100%;
+	margin-top: 15px;
+	margin-right: 0px;
+	margin-bottom: 15px;
+	margin-left: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCCCCC;
+	vertical-align: middle;
+}
+#contact {
+	padding:2px;
+	border-top:3px solid #FF6600;
+	border-bottom:3px solid #e7e7e7;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #e7e7e7;
+	border-left-color: #e7e7e7;
+}
+
+h6 {
+	margin: 0px;
+	text-align: right;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+}
+#cwindow {margin-bottom:15px;border:1px solid #c0c0c0;}
+.payment {
+	color: #FF6600;
+	text-decoration: underline;
+}
+
+#box{
+	padding:6px 6px 6px 12px;
+}
+.cmiddle {
+	width: 96%;
+	padding-left: 15px;
+}
+
+#cwindow h4                             {
+	padding:2px 2px 2px 10px;
+	border-bottom:3px solid #3879A7;
+	border-top:2px solid #fff;
+	background-color:#e7e7e7;
+	font-size:1em;
+	margin: 0px;
+}
+.hackbox{border-top:1px solid transparent!important; border-top:0; clear:both;}
+#outerbox {
+	padding: 2px;
+	border: 1px solid #CCCCCC;
+}
+#subl {
+	padding: 0px;
+	margin: 0px;
+	}
+	
+#subl li a {
+	height: 50px;
+	text-decoration: none;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFFFFF;
+	width: 98%;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	}	
+	
+#subl li a:link, #subl li a:visited {
+	color: #0066CC;
+	background: #DFF2FF;
+	padding: 0px 0px 0px 10px;
+	}
+	
+#subl li a:hover {
+	color: #FF9900;
+	background:#DFF2FF;
+	padding: 0px 0px 0px 10px;
+	}
+	
+#subl li a:active {
+	color: #0066CC;
+	background:#E9F2FA;
+	padding: 0px 0px 0px 10px;
+	}
+
+#subl li {
+	height: 20px;
+	width: 98%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	float: left;
+	position: relative;
+	list-style-type: none;
+	background-color: #DFF2FF;
+}
+.bgcolor {
+	background-color: #FFFDF1;
+	padding: 10px;
+	text-align: justify;
+}
+.bgcolorhead {
+	background-color: #FFFDF1;
+	padding: 1px;
+	width: 100%;
+}
+.compny {
+	font-size: 12px;
+	line-height: 20px;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	text-align: justify;
+}
+.line {
+	color: #CCCCCC;
+	height: 1px;
+	width: 100%;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-top-color: #FF6600;
+}
+.articleline {
+	color: #CCCCCC;
+	height: 5px;
+	width: 100%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #cccccc;
+}.medicinesborder {
+	border: 1px solid #F0F4FF;
+}
+.comptext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	color: #000000;
+	text-decoration: none;
+	height: 10em;
+	width: 25em;
+}
+
+#articletitle {
+	background-color: #F7FCFF;
+	border: 1px solid #C3D8ED;
+	padding: 5px;
+	color: #000000;
+}
+.breadcrumbs {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.articletext {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: justify;
+}
+.articletoolshead {
+	color: #FFFFFF;
+	background-color: #96BBD5;
+	padding: 5px;
+	font-weight: bold;
+	border: 1px solid #C3D8ED;
+}
+.articletools {
+	background-color: #F7FCFF;
+	border: 1px solid #C3D8ED;
+	padding: 5px;
+}
+.breeds {
+	background-color: #FFFFFF;
+	padding: 10px;
+	text-align: justify;
+}
+.poulvet {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF0000;
+}
+/* IE 6 Hacks for layout issues  */
+* html #left {
+	position: fixed;
+	width: auto;
+}
+
+/* END IE 6 Hacks for layout issues  */
+
+.derivedInfo{
+	color:blue;
+}
+
+.expensesColor{
+	color:green;
+}
+
+.editableExpensesColor{
+	color:green;
+	background-color: yellow;
+}
+
+.grandTotal{
+	color:red;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.subHead {
+	width: 200px;
+	background-color: #FFFFFF;
+	position:relative;
+	left:20px;
+	top:6px;
+	text-align:left;
+	font-weight: bold;
+	color:#FF6600;
+}
+
+.acHeader {
+	color: #0066CC;
+	bgcolor: #DFF2FF;
+	background-color: #DFF2FF;
+}
+.altRow {
+	bgcolor: #DFF2FF;
+	background-color: #DFF2FF;
+}
+
+.listRow { /* font-family: Verdana, Arial, Helvetica, sans-serif; */
+	font-size: 8pt;
+	background-color: #ffffff;
+	border-style: none;
+	border-color: #6d7b8d;
+}
+
+.listAltRow { /*font-family: Verdana, Arial, Helvetica, sans-serif;*/
+	font-size: 8pt;
+	background-color: #eeeeeb;
+	border-style: none;
+	border-color: #6d7b8d;
+}
+
+.gsumDisplay{
+	color:#FF6600;
+	font-weight: bold;
+}
+
+.tableHeader {
+	background-color: #CEDDFF;
+	color: #666666;
+	font-weight: bold;
+	font-size: 11px;
+}
+
+

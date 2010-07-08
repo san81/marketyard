@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="marketyard"  basedir="." default="buildWar">
+	<description>Builds, tests, and runs the project marketyard.</description>
+	<property file="desktop.build" />
+	
+	<property name="ant.build.javac.source" value="1.5" />
+	<property name="ant.build.javac.target" value="1.5" />
+			
+	<property name="classes" location="${buildDir}/web/WEB-INF/classes" />
+	<property name="test.classes" location="testClasses" />
+	<property name="dist" location="dist" />
+	<property name="junit-result" location="result" />
+	<property name="lib" location="${rootDir}/lib" />
+	<property name="src" location="src" />
+	<property name="src.web" location="WebRoot" />
+	<property name="src.cfg" location="conf" />
+	
+	<path id="build.class.path">
+			<fileset dir="${lib}">
+				<include name="**/*.jar"/>
+				<include name="**/*.zip"/>
+			</fileset>			
+	</path>
+	<path id="run.class.path">
+			<fileset dir="${lib}">
+				<include name="**/*.jar"/>
+				<include name="**/*.zip"/>
+			</fileset>
+			<fileset dir="${cfg}">
+				<include name="**/*.xml"/>
+			</fileset>
+	</path>
+
+	<!-- Clean target -->
+	
+	<!-- Clean -->
+		<target name="clean" depends="clean-classes, clean-target" />
+
+		<!-- Clean classes -->
+		<target name="clean-classes">
+	 		<delete dir="${classes}" />
+			<delete dir="${buildDir}/web/WEB-INF/classes" />
+			<delete dir="${dist}" />
+			<delete file="${jbossServer}/${appName}.war"/>
+		</target>
+		<target name="clean-target">
+			<delete dir="${buildDir}/bin" />
+			<delete dir="${buildDir}/lib" />
+			<delete dir="${buildDir}/cfg" />
+			<delete dir="${buildDir}/log" />
+			<delete dir="${buildDir}/web" />
+			<delete dir="${buildDir}/archive" />
+			<delete dir="${stage}" />
+		</target>
+	<!-- Init -->
+		<target name="init" depends="clean">
+			<mkdir dir="${buildDir}/cfg/" />
+			<mkdir dir="${buildDir}/lib" />
+			<mkdir dir="${buildDir}/bin" />
+			<mkdir dir="${buildDir}/log" />
+			<mkdir dir="${buildDir}/web" />
+			<mkdir dir="${buildDir}/archive" />
+			<mkdir dir="${classes}" />
+			<mkdir dir="${test.classes}" />
+			<mkdir dir="${dist}" />			
+			<mkdir dir="${junit-result}" />
+		</target>
+		
+		<target name="compile" depends="init">
+			<property name="build.class.path" refId="build.class.path"/>
+			<echo message="${build.class.path}"/>
+
+			<echo message="Building Marketyard App java classes"/>
+			<javac destdir="${classes}" debug="on"
+				 srcdir="${src}" source="1.5" target="1.5">
+				<classpath refid="build.class.path"/>
+				<include name="**/*.java"/>
+			</javac>
+		</target>
+		<target name="buildWar" depends="compile">
+			<war destfile="${buildDir}\archive\${appName}.war" webxml="${src.web}/WEB-INF/web.xml">							
+				<classes dir="${classes}"/>				
+				<zipfileset dir="${src.web}" prefix=""/>				
+				<zipfileset dir="${src.cfg}" prefix="WEB-INF/classes"/>				
+				 <webinf dir="${buildDir}/web/WEB-INF/">	
+						<exclude name="web.xml"/>
+						<include name="*.xml"/>
+				 </webinf>
+			</war>
+			<copy todir="${jbossServer}/" flatten="false">
+			   <fileset dir="${buildDir}/archive/" includes="${appName}.war" />			   	
+			</copy>			
+		</target>
+	  <!-- Create Javadoc -->
+		<target name="javadoc">
+			<javadoc
+			    destdir="src/doc/javadoc"
+			    author="true"
+			    version="true"
+			    use="true"
+			    windowtitle=" API">
+		
+			    <packageset dir="src/java" defaultexcludes="yes">
+			      <include name="com/**"/>
+			    </packageset>
+		
+			    <doctitle><![CDATA[<h1>Test</h1>]]></doctitle>
+			    <bottom><![CDATA[<i>Copyright &#169; 2007 . All Rights Reserved.</i>]]></bottom>
+			    <tag name="todo" scope="all" description="To do:"/>
+	  		</javadoc>
+		</target>
+	<target name="hotDeploy">
+		<mkdir dir="${jbossServer}/${appName}.war" />
+		<copy todir="${jbossServer}/${appName}.war/" verbose="yes">
+			<fileset dir="${src.web}/" excludes="${src.web}/WEB-INF" />
+			<fileset file="${src.web}/WEB-INF/web.xml" />
+			<fileset dir="${src.web}/WEB-INF/classes" />
+		</copy>		
+	</target>
+</project>

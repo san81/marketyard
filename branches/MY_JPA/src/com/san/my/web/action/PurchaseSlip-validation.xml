@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC 
+  		"-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+  		"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+  		
+<validators> 		
+	<field name="seed">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>Seed name is required</message>
+		</field-validator>
+	</field>
+	<field name="bagwt">
+		<field-validator type="required">
+		<message>Bagweight is required</message>
+		</field-validator>
+	</field>
+	<field name="bags">
+		<field-validator type="required">
+			<message>Bags is required</message>
+		</field-validator>
+	</field>
+	<field name="smallBag">
+		<field-validator type="required">
+			<message>Kgs is required</message>
+		</field-validator>
+	</field>
+	<field name="cost">
+		<field-validator type="required">
+			<message>Cost/Qtls is required</message>
+		</field-validator>
+	</field>
+	<field name="buyerAccountIdKey">
+		<field-validator type="required">			
+			<message>Buyer name is required</message>
+		</field-validator>
+	</field>
+	<field name="supplier">
+		<field-validator type="required">			
+			<message>Supplier name is required</message>
+		</field-validator>
+	</field>
+	<field name="paymentMode">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>Payment mode is required</message>
+		</field-validator>
+	</field>
+	<field name="supplier">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>supplier name is required</message>
+		</field-validator>
+	</field>
+	<field name="supplierCity">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>supplier city is required</message>
+		</field-validator>
+	</field>
+	<field name="description">
+		<field-validator type="requiredstring">
+			<param name="trim">true</param>
+			<message>description is required</message>
+		</field-validator>
+	</field>
+</validators>
+

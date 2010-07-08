@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="loginActionBean" singleton="false"
+		class="com.san.my.web.action.account.Login">
+	</bean>
+	<bean id="accountsActionBean" singleton="false"
+		class="com.san.my.web.action.account.AccountForm">
+		<property name="accountService"><ref bean="accountService"/></property>
+	</bean>
+	<bean id="seedsActionBean" class="com.san.my.web.action.Seeds" singleton="false">
+		<property name="seedsService"><ref bean="seedsService"/></property>
+	</bean>
+	<bean id="purchaseSlipActionBean" singleton="false"
+		class="com.san.my.web.action.PurchaseSlip">
+		<property name="transactionService" ref="bTransactionService"></property>
+	</bean>	
+	<bean id="slipConfigsActionBean" singleton="false"
+		class="com.san.my.web.action.SlipConfigurations">
+	</bean>
+	<bean id="paymentsAndRecieptsActionBean" singleton="false"
+		class="com.san.my.web.action.PaymentAndReciept">
+		<property name="transactionService" ref="bTransactionService"></property>
+	</bean>
+	<bean id="ledgerActionBean" singleton="false"
+		class="com.san.my.web.action.Ledger">
+		<property name="accountService" ref="accountService"></property>
+	</bean>
+	<bean id="daySheetActionBean" singleton="false"
+		class="com.san.my.web.action.DaySheet">
+		<property name="transactionService" ref="bTransactionService"></property>
+	</bean>
+	<!--  json action beans -->
+	<bean id="seedsListJsonActionBean" singleton="false"
+		class="com.san.my.web.action.SeedsList">
+		<property name="seedsService"><ref bean="seedsService"/></property>
+	</bean>
+	<bean id="accountTypesJsonActionBean" singleton="false"
+		class="com.san.my.web.action.AccountTypesList">
+		<property name="accountService"><ref bean="accountService"/></property>
+	</bean>
+	<bean id="accountsListJsonActionBean" singleton="false"
+		class="com.san.my.web.action.AccountsList">
+		<property name="accountService"><ref bean="accountService"/></property>		
+	</bean>
+	
+	<!--  json action beans -->
+</beans>
