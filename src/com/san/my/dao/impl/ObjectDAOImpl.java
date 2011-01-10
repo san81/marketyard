@@ -26,34 +26,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.san.my.dao.ObjectDAO;
 
-/**
- * This class provides the default implementation of the platform DAO interface.
- * Some methods it handles directly, others it delegates. All DAOs
- * (EntityAccessBeans) should extend from this class and should follow the
- * rules:
- * 
- * <pre><li>
- * Name of DAO should 'domainObjectName' + 'EntityAccessBean'
- * </li>
- * <li>
- * DAOs should contain &lt;i&gt;only&lt;/i&gt; finder methods and should be
- * stateless.
- * </pre>
- */
+
 public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
 {
     private static final String GENERIC_MULTIPLE_VALUES_FOUND_MESSAGE = "Multiple values found when only one was expected.";
 
-    /**
-     * Checks for null bindings and if found will throw an exception. 
-     * For any <code>bind[i]</code> for a non-zero length array, if <code>bind[i]</code> is null then an exception
-     * is thrown. As of now we are allowing null value or empty value for <code>binds</code> array.
-     * 
-     * @param binds the array of bind values to be verified.
-     * 
-     * @return true if binds are valid. If bindings are invalid, throws IllegalArgumentException.
-     * @throws IllegalArgumentException If any of the bindings are invalid/null.
-     */
     protected static boolean isBindingValid(String sql, Object[] binds)
     {
         if (null != binds && 0 < binds.length) {
@@ -350,11 +327,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
     // end named queries section
 
     /**
-     * Load object matching the given key and return it. This will throw an
-     * exception if the object cannot be found. This is generally less
-     * preferable than using get(), unless it's a real case where you have an
-     * object you KNOW must exist and are planning on throwing if it doesn't.
-     * 
+     
      * @param refClass
      *            the class you're trying to load
      * @param key
@@ -636,14 +609,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
         return list;
     }
 
-    /**
-     * Same as findByNamedQuery(queryName,binds). The additional input transformer
-     * determines the shape of the result. For e.g passing a value Transformers.ALIAS_TO_ENTITY_MAP
-     * will return a list of maps . Each map representing one row of the underlying resultset. The key 
-     * being the column name and value the return value. This is very useful in case of raw sqls spanning 
-     * over multiple tables. One can also pass Transformer.aliasToBean(ValueBean.class) if he/she wants the 
-     * result as a custom value bean i.e ValueBean.
-     */
+   
     public List findByNamedQueryAsTransformer(
         final String queryName,
         final Object[] binds,
@@ -755,14 +721,7 @@ public class ObjectDAOImpl extends HibernateDaoSupport implements ObjectDAO
         });
     }
 
-    /**
-     * Helpful method that will return the int value of the first thing on the
-     * List. Assuming it is a Long or an Integer. Needed because of a change in
-     * Hibernate.
-     * 
-     * @param list
-     * @return the int value
-     */
+    
     protected int extractNumberFromList(List list)
     {
         if (list == null) {
