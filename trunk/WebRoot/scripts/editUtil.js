@@ -1,4 +1,4 @@
-<!--
+
  
   function setEditableStyles(checkBoxCtrl){
   	var colorToSet="white";  
@@ -71,4 +71,3 @@
      //value (key will be set to "AL" and value to "Alabama")
      autoCompleter.setAllValues("anonymous",1); 	
  }
--->
