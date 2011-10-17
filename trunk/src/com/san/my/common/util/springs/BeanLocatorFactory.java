@@ -1,7 +1,4 @@
-/*
- * Copyright © 2007-2008 , Agentrics LLC – All Rights Reserved.
- *
- */
+
 package com.san.my.common.util.springs;
 
 import org.apache.log4j.Logger;
