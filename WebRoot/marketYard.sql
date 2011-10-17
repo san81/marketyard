@@ -1,5 +1,4 @@
-drop database marketyard;
-create database marketyard;
+
 
 use marketyard;
 drop table IF EXISTS Account_Types;
@@ -109,7 +108,7 @@ insert into seeds (name) values ('sugarcane');
 
 insert into accounts (login_name,password,name,account_type_id) values ('santosh_capital','password','Santosh',1);
 insert into accounts (login_name,password,name,account_type_id) values ('srinu_capital','password','Sreenivas',1);
-insert into accounts (login_name,password,name,account_type_id) values ('santosh','password','Santosh',2);
+insert into accounts (login_name,password,name,account_type_id) values ('santhosh','password','Santosh',2);
 insert into accounts (login_name,password,name,account_type_id) values ('srinu','password','Sreenivas',2);
 insert into accounts (login_name,password,name,account_type_id) values ('murali','password','murali',3);
 insert into accounts (login_name,password,name,account_type_id) values ('sudheer','password','sudheer',4);

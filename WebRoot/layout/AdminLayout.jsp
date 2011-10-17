@@ -15,7 +15,7 @@
 </head>
 
 <body>
-<jsp:include page="${pageContext.request.contextPath}/includes/userAlerts/progressBox.jsp" />
+
 <tiles:insertAttribute name="banner"></tiles:insertAttribute>
 <div id="outer">  
   <div class="outerwrap">

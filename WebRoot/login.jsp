@@ -46,7 +46,7 @@
 		<tr>
 			<td colspan="2">
 				Error Msg: 
-					<s:set name="msg" value="<%errorMessage %>" scope="page"></s:set>
+					<s:set name="msg" value="error message" scope="page"></s:set>
 				   <s:text name="msg" ></s:text>					
 			</td>
 		</tr>
