@@ -1,15 +1,20 @@
 
+-- Initial sql script to create the startup tables.
+
+drop database marketyard;
+create database marketyard;
 
 use marketyard;
-drop table IF EXISTS Account_Types;
-create table Account_Types(
+
+drop table IF EXISTS account_types;
+create table account_types(
 account_type_id  integer auto_increment primary key,
 account_type varchar(20),
 description varchar(200)
 ) ENGINE=INNODB;
 
 drop table IF EXISTS accounts;
-create table Accounts(
+create table accounts(
 account_id integer auto_increment primary key,
 login_name varchar(20) unique not null,
 password varchar(255),
@@ -19,7 +24,7 @@ account_type_id integer not null,
 address text,
 village varchar(255),
 regdate timestamp default now(), 
-FOREIGN KEY(account_type_id) REFERENCES Account_Types(account_type_id) ON UPDATE CASCADE
+FOREIGN KEY(account_type_id) REFERENCES account_types(account_type_id) ON UPDATE CASCADE
 ) ENGINE=INNODB;
 
 drop table IF EXISTS seeds;
@@ -48,15 +53,14 @@ cc_rate numeric(10,2),
 status varchar(10) not null,
 description text,
 FOREIGN KEY(seed_id) REFERENCES seeds(seed_id) ON UPDATE CASCADE,
-FOREIGN KEY(buyer_account_id) REFERENCES Accounts(account_id) ON UPDATE CASCADE,
-FOREIGN KEY(supplier_account_id) REFERENCES Accounts(account_id) ON UPDATE CASCADE
+FOREIGN KEY(buyer_account_id) REFERENCES accounts(account_id) ON UPDATE CASCADE,
+FOREIGN KEY(supplier_account_id) REFERENCES accounts(account_id) ON UPDATE CASCADE
 )ENGINE=INNODB;
 
 drop table if exists transaction;
 
 -- trans_flow may be 1-debit(DR)(outflow) or 2-credit(CR)(inflow).
 -- payment_mode should be either CASH or CHECK. when it is CHECK, then payemnt detaild_id exists.
-
 create table transaction(
 trans_id integer auto_increment primary key,
 datetime datetime not null,
